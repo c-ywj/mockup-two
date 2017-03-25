@@ -18,7 +18,6 @@ module.exports = (knex) => {
       .from('users')
       .where('email', '=', iEmail)
       .then((result) => {
-        console.log(result);
         if (result.length === 1) {
           console.log('This user already exists');
           res.redirect('/register');
