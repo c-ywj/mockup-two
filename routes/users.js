@@ -16,19 +16,34 @@ module.exports = (knex) => {
     knex
       .select('*')
       .from('users')
+      .where('email', '=', iEmail)
       .then((result) => {
-        result.forEach(function(user) {
-          if (user.email !== iEmail) {
-            knex('users').insert([{email: iEmail}, {password: iPassword}, {role: 'Consumer'}]);
+        console.log(result);
+        if (result.length === 1) {
+          console.log('this user already exists');
+          res.redirect('/register');
+        } else {
+          console.log(iEmail)
 
-            // res.redirect('/');
+          knex
+          .insert({email: iEmail, password: iPassword, role: 'Consumer'})
+          .into('users')
+          .then(result => {
+            console.log(result)
+            res.redirect('/');
             console.log(`inserted ${iEmail} into users`);
-          } else {
-            console.log('this user already exists');
-            res.redirect('/register');
-          }
-        });
-      })
+          })
+          .catch(err => {
+            console.log(err)
+          })
+
+        }
+        // result.forEach(function(user) {
+        //   if (user.email !== iEmail) {
+        //   } else {
+        //     res.redirect('/register');
+        //   }
+        })
       .catch((e) => {
         console.log('something went wrong: ', e);
       })
