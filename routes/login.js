@@ -22,9 +22,9 @@ module.exports = (knex) => {
             console.log('wrong password');
           }
       })
-      // .catch((e) => {
-      //   console.log(e);
-      // })
+      .catch((e) => {
+        console.log('Either your email was invalid, or something else went wrong', e);
+      })
   })
   return loginRouter
 };
