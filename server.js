@@ -2,7 +2,8 @@
 
 require('dotenv').config();
 
-const amazon = require('amazon-product-api');
+const amazon      = require('amazon-product-api');
+
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
@@ -55,6 +56,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+
 app.get('/search', (req,res) => {
   res.render('search');
 });
@@ -95,6 +97,7 @@ app.get("/test", (req, res) => {
       // jsonObj: res.json(results)
   };
     res.render("test2", templateVars);
+
 });
 
 
