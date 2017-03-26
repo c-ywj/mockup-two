@@ -67,11 +67,24 @@ client.itemSearch({
       brand1: results[0].ItemAttributes[0].Brand,
       ProductType1: results[0].ItemAttributes[0].ProductTypeName,
       DetailPageURL1: results[0].DetailPageURL
-        // jsonObj: res.json(results)
     };
-      res.render("test2", templateVars);
+    res.json(results);
+    res.render("test2", templateVars);
   });
-}).catch(function(err){
+    return results;
+})
+// .then(function(results) {
+//     knex.insert({
+//       name: results[0].ItemAttributes[0].Title,
+//       brand: results[0].ItemAttributes[0].Brand,
+//       category: results[0].ItemAttributes[0].ProductTypeName
+//     }).into('products')
+//       .then(function(results) {
+//         console.log('hit here, should be inserted');
+//       });
+// })
+
+.catch(function(err){
   console.log(err);
 });
 
