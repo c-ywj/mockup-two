@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 
+const amazon      = require('amazon-product-api');
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
 const express     = require("express");
@@ -42,6 +43,36 @@ app.use('/login', login(knex));
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+const client = amazon.createClient({
+  awsId: process.env.AWS_ID,
+  awsSecret: process.env.AWS_SECRET,
+  awsTag: process.env.AWS_TAG
+});
+
+client.itemSearch({
+  brand: 'Samsung',
+  keywords: 'television',
+  title: 'TV',
+  ItemPage: 1,
+  sort: 'salesrank',
+  searchIndex: 'Electronics',
+  condition: 'New',
+  responseGroup: 'ItemAttributes,Images'
+}).then(function(results){
+  app.get("/test", (req, res) => {
+    let templateVars = {
+      image1: results[0].LargeImage[0].URL,
+      brand1: results[0].ItemAttributes[0].Brand,
+      ProductType1: results[0].ItemAttributes[0].ProductTypeName,
+      DetailPageURL1: results[0].DetailPageURL
+        // jsonObj: res.json(results)
+    };
+      res.render("test2", templateVars);
+  });
+}).catch(function(err){
+  console.log(err);
 });
 
 
