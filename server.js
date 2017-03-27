@@ -82,7 +82,7 @@ app.get("/test", (req, res) => {
       ProductType1: results[0].ItemAttributes[0].ProductTypeName,
       DetailPageURL1: results[0].DetailPageURL
         // jsonObj: res.json(results)
-    };
+    }
       res.render("test2", templateVars);
   }).catch(function(err){
     console.log('test', JSON.stringify(err));

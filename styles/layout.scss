@@ -41,8 +41,7 @@
     }
 
     .form-wrapper input {
-        width: 330px;
-        height: 20px;
+
         padding: 10px 5px;
         float: left;
         font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
@@ -50,7 +49,7 @@
         background: #eee;
         -moz-border-radius: 3px 0 0 3px;
         -webkit-border-radius: 3px 0 0 3px;
-        border-radius: 3px 0 0 3px;
+        border-radius: 3px;
     }
 
     .form-wrapper input:focus {
@@ -85,6 +84,7 @@
         float: right;
         border: 0;
         padding: 0;
+        margin: 4px;
         cursor: pointer;
         height: 40px;
         width: 110px;
@@ -92,9 +92,9 @@
         color: #fff;
         text-transform: uppercase;
         background: #d83c3c;
-        -moz-border-radius: 0 3px 3px 0;
-        -webkit-border-radius: 0 3px 3px 0;
-        border-radius: 0 3px 3px 0;
+        // -moz-border-radius: 3px 3px ;
+        // -webkit-border-radius: 3px 3px ;
+        border-radius: 3px;
         text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
     }
 
@@ -111,10 +111,10 @@
         content: '';
         position: absolute;
         border-width: 8px 8px 8px 0;
-        border-style: solid solid solid none;
+        border-style: none solid solid solid;
         border-color: transparent #d83c3c transparent;
-        top: 12px;
-        left: -6px;
+
+
     }
 
     .form-wrapper button:hover:before{
@@ -139,4 +139,24 @@
 .byline p a{
   color:#d83c3c;
   text-decoration:none;
+}
+
+#prod{
+  width: 330px;
+  height: 30px;
+  margin-left: 40px;
+}
+
+#b1{
+  width: 163px;
+  height: 30px;
+  margin-top: 2px;
+  margin-left: 40px;
+}
+
+#b2{
+  width: 163px;
+  height: 30px;
+  margin-top: 2px;
+  margin-left: 3px;
 }
