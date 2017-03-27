@@ -88,10 +88,10 @@ app.post('/search', (req,res) => {
 
 app.get("/test", (req, res) => {
   let templateVars = function(results){
-    image1: results[0].LargeImage[0].URL,
-    brand1: results[0].ItemAttributes[0].Brand,
-    ProductType1: results[0].ItemAttributes[0].ProductTypeName,
-    DetailPageURL1: results[0].DetailPageURL
+    // image1: results[0].LargeImage[0].URL,
+    // brand1: results[0].ItemAttributes[0].Brand,
+    // ProductType1: results[0].ItemAttributes[0].ProductTypeName,
+    // DetailPageURL1: results[0].DetailPageURL
       // jsonObj: res.json(results)
   };
     res.render("test2", templateVars);
