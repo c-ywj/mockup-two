@@ -18,12 +18,9 @@ const knexLogger  = require('knex-logger');
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const login = require("./routes/login");
+const search = require("./routes/search");
 
-const client = amazon.createClient({
-  awsId: process.env.AWS_ID,
-  awsSecret:process.env.AWS_SECRET,
-  awsTag:process.env.AWS_TAG
-});
+
 
 // const search = require('./routes/search');
 
@@ -34,6 +31,7 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
+
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,46 +46,11 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/register", usersRoutes(knex));
 app.use('/login', login(knex));
-// app.use('/search',search);
+app.use('/test',search());
 // Home page
 app.get("/", (req, res) => {
 
   res.render("index");
-});
-
-app.get('/search', (req,res) => {
-  res.render('search');
-});
-
-
-app.post('/search', (req,res) => {
-
-});
-
-app.get("/test", (req, res) => {
-  console.log(req, req.query.brand1, req.query.product);
-  client.itemSearch({
-    brand: req.query.brand1,
-    // keywords: 'television',
-    title: req.query.product,
-    ItemPage: 1,
-    sort: 'salesrank',
-    searchIndex: 'Electronics',
-    responseGroup: 'ItemAttributes,Images'
-  }).then(function(results){
-    console.log(results);
-    let templateVars = {
-      image1: results[0].LargeImage[0].URL,
-      brand1: results[0].ItemAttributes[0].Brand,
-      ProductType1: results[0].ItemAttributes[0].ProductTypeName,
-      DetailPageURL1: results[0].DetailPageURL
-        // jsonObj: res.json(results)
-    }
-      res.render("test2", templateVars);
-  }).catch(function(err){
-    console.log('test', JSON.stringify(err));
-  });
-
 });
 
 
