@@ -1,9 +1,10 @@
 "use strict";
 
-const express = require('express');
-const loginRouter  = express.Router();
+const express     = require('express');
+const loginRouter = express.Router();
+const bcrypt      = require('bcrypt');
 
-module.exports = (knex) => {
+module.exports    = (knex) => {
 
   loginRouter.get("/", (req, res) => {
     res.render('login');
@@ -16,10 +17,12 @@ module.exports = (knex) => {
       .where("email", "=", req.body.email)
       .then((user) => {
         const pword = req.body.password;
-        if(pword === user[0].password) {
+        let match   = bcrypt.compareSync(pword, user[0].password);
+        if(match === true) {
             res.redirect('/');
         } else {
             console.log('wrong password');
+            res.redirect('/login');
           }
       })
       .catch((e) => {
