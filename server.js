@@ -20,9 +20,9 @@ const usersRoutes = require("./routes/users");
 const login = require("./routes/login");
 
 const client = amazon.createClient({
-  awsId: process.env.awsId,
-  awsSecret:process.env.awsSecret,
-  awsTag:process.env.awsTag
+  awsId: process.env.AWS_ID,
+  awsSecret:process.env.AWS_SECRET,
+  awsTag:process.env.AWS_TAG
 });
 
 // const search = require('./routes/search');
@@ -61,40 +61,33 @@ app.get('/search', (req,res) => {
 
 
 app.post('/search', (req,res) => {
+
+});
+
+app.get("/test", (req, res) => {
+  console.log(req, req.query.brand1, req.query.product);
   client.itemSearch({
-    brand: req.params.brand1,
+    brand: req.query.brand1,
     // keywords: 'television',
-    title: req.params.product,
+    title: req.query.product,
     ItemPage: 1,
     sort: 'salesrank',
     searchIndex: 'Electronics',
     responseGroup: 'ItemAttributes,Images'
   }).then(function(results){
-    // app.get("/test", (req, res) => {
-      console.log(results);
-      // let templateVars = {
-      //   image1: results[0].LargeImage[0].URL,
-      //   brand1: results[0].ItemAttributes[0].Brand,
-      //   ProductType1: results[0].ItemAttributes[0].ProductTypeName,
-      //   DetailPageURL1: results[0].DetailPageURL
-      //     // jsonObj: res.json(results)
-      // };
-        // res.render("test2", templateVars);
-    // });
+    console.log(results);
+    let templateVars = {
+      image1: results[0].LargeImage[0].URL,
+      brand1: results[0].ItemAttributes[0].Brand,
+      ProductType1: results[0].ItemAttributes[0].ProductTypeName,
+      DetailPageURL1: results[0].DetailPageURL
+        // jsonObj: res.json(results)
+    };
+      res.render("test2", templateVars);
   }).catch(function(err){
-    console.log(err);
+    console.log('test', JSON.stringify(err));
   });
-});
 
-app.get("/test", (req, res) => {
-  let templateVars = function(results){
-    // image1: results[0].LargeImage[0].URL,
-    // brand1: results[0].ItemAttributes[0].Brand,
-    // ProductType1: results[0].ItemAttributes[0].ProductTypeName,
-    // DetailPageURL1: results[0].DetailPageURL
-      // jsonObj: res.json(results)
-  };
-    res.render("test2", templateVars);
 });
 
 
