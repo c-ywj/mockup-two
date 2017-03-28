@@ -8,7 +8,7 @@ const client = amazon.createClient({
   awsTag:process.env.AWS_TAG
 });
 
-module.exports = () => {
+module.exports = (knex) => {
   searchRouter.get("/", (req, res) => {
     console.log(req.query.brand1, req.query.brand2);
     Promise.all([
@@ -31,7 +31,10 @@ module.exports = () => {
         responseGroup: 'ItemAttributes,Images'
       })]).
     then(function(results){
-
+      const productTitles = {
+        pro1: results[0][0].ItemAttributes[0].Title,
+        pro2: results[1][0].ItemAttributes[0].Title
+      };
       console.log(results[0][0])
       let templateVars = {
         br1: {
@@ -49,7 +52,19 @@ module.exports = () => {
           // jsonObj: res.json(results)
       }
         res.render("test2", templateVars);
-    }).catch(function(err){
+        return productTitles;
+    }).then(function(results) {
+        console.log(results);
+        knex.insert({product_one: results.pro1[0], product_two: results.pro2[0]})
+            .into('comparisons')
+            .then(function(results) {
+              return results;
+            })
+            .catch(function(err) {
+              console.log(err);
+            })
+    })
+    .catch(function(err){
       console.log('ERROR', err);
     });
 
