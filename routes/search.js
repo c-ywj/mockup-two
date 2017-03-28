@@ -20,7 +20,7 @@ module.exports = (knex) => {
       client.itemSearch({
         brand: req.query.brand1,
         // keywords: 'television',
-        title: req.query.product,
+        keywords: req.query.product,
         ItemPage: 1,
         sort: 'salesrank',
         searchIndex: 'Electronics',
@@ -29,7 +29,7 @@ module.exports = (knex) => {
       client.itemSearch({
         brand: req.query.brand2,
         // keywords: 'television',
-        title: req.query.product,
+        keywords: req.query.product,
         ItemPage: 1,
         sort: 'salesrank',
         searchIndex: 'Electronics',

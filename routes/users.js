@@ -22,18 +22,19 @@ module.exports = (knex) => {
       .then((result) => {
         if (result.length === 1) {
           console.log('This user already exists');
-          res.redirect('/register');
+          res.send('failed');
         } else {
           knex
           .insert({email: iEmail, password: hashed_pass, role: 'Consumer'})
           .into('users')
           .then(result => {
             console.log(`Inserted ${iEmail} into users`);
-            res.redirect('/');
+            // res.redirect('/');
+            res.send("success");
           })
           .catch(err => {
             console.log(err);
-            res.redirect('/register');
+            res.send('Failed');
           })
 
         }

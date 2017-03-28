@@ -3,20 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Coupon Warrior | Register</title>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="./scripts/reg.js"></script>
   </head>
   <body>
     <h1>Register</h1>
 
-    <form action="/register" method="post">
+    <form class='regForm' action="/register" method="post">
       <label for="email">What's your email?</label>
-      <input name="email" type="text"/>
+      <input id='emailReg' name="email" type="text"/>
       <br/>
 
       <label for="password">Choose a Password</label>
-      <input name="password" type="password"/>
+      <input id='passReg' name="password" type="password"/>
       <br/>
 
-      <input type="submit"/>
+      <input id='regBtn' type="submit"/>
     </form>
   </body>
 </html>

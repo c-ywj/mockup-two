@@ -2,7 +2,10 @@
 <html lang='en'>
   <head>
     <title>login page</title>
+      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script src="./scripts/app.js"></script>
   </head>
+
   <body>
     <div>
       <h1>Login</h1>
@@ -10,17 +13,17 @@
         <form action="/login" method="post">
 
           <label for="email">Your email address?</label>
-          <input name="email" type="text"/>
+          <input id='emailLogin' name="email" type="text"/>
           <br/>
 
           <label for="password">Your safe word?</label>
-          <input name="password" type="password"/>
+          <input id='passLogin' name="password" type="password"/>
           <br/>
 
-          <input type="submit"/>
+          <input id='loginBtn' type="submit"/>
         </form>
       </div>
     </div>
-  <script src="./scripts/app.js"></script>
+
   </body>
 </html>
