@@ -20,6 +20,7 @@ const knexLogger  = require('knex-logger');
 const usersRoutes = require("./routes/users");
 // const login = require("./routes/login");
 const search = require("./routes/search");
+const vote = require("./routes/vote");
 
 
 
@@ -55,7 +56,8 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/users", usersRoutes(knex));
 // app.use('/login', login(knex));
-app.use('/test',search(knex));
+app.use('/test', search(knex));
+app.use('/test', vote(knex));
 // Home page
 app.get("/", (req, res) => {
 

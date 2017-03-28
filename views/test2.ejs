@@ -22,18 +22,18 @@
           <img src="<%- br1.image1 %>">
           <span class="card-title">Card Title</span>
         </div>
-        <div class="card-content">
-          <p><%= br1.pTitle1 %> <br>
-             <%= br1.ProductType1 %>
-             <%= br1.description %>
-
-          </p>
-        </div>
+          <div class="card-content">
+            <p><span id='pro1'><%= br1.pTitle1 %></span> <br>
+               <%= br1.ProductType1 %>
+               <%= br1.description %>
+            </p>
+          </div>
         <div class="card-action">
           <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
         </div>
       </div>
     </div>
+    <button type="submit" id="votePro1">Vote!</button>
   </div>
 
   <div class="row">
@@ -44,7 +44,7 @@
           <span class="card-title">Card Title</span>
         </div>
         <div class="card-content">
-          <p><%= br2.pTitle2 %> <br>
+          <p><span id='pro2'><%= br2.pTitle2 %></span> <br>
              <%= br2.ProductType2 %>
              <%= br2.description %>
           </p>
@@ -54,11 +54,14 @@
         </div>
       </div>
     </div>
+    <button type="submit" id="votePro2">Vote!</button>
   </div>
 
 
 
- <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+   <script type="text/javascript" src="./scripts/vote.js"></script>
 </body>
 
 </html>

@@ -51,7 +51,7 @@ module.exports = (knex) => {
                              )
         .then(function(result) {
           console.log(result);
-          if(result.length === 0 && pro1.type[0] === pro2.type[0]) {
+          if(result.length === 0 && pro1.type[0] === pro2.type[0] && pro1.title !== pro2.title) {
             knex.insert({product_one: pro1.title, product_two: pro2.title}).into('comparisons')
                 .then(function(result) {
                   // console.log(pro1.type);
