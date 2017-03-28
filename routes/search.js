@@ -12,6 +12,8 @@ const client = amazon.createClient({
 });
 const rand1 = Math.floor(Math.random() * 5);
 const rand2 = Math.floor(Math.random() * 5);
+const rand3 = Math.floor(Math.random() * 2);
+const rand4 = Math.floor(Math.random() * 2);
 
 module.exports = (knex) => {
   searchRouter.get("/", (req, res) => {
@@ -34,64 +36,67 @@ module.exports = (knex) => {
         sort: 'salesrank',
         searchIndex: 'Electronics',
         responseGroup: 'ItemAttributes,Images'
-      })])
+      })
+    ])
     .then(function(results) {
       const pro1 = {
-        title: results[0][rand1].ItemAttributes[0].Title,
-        type:  results[0][rand1].ItemAttributes[0].ProductTypeName
+        title: results[rand3][rand1].ItemAttributes[0].Title,
+        type:  results[rand3][rand1].ItemAttributes[0].ProductTypeName
       }
       const pro2 = {
-        title: results[1][rand2].ItemAttributes[0].Title,
-        type:  results[0][rand2].ItemAttributes[0].ProductTypeName
+        title: results[rand4][rand2].ItemAttributes[0].Title,
+        type:  results[rand4][rand2].ItemAttributes[0].ProductTypeName
       }
-      console.log('this is pro1 :' + pro1.type[0]);
-      console.log('this is pro2 :' + pro2.type[0]);
+      console.log('this is pro1 :' + pro1.type);
+      console.log('this is pro2 :' + pro2.type);
       knex.select('*').from('comparisons')
-                      .where('product_one', '=', pro1.title,
-                             'product_two', '=', pro2.title)
+                      .where('product_one', '=', pro1.title[0],
+                             'product_two', '=', pro2.title[0]
+                             )
         .then(function(result) {
+          console.log(result);
           if(result.length === 0) {
-            knex.insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
+            knex.insert({product_one: pro1.title, product_two: pro2.title}).into('comparisons')
                 .then(function(result) {
-                  // console.log(result);
+                  // console.log(pro1.type);
                   // return result;
+                  const productTitles = {
+                      pro1: results[rand3][rand1].ItemAttributes[0].Title,
+                      pro2: results[rand4][rand2].ItemAttributes[0].Title
+                    };
+                  // console.log(results[0][rand1])
+                  let templateVars = {
+                    br1: {
+                      image1: results[rand3][rand1].LargeImage[0].URL,
+                      brand1: results[rand3][rand1].ItemAttributes[0].Brand,
+                      ProductType1: results[rand3][rand1].ItemAttributes[0].ProductTypeName,
+                      DetailPageURL1: results[rand3][rand1].DetailPageURL,
+                      pTitle1: results[rand3][rand1].ItemAttributes[0].Title,
+                      description: results[rand3][rand1].ItemAttributes[0].Feature,
+                    },
+                    br2: {
+                      image2: results[rand4][rand2].LargeImage[0].URL,
+                      brand2: results[rand4][rand2].ItemAttributes[0].Brand,
+                      ProductType2: results[rand4][rand2].ItemAttributes[0].ProductTypeName,
+                      DetailPageURL2: results[rand4][rand2].DetailPageURL,
+                      pTitle2: results[rand4][rand2].ItemAttributes[0].Title,
+                      description: results[rand4][rand2].ItemAttributes[0].Feature
+                    }
+                  }
+              res.render("test2", templateVars);
             })
             .catch(function(err) {
               console.log(err);
+              res.status(500).render("error");
             })
           }
+        }).catch(function(err) {
+          console.log(err);
+          res.status(500).render("error");
         })
-        return results;
+        // return results;
     })
-    .then(function(results){
-      const productTitles = {
-        pro1: results[0][rand1].ItemAttributes[0].Title,
-        pro2: results[1][rand2].ItemAttributes[0].Title
-      };
-      // console.log(results[0][rand1])
-      let templateVars = {
-        br1: {
-          image1: results[0][rand1].LargeImage[0].URL,
-          brand1: results[0][rand1].ItemAttributes[0].Brand,
-          ProductType1: results[0][rand1].ItemAttributes[0].ProductTypeName,
-          DetailPageURL1: results[0][rand1].DetailPageURL,
-          pTitle1: results[0][rand1].ItemAttributes[0].Title,
-          description: results[0][rand1].ItemAttributes[0].Feature,
-        },
-          br2: {
-            image2: results[1][rand2].LargeImage[0].URL,
-            brand2: results[1][rand2].ItemAttributes[0].Brand,
-            ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
-            DetailPageURL2: results[1][rand2].DetailPageURL,
-            pTitle2: results[1][rand2].ItemAttributes[0].Title,
-            description: results[0][rand2].ItemAttributes[0].Feature
-          }
-          // jsonObj: res.json(results)
-      }
-        // console.log(rand1, rand2);
-        res.render("test2", templateVars);
-        return productTitles;
-    }).catch(function(err){
+    .catch(function(err){
       console.log('ERROR', err);
     });
 
