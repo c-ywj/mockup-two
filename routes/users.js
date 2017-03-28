@@ -2,6 +2,7 @@
 
 const express  = require('express');
 const register = express.Router();
+const bcrypt   = require('bcrypt');
 
 module.exports = (knex) => {
 
@@ -10,8 +11,9 @@ module.exports = (knex) => {
   });
 
   register.post('/', (req, res) => {
-    let iEmail = req.body.email;
-    let iPassword = req.body.password;
+    let iEmail      = req.body.email;
+    let iPassword   = req.body.password;
+    let hashed_pass = bcrypt.hashSync(iPassword, 10);
 
     knex
       .select('*')
@@ -23,7 +25,7 @@ module.exports = (knex) => {
           res.redirect('/register');
         } else {
           knex
-          .insert({email: iEmail, password: iPassword, role: 'Consumer'})
+          .insert({email: iEmail, password: hashed_pass, role: 'Consumer'})
           .into('users')
           .then(result => {
             console.log(`Inserted ${iEmail} into users`);
