@@ -19,14 +19,15 @@ module.exports    = (knex) => {
         const pword = req.body.password;
         let match   = bcrypt.compareSync(pword, user[0].password);
         if(match === true) {
-            res.redirect('/');
+          res.send("success");
+            // res.redirect('/');
         } else {
-            console.log('wrong password');
-            res.redirect('/login');
-          }
+          throw "Wrong password";
+        }
       })
       .catch((e) => {
         console.log('Either your email was invalid, or something else went wrong', e);
+        res.send("Failed")
       })
   })
   return loginRouter
