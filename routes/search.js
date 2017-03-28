@@ -34,13 +34,41 @@ module.exports = (knex) => {
         sort: 'salesrank',
         searchIndex: 'Electronics',
         responseGroup: 'ItemAttributes,Images'
-      })]).
-    then(function(results){
+      })])
+    .then(function(results) {
+      const pro1 = {
+        title: results[0][rand1].ItemAttributes[0].Title,
+        type:  results[0][rand1].ItemAttributes[0].ProductTypeName
+      }
+      const pro2 = {
+        title: results[1][rand2].ItemAttributes[0].Title,
+        type:  results[0][rand2].ItemAttributes[0].ProductTypeName
+      }
+      console.log('this is pro1 :' + pro1.type[0]);
+      console.log('this is pro2 :' + pro2.type[0]);
+      knex.select('*').from('comparisons')
+                      .where('product_one', '=', pro1.title,
+                             'product_two', '=', pro2.title)
+        .then(function(result) {
+          if(result.length === 0) {
+            knex.insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
+                .then(function(result) {
+                  // console.log(result);
+                  // return result;
+            })
+            .catch(function(err) {
+              console.log(err);
+            })
+          }
+        })
+        return results;
+    })
+    .then(function(results){
       const productTitles = {
         pro1: results[0][rand1].ItemAttributes[0].Title,
         pro2: results[1][rand2].ItemAttributes[0].Title
       };
-      console.log(results[0][rand1])
+      // console.log(results[0][rand1])
       let templateVars = {
         br1: {
           image1: results[0][rand1].LargeImage[0].URL,
@@ -60,19 +88,9 @@ module.exports = (knex) => {
           }
           // jsonObj: res.json(results)
       }
-        console.log(rand1, rand2);
+        // console.log(rand1, rand2);
         res.render("test2", templateVars);
         return productTitles;
-    }).then(function(results) {
-        console.log(results);
-        knex.insert({product_one: results.pro1[0], product_two: results.pro2[0]})
-            .into('comparisons')
-            .then(function(results) {
-              return results;
-            })
-            .catch(function(err) {
-              console.log(err);
-            })
     }).catch(function(err){
       console.log('ERROR', err);
     });
