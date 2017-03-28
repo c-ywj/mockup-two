@@ -74,7 +74,7 @@ module.exports = (knex) => {
   })
 
   // logout handler
-  userRouter.post('/logout', (req, res) => {
+  router.post('/logout', (req, res) => {
     req.session = null;
     res.redirect('/');
   });
