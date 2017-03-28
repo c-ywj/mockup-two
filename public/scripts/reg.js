@@ -8,7 +8,7 @@ $(() => {
     }
     $.ajax({
       method:"POST",
-      url: "/register",
+      url: "/users/register",
       data:{
         email: email,
         password: password
