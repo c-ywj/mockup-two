@@ -40,14 +40,18 @@ module.exports = (knex) => {
         br1: {
           image1: results[0][0].LargeImage[0].URL,
           brand1: results[0][0].ItemAttributes[0].Brand,
+          pTitle1: results[0][0].ItemAttributes[0].Title,
           ProductType1: results[0][0].ItemAttributes[0].ProductTypeName,
-          DetailPageURL1: results[0][0].DetailPageURL
+          DetailPageURL1: results[0][0].DetailPageURL,
+          description: results[0][0].ItemAttributes[0].Feature
         },
           br2: {
             image2: results[1][0].LargeImage[0].URL,
             brand2: results[1][0].ItemAttributes[0].Brand,
+            pTitle2: results[1][0].ItemAttributes[0].Title,
             ProductType2: results[1][0].ItemAttributes[0].ProductTypeName,
-            DetailPageURL1: results[1][0].DetailPageURL
+            DetailPageURL1: results[1][0].DetailPageURL,
+            description: results[1][0].ItemAttributes[0].Feature
           }
           // jsonObj: res.json(results)
       }
@@ -63,8 +67,7 @@ module.exports = (knex) => {
             .catch(function(err) {
               console.log(err);
             })
-    })
-    .catch(function(err){
+    }).catch(function(err){
       console.log('ERROR', err);
     });
 
