@@ -119,6 +119,7 @@ module.exports = (knex) => {
     })
     .catch(function(err){
       console.log('ERROR', err);
+      res.render("indexError")
     });
 
   });
