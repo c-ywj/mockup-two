@@ -17,7 +17,7 @@ $(() => {
     ev.preventDefault();
     $.ajax({
       method: "POST",
-      url: "/test",
+      url: "/searchres",
       data: data
     }).done(function(msg){
       console.log('this is the msg: ' + msg);

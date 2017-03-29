@@ -79,7 +79,7 @@ module.exports = (knex) => {
                       description: results[rand4][rand2].ItemAttributes[0].Feature
                     }
                   }
-              res.render("test2", templateVars);
+              res.render("searchres", templateVars);
             })
             .catch(function(err) {
               console.log(err);
@@ -109,7 +109,7 @@ module.exports = (knex) => {
                   description: results[rand4][rand2].ItemAttributes[0].Feature
                 }
              }
-            res.render("test2", templateVars);
+            res.render("searchres", templateVars);
           }
         }).catch(function(err) {
           console.log(err);
