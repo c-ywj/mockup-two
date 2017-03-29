@@ -10,25 +10,26 @@ const client = amazon.createClient({
   awsSecret:process.env.AWS_SECRET,
   awsTag:process.env.AWS_TAG
 });
-const rand1 = Math.floor(Math.random() * 5);
-const rand2 = Math.floor(Math.random() * 5);
-const rand3 = Math.floor(Math.random() * 2);
-const rand4 = Math.floor(Math.random() * 2);
 
 const amzSearch = function(brand, category) {
-    const results = client.itemSearch({
-                    brand: brand,
-                    // keywords: 'television',
-                    title: category,
-                    ItemPage: 1,
-                    sort: 'salesrank',
-                    searchIndex: 'Electronics',
-                    responseGroup: 'ItemAttributes,Images'
-                  })
-                    return results;
+  const results = client.itemSearch({
+    brand: brand,
+    // keywords: 'television',
+    title: category,
+    ItemPage: 1,
+    sort: 'salesrank',
+    searchIndex: 'Electronics',
+    responseGroup: 'ItemAttributes,Images'
+  })
+    return results;
 }
+
 module.exports = (knex) => {
   searchRouter.get("/", (req, res) => {
+    const rand1 = Math.floor(Math.random() * 5);
+    const rand2 = Math.floor(Math.random() * 5);
+    const rand3 = Math.floor(Math.random() * 2);
+    const rand4 = Math.floor(Math.random() * 2);
     console.log(req.query.brand1, req.query.brand2);
     const user = req.session.user;
     Promise.all([
@@ -59,7 +60,7 @@ module.exports = (knex) => {
         })
         .then(function(result) {
           console.log(result);
-          if(result.length === 0 && pro1.title[0] !== pro2.title[0]) {
+          if(result.length === 0 && pro1.type[0] === pro2.type[0] && pro1.title[0] !== pro2.title[0]) {
             return knex
               .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
               .then(function(result) {
@@ -90,7 +91,7 @@ module.exports = (knex) => {
                 }
                 res.render("searchres", templateVars);
               })
-          } else if (pro1.title[0] !== pro2.title[0]){
+          } else if (pro1.title[0] !== pro2.title){
               const productTitles = {
                 pro1: results[rand3][rand1].ItemAttributes[0].Title,
                 pro2: results[rand4][rand2].ItemAttributes[0].Title
