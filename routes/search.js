@@ -30,7 +30,7 @@ const amzSearch = function(brand, category) {
 module.exports = (knex) => {
   searchRouter.get("/", (req, res) => {
     console.log(req.query.brand1, req.query.brand2);
-
+    const user = req.session.user;
     Promise.all([
       amzSearch(req.query.brand1, req.query.category),
       amzSearch(req.query.brand2, req.query.category)
@@ -44,19 +44,22 @@ module.exports = (knex) => {
         title: results[rand4][rand2].ItemAttributes[0].Title,
         type:  results[rand4][rand2].ItemAttributes[0].ProductTypeName
       }
-
+      console.log('pro1 type: ' + pro1.type);
+      console.log('pro2 type: ' + pro2.type);
       return knex
         .select('*')
         .from('comparisons')
-        .where(
-          'product_one', '=', pro1.title[0],
-          'product_two', '=', pro2.title[0]
-        ).orWhere(
-          'product_one', '=', pro2.title[0],
-          'product_two', '=', pro1.title[0]
-        )
+        .where({
+          product_one: pro1.title[0],
+          product_two: pro2.title[0]
+        })
+        .orWhere({
+          product_one: pro2.title[0],
+          product_two: pro1.title[0]
+        })
         .then(function(result) {
-          if(result.length === 0 && pro1.type[0] === pro2.type[0] && pro1.title[0] !== pro2.title[0]) {
+          console.log(result);
+          if(result.length === 0 && pro1.title[0] !== pro2.title[0]) {
             return knex
               .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
               .then(function(result) {

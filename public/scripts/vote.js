@@ -10,7 +10,7 @@ $(() => {
   $('#votePro1').click(function(ev) {
     const data = {
       votedPro: pro1Title,
-      unvotedPro: pro2Title
+      unvotedPro: pro2Title,
     };
     console.log('clicked');
     ev.preventDefault();
