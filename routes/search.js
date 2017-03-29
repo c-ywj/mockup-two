@@ -49,8 +49,11 @@ module.exports = (knex) => {
         .select('*')
         .from('comparisons')
         .where(
-          'product_one', 'LIKE', pro2.title[0],
-          'product_two', 'LIKE', pro1.title[0]
+          'product_one', '=', pro1.title[0],
+          'product_two', '=', pro2.title[0]
+        ).orWhere(
+          'product_one', '=', pro2.title[0],
+          'product_two', '=', pro1.title[0]
         )
         .then(function(result) {
           if(result.length === 0 && pro1.type[0] === pro2.type[0] && pro1.title[0] !== pro2.title[0]) {
