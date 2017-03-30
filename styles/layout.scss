@@ -1,8 +1,9 @@
 /* NAVIGATION BAR */
 nav {
   padding: 0 2em;
-  background-color: red;
-  opacity: 0.68;
+  background: rgba(200,54,54,0.68);
+  // background-color: red;
+  // opacity: 0.68;
   font-size: 1.2em;
 }
 
@@ -22,7 +23,7 @@ img.nav-logo {
   width: auto;
 }
 
-#login-btn, #login-btn:focus {
+.nav-menu_btn, .nav-menu_btn:focus {
   border: 0;
   background-color: transparent;
   height: 64px;
@@ -30,14 +31,8 @@ img.nav-logo {
   transition: ease all 0.3s;
 }
 
-button#login-btn:hover {
+button.nav-menu_btn:hover {
   background: rgba(0,0,0,0.25);
-}
-
-#nav-mobile p {
-  line-height: 64px;
-  margin: 0;
-  padding: 0;
 }
 
 /* MAIN CONTENT */
