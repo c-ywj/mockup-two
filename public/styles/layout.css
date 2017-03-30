@@ -3,14 +3,14 @@ body.home {
 }
 
 body {
-  font: 13px 'Lucida sans', Arial, Helvetica;
   font-family: 'Cinzel', serif;
-  color: #eee;
+  color: white;
   text-align: center;
 }
 
 h1 {
   font-family: 'Cinzel', serif;
+  font-weight: bold;
 }
 
 nav {
@@ -65,7 +65,8 @@ a {
 .form-wrapper input {
   padding: 10px 5px;
   float: left;
-  font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  font-size: bold 15px;
+  font-family: 'Cinzel', serif;
   border: 0;
   background: #eee;
   -moz-border-radius: 3px 0 0 3px;
@@ -110,7 +111,8 @@ a {
   cursor: pointer;
   height: 40px;
   width: 110px;
-  font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  font-size: 20px;
+  font-family: 'Cinzel', serif;
   color: #fff;
   text-transform: uppercase;
   background: #d83c3c;
@@ -151,7 +153,8 @@ a {
 .byline p {
   text-align: center;
   color: #c6c6c6;
-  font: bold 18px Arial, Helvetica, Sans-serif;
+  font-size: bold 18px;
+  font-family: 'Cinzel', serif;
   text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -189,7 +192,6 @@ a {
   height: 60px;
   border: 1px solid grey;
   background-color: white;
-  display: inline-block;
   margin-right: 20px;
   border-radius: 5px;
   padding: 1em;
@@ -198,6 +200,7 @@ a {
 }
 
 ::-webkit-input-placeholder {
+  font-family: 'Cinzel', serif;
   /* WebKit, Blink, Edge */
   color: #555;
 }
@@ -218,7 +221,82 @@ a {
   align: center;
 }
 
-#regBtn {
+.log-words {
+  color: white;
+  font: 45px;
+  text-align: center;
+}
+
+label {
+  color: white;
+  font-size: 15pt;
+}
+
+.form-login {
+  margin-top: 200px;
+  padding: 2em;
+  height: 530px;
+  background: rgba(200, 54, 54, 0.3);
+  color: solid white;
+}
+
+#passLogin {
+  width: 163px;
+  height: 20px;
+  border: 1px solid grey;
+  background-color: white;
+  margin-left: 20px;
+  border-radius: 5px;
+  padding: 1em;
+  color: #555;
+}
+
+#emailLogin {
+  width: 163px;
+  height: 20px;
+  border: 1px solid grey;
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 60px;
+  border-radius: 5px;
+  padding: 1em;
+  color: #555;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #555;
+}
+
+.text-box-form {
+  margin-top: 120px;
+  margin-right: 50px;
+}
+
+#logNow {
+  overflow: visible;
+  position: relative;
+  float: center;
+  border: 0;
+  padding: 0;
+  margin-top: 60px;
+  cursor: pointer;
+  height: 40px;
+  width: 110px;
+  font-size: 20px;
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  text-transform: uppercase;
+  background: #d83c3c;
+  border-radius: 3px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+#logNow:hover {
+  background: #e54040;
+}
+
+#loginBtn {
   width: 90px;
   height: 30px;
   background-color: red;
