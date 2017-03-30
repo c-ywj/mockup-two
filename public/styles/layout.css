@@ -24,10 +24,10 @@ img.nav-logo {
 }
 
 #login-btn, #login-btn:focus {
-  background-color: transparent;
   border: 0;
-  text-shadow: 0;
+  background-color: transparent;
   height: 64px;
+  text-shadow: 0;
   transition: ease all 0.3s;
 }
 

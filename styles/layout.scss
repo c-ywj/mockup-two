@@ -2,7 +2,7 @@
 nav {
   padding: 0 2em;
   background-color: red;
-  opacity:0.68;
+  opacity: 0.68;
   font-size: 1.2em;
 }
 
@@ -23,10 +23,10 @@ img.nav-logo {
 }
 
 #login-btn, #login-btn:focus {
+  border: 0;
   background-color: transparent;
-  border:0;
-  text-shadow: 0;
   height: 64px;
+  text-shadow: 0;
   transition: ease all 0.3s;
 }
 
@@ -38,7 +38,6 @@ button#login-btn:hover {
   line-height: 64px;
   margin: 0;
   padding: 0;
-  // margin-bottom: 10px;
 }
 
 /* MAIN CONTENT */
