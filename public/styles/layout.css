@@ -1,29 +1,9 @@
-body.home {
-  background: url("./images/warrior.jpeg") no-repeat center center fixed;
-}
-
-body {
-  font: 13px 'Lucida sans', Arial, Helvetica;
-  font-family: 'Cinzel', serif;
-  color: #eee;
-  text-align: center;
-}
-
-h1 {
-  font-family: 'Cinzel', serif;
-}
-
+/* NAVIGATION BAR */
 nav {
+  padding: 0 2em;
   background-color: red;
   opacity: 0.68;
-  padding: 0 2em;
   font-size: 1.2em;
-}
-
-.brand-logo {
-  left: 0;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
 }
 
 nav a, a.brand-logo {
@@ -32,7 +12,13 @@ nav a, a.brand-logo {
   padding: 5px 0;
 }
 
-.nav-logo {
+.brand-logo {
+  left: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+img.nav-logo {
   height: 50px;
   width: auto;
 }
@@ -53,6 +39,22 @@ button#login-btn:hover {
   line-height: 64px;
   margin: 0;
   padding: 0;
+}
+
+/* MAIN CONTENT */
+body.home {
+  background: url("./images/warrior.jpeg") no-repeat center center fixed;
+}
+
+body {
+  font: 13px 'Lucida sans', Arial, Helvetica;
+  font-family: 'Cinzel', serif;
+  color: #eee;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
 }
 
 body.mainB {
@@ -243,10 +245,6 @@ a {
   border-radius: 5px;
   padding: 1em;
   color: #555;
-}
-
-.regBtn {
-  align: center;
 }
 
 #regBtn {
