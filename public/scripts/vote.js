@@ -30,23 +30,11 @@ $(() => {
     };
     console.log('clicked');
     ev.preventDefault();
-    $.when(
       $.ajax({
         method: "POST",
-        url: "/searchres",
+        url: "/product",
         data: data
-      }),
-      $.ajax({
-        method: "GET",
-        url: "/searchres",
-        data: {
-          category: category,
-          brand1: brand1,
-          brand2: brand2
-        }
       })
-    )
-
     .done(function(msg){
       console.log('this is the msg: ' + msg);
       alert('VOTED!');
