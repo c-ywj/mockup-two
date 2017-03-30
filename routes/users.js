@@ -7,9 +7,9 @@ const bcrypt   = require('bcrypt');
 module.exports = (knex) => {
 
   // register handlers
-  router.get("/register", (req, res) => {
-    res.render('register');
-  });
+  // router.get("/register", (req, res) => {
+  //   res.render('register');
+  // });
 
   router.post('/register', (req, res) => {
     let iEmail      = req.body.email;
