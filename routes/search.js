@@ -32,7 +32,6 @@ module.exports = (knex) => {
     const rand3 = Math.floor(Math.random() * 2);
     const rand4 = Math.floor(Math.random() * 2);
     console.log(req.query.brand1, req.query.brand2);
-    const user = req.session.user;
     Promise.all([
       amzSearch(req.query.brand1, req.query.category),
       amzSearch(req.query.brand2, req.query.category)
@@ -127,8 +126,31 @@ module.exports = (knex) => {
       console.log('ERROR', err);
       res.render("indexError")
     });
-
   });
+
+  searchRouter.post('/', (req, res) => {
+    console.log('voted pro is: ' +req.body.votedPro, 'unvoted pro is: ' + req.body.unvotedPro);
+    const votedPro   = req.body.votedPro;
+    const unvotedPro = req.body.unvotedPro;
+    const user = req.session.user;
+    console.log(user);
+    knex.select('*')
+        .from('comparisons')
+        .where({
+          product_one: votedPro,
+          product_two: unvotedPro
+        })
+        .orWhere({
+          product_one: unvotedPro,
+          product_two: votedPro
+        })
+        .then(function(result) {
+          console.log(result);
+        })
+    .catch(function(err) {
+      console.log(err);
+    })
+  })
 
   return searchRouter
 };
