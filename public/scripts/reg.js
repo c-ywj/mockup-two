@@ -17,7 +17,7 @@ $(() => {
     .done((response) => {
       console.log(response);
       if(response === 'success') {
-        window.location = "/";
+        window.location = "/search";
       } else {
         $(".regForm").append('<span>This email already exists</span>');
       }

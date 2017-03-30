@@ -25,6 +25,7 @@ const amzSearch = function(brand, category) {
 }
 
 module.exports = (knex) => {
+
   searchRouter.get("/", (req, res) => {
     const rand1 = Math.floor(Math.random() * 5);
     const rand2 = Math.floor(Math.random() * 5);
@@ -122,9 +123,9 @@ module.exports = (knex) => {
         })
         // return results;
     })
-    .catch(function(err) {
-      console.log(err);
-      res.status(500).render("error");
+    .catch(function(err){
+      console.log('ERROR', err);
+      res.render("indexError")
     });
 
   });
