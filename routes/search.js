@@ -133,7 +133,7 @@ module.exports = (knex) => {
     const votedPro   = req.body.votedPro;
     const unvotedPro = req.body.unvotedPro;
     const user = req.session.user;
-    console.log(user);
+    console.log('user is : ' + user);
     knex.select('*')
         .from('comparisons')
         .where({
@@ -148,21 +148,57 @@ module.exports = (knex) => {
           console.log(result);
           console.log(result[0].id);
           console.log(result[0].product_one);
-          if(result[0].product_one === votedPro) {
-            const currentVotes = result[0].product_one_votes;
-            knex('comparisons')
-              .where('id', '=', result[0].id)
-              .update({
-                product_one_votes: currentVotes + 1
+          if(result.length > 0) {
+            if(result[0].product_one === votedPro) {
+              const currentVotes = result[0].product_one_votes;
+              knex('comparisons')
+                .where('id', '=', result[0].id)
+                .update({
+                  product_one_votes: currentVotes + 1
+                })
+              .then(function(voteCount) {
+                // console.log(voteCount);
               })
-              .then(function(result) {
-                console.log(result);
-              })
+            }
           }
+          return result;
+        }) .catch(function(err) {
+              console.log(err);
+            })
+        .then(function(result) {
+          console.log('this should be the comparison row: '+ result[0].product_one);
+          return knex.select('*')
+                  .from('users')
+                  .where('email', '=', user)
+                  .then(function(userRow) {
+                    console.log('user id: ' + userRow[0].id);
+                    console.log('comparison row id: ' + result[0].id);
+                    knex.insert({
+                      user_id: userRow[0].id,
+                      comparisons_id: result[0].id
+                    }).into('votes')
+                    .then(function(result) {
+                      console.log(result);
+                    }).catch(function(err) {
+                      console.log(err);
+                    })
+                  })
+                  .catch(function(err) {
+                    console.log(err);
+                  })
         })
     .catch(function(err) {
       console.log(err);
-    })
+    });
+
+    //     .then(function(result) {
+    //       knex.insert({
+    //         user_id: user,
+    //         comparisons_id:
+    //       })
+    //       .into('votes')
+    //     })
+
   })
 
   return searchRouter
