@@ -28,6 +28,7 @@ const amzSearch = function(brand, category) {
                     return results;
 }
 module.exports = (knex) => {
+
   searchRouter.get("/", (req, res) => {
     console.log(req.query.brand1, req.query.brand2);
     Promise.all([

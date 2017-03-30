@@ -161,3 +161,52 @@
   margin-top: 2px;
   margin-left: 3px;
 }
+
+.search {
+    text-align: center;
+}
+
+
+#emailReg {
+    width: 163px;
+    height: 60px;
+    border: 1px solid grey;
+    background-color: white;
+    display: inline-block;
+    margin-right:20px;
+    border-radius: 5px;
+    padding: 1em;
+    color: #555;
+    margin-top: 150px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #555;
+}
+
+#passReg {
+    width: 163px;
+    height: 60px;
+    border: 1px solid grey;
+    background-color: white;
+    display: inline-block;
+    margin-left:20px;
+    border-radius: 5px;
+    padding: 1em;
+    color: #555;
+
+}
+
+.regBtn {
+    align: center;
+}
+
+#regBtn {
+    width: 90px;
+    height: 30px;
+    background-color: red;
+    border-radius: 8px;
+    border: 0;
+    text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
+    margin-top: 30px;
+}
