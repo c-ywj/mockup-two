@@ -4,22 +4,23 @@ body.home {
 
 body {
   font: 13px 'Lucida sans', Arial, Helvetica;
+  font-family: 'Cinzel', serif;
   color: #eee;
   text-align: center;
 }
 
 h1 {
-  font: 'Roman Caps';
+  font-family: 'Cinzel', serif;
 }
 
-nav{
+nav {
   background-color: red;
-  opacity:0.68;
+  opacity: 0.68;
 }
 
-#login-btn{
+#login-btn {
   background-color: transparent;
-  border:0;
+  border: 0;
   text-shadow: 0;
 }
 

@@ -11,7 +11,8 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="/scripts/reg.js"></script>
-    <link href='http://ufonts.com/fonts/roman-caps.html' title='Roman Caps Font Download - ufonts.com'></link>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
+
   </head>
 
   <body class='home'>
@@ -19,6 +20,9 @@
     <% include ./partial/_navbar2.ejs %>
 
     <h1>Coupon Warrior</h1>
+    <div class= 'reg-title'>
+      <h3>Sign up to become a warrior</h3> <h3>and join the coupon war!</h3>
+    </div>
     <div class="search">
       <form class='regForm' action="/users/register" method="post">
         <input id='emailReg' name="email" type="text" placeholder="What's your email?"/>
