@@ -149,7 +149,15 @@ module.exports = (knex) => {
           console.log(result[0].id);
           console.log(result[0].product_one);
           if(result[0].product_one === votedPro) {
-            knex.select()
+            const currentVotes = result[0].product_one_votes;
+            knex('comparisons')
+              .where('id', '=', result[0].id)
+              .update({
+                product_one_votes: currentVotes + 1
+              })
+              .then(function(result) {
+                console.log(result);
+              })
           }
         })
     .catch(function(err) {
