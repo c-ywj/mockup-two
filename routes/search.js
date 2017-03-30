@@ -146,6 +146,11 @@ module.exports = (knex) => {
         })
         .then(function(result) {
           console.log(result);
+          console.log(result[0].id);
+          console.log(result[0].product_one);
+          if(result[0].product_one === votedPro) {
+            knex.select()
+          }
         })
     .catch(function(err) {
       console.log(err);
