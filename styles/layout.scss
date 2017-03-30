@@ -1,9 +1,21 @@
+body.home {
+    background:url('./images/warrior.jpeg') no-repeat center center fixed;
+}
+
  body {
-        background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+        // background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
         font: 13px 'Lucida sans', Arial, Helvetica;
         color: #eee;
         text-align: center;
     }
+
+    h1{
+      font: 'Roman Caps';
+    }
+
+  body.mainB{
+        background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+  }
 
     a {
         color: #ccc;
@@ -82,10 +94,11 @@
     .form-wrapper button {
     overflow: visible;
         position: relative;
-        float: right;
+        float: center;
         border: 0;
         padding: 0;
         margin: 4px;
+        margin-top:20px;
         cursor: pointer;
         height: 40px;
         width: 110px;
