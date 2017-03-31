@@ -200,16 +200,8 @@ module.exports = (knex) => {
     .catch(function(err) {
       console.log(err);
     });
+  });
 
-    //     .then(function(result) {
-    //       knex.insert({
-    //         user_id: user,
-    //         comparisons_id:
-    //       })
-    //       .into('votes')
-    //     })
-
-  })
 
   return searchRouter
 };

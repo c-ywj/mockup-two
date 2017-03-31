@@ -92,11 +92,18 @@ $(() => {
     };
     console.log('clicked');
     ev.preventDefault();
+    $.when(
       $.ajax({
         method: "POST",
         url: "/product",
         data: data
+      }),
+      $.ajax({
+        method: "POST",
+        url: "/votes",
+        data: data
       })
+    )
       .done(function(){
         fetchPair();
       });
