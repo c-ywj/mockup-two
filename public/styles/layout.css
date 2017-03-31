@@ -13,8 +13,6 @@ nav a, a.brand-logo {
 
 .row {
   margin-top: 50px;
-  margin-right: 100px;
-  margin-left: 100px;
 }
 
 .row .col {
@@ -88,7 +86,6 @@ body {
 h1 {
   font-family: 'Cinzel', serif;
   font-weight: bold;
-  float: center;
 }
 
 body.mainB {
@@ -428,13 +425,13 @@ label {
 }
 
 .card .card-image {
-  height: 280px;
+  height: 200px;
 }
 
 .card .card-image img {
   max-width: 100%;
   height: auto;
-  max-height: 280px;
+  max-height: 200px;
   width: auto;
   display: block;
   margin: 0 auto;
@@ -442,8 +439,10 @@ label {
 
 .meter {
   width: 40px;
-  height: 500px;
-  position: relative;
+  height: 400px;
+  position: absolute;
+  top: 70px;
+  right: 30px;
   background: #555;
   -moz-border-radius: 25px;
   -webkit-border-radius: 25px;
