@@ -157,9 +157,19 @@ module.exports = (knex) => {
                   product_one_votes: currentVotes + 1
                 })
               .then(function(voteCount) {
-                // console.log(voteCount);
+                console.log(voteCount);
               })
-            }
+            } else if(result[0].product_two === votedPro) {
+                const currentVotes = result[0].product_two_votes;
+                knex('comparisons')
+                  .where('id', '=', result[0].id)
+                  .update({
+                    product_two_votes: currentVotes + 1
+                  })
+                .then(function(voteCount) {
+                  console.log(voteCount);
+                })
+              }
           }
           return result;
         }) .catch(function(err) {
