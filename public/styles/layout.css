@@ -13,7 +13,15 @@ nav a, a.brand-logo {
 
 .row {
   margin-top: 50px;
-  margin-left: 150px;
+}
+
+.row .col {
+  float: none;
+  display: inline-block;
+}
+
+.row .col .m5 {
+  margin: 0 auto;
 }
 
 .card {
@@ -61,10 +69,12 @@ button.nav-menu_btn:hover {
 /* MAIN CONTENT */
 .prod-background {
   background: url("./images/prodBackground.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
 body.home {
   background: url("./images/warrior.jpeg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 body {
@@ -80,6 +90,7 @@ h1 {
 
 body.mainB {
   background: url("./images/warrior.jpeg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 a {
@@ -399,4 +410,29 @@ label {
   border: 0;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
   margin-top: 30px;
+}
+
+.card-image {
+  padding: 0;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.card .card-image img {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.card .card-image {
+  height: 280px;
+}
+
+.card .card-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 280px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
