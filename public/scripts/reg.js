@@ -1,10 +1,12 @@
 $(() => {
   $("#regBtn").click ((e) => {
     e.preventDefault();
-    var email = $("#emailReg").val();
-    var password = $("#passReg").val();
+    const email = $("#emailReg").val();
+    const password = $("#passReg").val();
+    const errorMsg = $('.errorMsg');
     if(!email || !password){
-      return $(".regForm").append('<span>Please fill out the form</span>')
+      errorMsg.remove();
+      return $(".regForm").append('<span class="errorMsg">Please fill out the form</span>')
     }
     $.ajax({
       method:"POST",
@@ -19,7 +21,8 @@ $(() => {
       if(response === 'success') {
         window.location = "/search";
       } else {
-        $(".regForm").append('<span>This email already exists</span>');
+        errorMsg.remove();
+        $(".regForm").append('<span class="errorMsg">This email already exists</span>');
       }
       // if( response.email === email ){
       //   return $(".regForm").append('<span>This email already exists</span>')

@@ -1,10 +1,12 @@
 $(() => {
-  $("#loginBtn").click(function(e) {
+  $("#logNow").click(function(e) {
     e.preventDefault();
-    var email = $("#emailLogin").val();
-    var password = $("#passLogin").val();
+    const email = $("#emailLogin").val();
+    const password = $("#passLogin").val();
+    const errorMsg = $('.errorMsg');
     if(!email || !password){
-      return $(".formdata").append('<span>Please fill out the form</span>')
+      errorMsg.remove();
+      return $(".formdata").append('<span class= "errorMsg">Please fill out the form</span>')
     }
     $.ajax({
     method:"POST",
@@ -16,9 +18,10 @@ $(() => {
     })
     .done((response) => {
       if(response === 'success') {
-        window.location = "/";
+        window.location = "/search";
       } else {
-        $(".formdata").append('<span>This email or password is incorrect!</span>');
+        errorMsg.remove();
+        $(".formdata").append('<span class= "errorMsg">This email or password is incorrect!</span>');
       }
     })
   })

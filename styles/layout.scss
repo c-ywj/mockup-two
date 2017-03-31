@@ -7,10 +7,33 @@ nav {
   font-size: 1.2em;
 }
 
+
 nav a, a.brand-logo {
   line-height: 54px;
   height: 54px;
   padding: 5px 0;
+}
+
+
+.card{
+  color:black;
+  float:center;
+}
+.card .card-image img {
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    // left: 0;
+    // right: 0;
+    // top: 0;
+    // bottom: 0;
+    width: 80%;
+    height: 80%;
+    float:center;
+}
+
+h6{
+  font-weight: bold;
 }
 
 .brand-logo {
@@ -36,10 +59,12 @@ button.nav-menu_btn:hover {
 }
 
 /* MAIN CONTENT */
+.prod-background{
+  background: url("./images/prodBackground.png") no-repeat center center fixed;
+}
 body.home {
   background: url("./images/warrior.jpeg") no-repeat center center fixed;
 }
-
 body {
 
   font-family: 'Cinzel', serif;
@@ -53,7 +78,8 @@ h1 {
 }
 
 body.mainB {
-  background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+    background: url("./images/warrior.jpeg") no-repeat center center fixed;
+  // background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
 }
 
 a {
@@ -81,7 +107,7 @@ a {
   margin: 150px auto 50px;
   margin-bottom: 5px;
   background: #444;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(200,54,54,0.3);
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -96,34 +122,45 @@ a {
   font-size: bold 15px;
   font-family: 'Cinzel', serif;
   border: 0;
+  color:black;
   background: #eee;
-  -moz-border-radius: 3px 0 0 3px;
-  -webkit-border-radius: 3px 0 0 3px;
+  box-shadow: 0;
+  // -moz-border-radius: 3px 0 0 3px;
+  // -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px;
 }
 
-.form-wrapper input:focus {
-  outline: 0;
-  background: #fff;
-  -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
-  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+input:focus, input[type=text]:focus, input[type=password]:focus {
+  border: 0 !important;
+    -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+  // box-shadow: 0 !important;
+  // text-shadow: 0 !important;
+
 }
+// .form-wrapper input:focus {
+//
+//   background: #fff;
+//   -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+//   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+//   box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
+// }
 
 .form-wrapper input::-webkit-input-placeholder {
-  color: #999;
+  color: #454444;
   font-weight: normal;
   font-style: italic;
 }
 
 .form-wrapper input:-moz-placeholder {
-  color: #999;
+  color: #454444;
   font-weight: normal;
   font-style: italic;
 }
 
 .form-wrapper input:-ms-input-placeholder {
-  color: #999;
+  color: #454444;
   font-weight: normal;
   font-style: italic;
 }
@@ -217,13 +254,13 @@ a {
 
 #emailReg {
   width: 163px;
-  height: 60px;
+  height: 30px;
   border: 1px solid grey;
   background-color: white;
   margin-right: 20px;
   border-radius: 5px;
   padding: 1em;
-  color: #555;
+  color: #181818;
   margin-top: 150px;
 }
 
@@ -231,19 +268,41 @@ a {
   font-family: 'Cinzel', serif;
 
   /* WebKit, Blink, Edge */
-  color: #555;
+  color: #454444;
 }
 
 #passReg {
   width: 163px;
-  height: 60px;
+  height: 30px;
   border: 1px solid grey;
   background-color: white;
   display: inline-block;
   margin-left: 20px;
   border-radius: 5px;
   padding: 1em;
-  color: #555;
+  color: #181818;
+}
+#regBtn {
+  overflow: visible;
+  position: relative;
+  float: center;
+  border: 0;
+  padding: 0;
+  margin-top: 60px;
+  cursor: pointer;
+  height: 40px;
+  width: 110px;
+  font-size:20px;
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  text-transform: uppercase;
+  background: #d83c3c;
+  border-radius: 3px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+#regBtn:hover {
+  background: #ea6666;
 }
 
 .log-words{
@@ -290,7 +349,7 @@ label{
 
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #555;
+  color: #454444;
 }
 
 .text-box-form{
@@ -320,7 +379,7 @@ label{
 }
 
 #logNow:hover {
-  background: #e54040;
+  background: #ea6666;
 }
 
 #loginBtn {
