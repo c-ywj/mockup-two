@@ -14,10 +14,18 @@ nav a, a.brand-logo {
   padding: 5px 0;
 }
 
-.row{
+.row {
   margin-top: 50px;
-  margin-left: 150px;
 }
+
+.row .col {
+  .m5 {
+    margin: 0 auto;
+  }
+  float: none;
+  display: inline-block;
+}
+
 .card{
   color:black;
   float:center;
@@ -65,9 +73,11 @@ button.nav-menu_btn:hover {
 /* MAIN CONTENT */
 .prod-background{
   background: url("./images/prodBackground.png") no-repeat center center fixed;
+  background-size: cover;
 }
 body.home {
   background: url("./images/warrior.jpeg") no-repeat center center fixed;
+  background-size: cover;
 }
 body {
 
@@ -83,6 +93,7 @@ h1 {
 
 body.mainB {
     background: url("./images/warrior.jpeg") no-repeat center center fixed;
+    background-size: cover;
   // background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
 }
 
@@ -416,4 +427,30 @@ label{
   border: 0;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
   margin-top: 30px;
+}
+
+.card-image {
+  padding: 0;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.card .card-image img {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  // width: 100%;
+}
+
+.card .card-image {
+  height: 280px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    max-height: 280px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
 }
