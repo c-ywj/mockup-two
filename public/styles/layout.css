@@ -11,6 +11,11 @@ nav a, a.brand-logo {
   padding: 5px 0;
 }
 
+.row {
+  margin-top: 50px;
+  margin-left: 150px;
+}
+
 .card {
   color: black;
   float: center;
@@ -20,6 +25,7 @@ nav a, a.brand-logo {
   display: block;
   border-radius: 2px 2px 0 0;
   position: relative;
+  padding: 0.5em;
   width: 80%;
   height: 80%;
   float: center;
@@ -359,6 +365,29 @@ label {
 }
 
 #logNow:hover {
+  background: #ea6666;
+}
+
+.voteBtn {
+  overflow: visible;
+  position: relative;
+  float: center;
+  border: 0;
+  padding: 0;
+  margin-top: 10px;
+  cursor: pointer;
+  height: 40px;
+  width: 110px;
+  font-size: 20px;
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  text-transform: uppercase;
+  background: #d83c3c;
+  border-radius: 3px;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.voteBtn:hover {
   background: #ea6666;
 }
 
