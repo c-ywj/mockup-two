@@ -29,8 +29,8 @@ const amzSearch = function(brand, category) {
 module.exports = (knex) => {
 
   searchRouter.get("/", (req, res) => {
-    const rand1 = Math.floor(Math.random() * 5);
-    const rand2 = Math.floor(Math.random() * 5);
+    const rand1 = Math.floor(Math.random() * 8);
+    const rand2 = Math.floor(Math.random() * 8);
     // const rand3 = Math.floor(Math.random() * 2);
     // const rand4 = Math.floor(Math.random() * 2);
     console.log(req.query.brand1, req.query.brand2);
@@ -63,7 +63,6 @@ module.exports = (knex) => {
         .then(function(result) {
           console.log(result);
           if(result.length === 0 &&
-             pro1.type[0] === pro2.type[0] &&
              pro1.title[0] !== pro2.title[0]) {
             return knex
               .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
@@ -96,7 +95,6 @@ module.exports = (knex) => {
                 res.render("searchres", templateVars);
               })
           } else if (result.length > 0 &&
-                     pro1.type[0] === pro2.type[0] &&
                      pro1.title[0] !== pro2.title[0]){
               let templateVars = {
                 br1: {
