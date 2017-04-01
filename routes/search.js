@@ -11,10 +11,10 @@ const client = amazon.createClient({
   awsTag:process.env.AWS_TAG
 });
 
-const amzSearch = function(brand, category) {
+const amzSearch = function(brand, category, keywords) {
   const results = client.itemSearch({
     brand: brand,
-    // keywords: 'television',
+    keywords: keywords,
     title: category,
     ItemPage: '1',
     sort: '-price',
@@ -35,8 +35,8 @@ module.exports = (knex) => {
     // const rand4 = Math.floor(Math.random() * 2);
     console.log(req.query.brand1, req.query.brand2);
     Promise.all([
-      amzSearch(req.query.brand1, req.query.category),
-      amzSearch(req.query.brand2, req.query.category)
+      amzSearch(req.query.brand1, req.query.category, req.query.keywords),
+      amzSearch(req.query.brand2, req.query.category, req.query.keywords)
     ])
     .then(function(results) {
       const pro1 = {
@@ -44,8 +44,8 @@ module.exports = (knex) => {
         type:  results[0][rand1].ItemAttributes[0].ProductTypeName
       }
       const pro2 = {
-        title: results[0][rand2].ItemAttributes[0].Title,
-        type:  results[0][rand2].ItemAttributes[0].ProductTypeName
+        title: results[1][rand2].ItemAttributes[0].Title,
+        type:  results[1][rand2].ItemAttributes[0].ProductTypeName
       }
       console.log('pro1 type: ' + pro1.type);
       console.log('pro2 type: ' + pro2.type);
@@ -71,7 +71,7 @@ module.exports = (knex) => {
                 // return result;
                 const productTitles = {
                     pro1: results[0][rand1].ItemAttributes[0].Title,
-                    pro2: results[0][rand2].ItemAttributes[0].Title
+                    pro2: results[1][rand2].ItemAttributes[0].Title
                   };
                 // console.log(results[0][rand1])
                 let templateVars = {
@@ -84,12 +84,12 @@ module.exports = (knex) => {
                     description: results[0][rand1].ItemAttributes[0].Feature,
                   },
                   br2: {
-                    image2: results[0][rand2].LargeImage[0].URL,
-                    brand2: results[0][rand2].ItemAttributes[0].Brand,
-                    ProductType2: results[0][rand2].ItemAttributes[0].ProductTypeName,
-                    DetailPageURL2: results[0][rand2].DetailPageURL,
-                    pTitle2: results[0][rand2].ItemAttributes[0].Title,
-                    description: results[0][rand2].ItemAttributes[0].Feature
+                    image2: results[1][rand2].LargeImage[0].URL,
+                    brand2: results[1][rand2].ItemAttributes[0].Brand,
+                    ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
+                    DetailPageURL2: results[1][rand2].DetailPageURL,
+                    pTitle2: results[1][rand2].ItemAttributes[0].Title,
+                    description: results[1][rand2].ItemAttributes[0].Feature
                   }
                 }
                 res.render("searchres", templateVars);
@@ -106,12 +106,12 @@ module.exports = (knex) => {
                   description: results[0][rand1].ItemAttributes[0].Feature,
                 },
                 br2: {
-                  image2: results[0][rand2].LargeImage[0].URL,
-                  brand2: results[0][rand2].ItemAttributes[0].Brand,
-                  ProductType2: results[0][rand2].ItemAttributes[0].ProductTypeName,
-                  DetailPageURL2: results[0][rand2].DetailPageURL,
-                  pTitle2: results[0][rand2].ItemAttributes[0].Title,
-                  description: results[0][rand2].ItemAttributes[0].Feature
+                  image2: results[1][rand2].LargeImage[0].URL,
+                  brand2: results[1][rand2].ItemAttributes[0].Brand,
+                  ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
+                  DetailPageURL2: results[1][rand2].DetailPageURL,
+                  pTitle2: results[1][rand2].ItemAttributes[0].Title,
+                  description: results[1][rand2].ItemAttributes[0].Feature
                 }
              }
             res.render("searchres", templateVars);
