@@ -16,8 +16,10 @@ const amzSearch = function(brand, category) {
     brand: brand,
     // keywords: 'television',
     title: category,
-    ItemPage: 1,
-    sort: 'salesrank',
+    ItemPage: '1',
+    sort: '-price',
+    MaximumPrice: '300000',
+    MinimumPrice: '30000',
     searchIndex: 'Electronics',
     responseGroup: 'ItemAttributes,Images'
   })
@@ -29,8 +31,8 @@ module.exports = (knex) => {
   searchRouter.get("/", (req, res) => {
     const rand1 = Math.floor(Math.random() * 5);
     const rand2 = Math.floor(Math.random() * 5);
-    const rand3 = Math.floor(Math.random() * 2);
-    const rand4 = Math.floor(Math.random() * 2);
+    // const rand3 = Math.floor(Math.random() * 2);
+    // const rand4 = Math.floor(Math.random() * 2);
     console.log(req.query.brand1, req.query.brand2);
     Promise.all([
       amzSearch(req.query.brand1, req.query.category),
@@ -38,12 +40,12 @@ module.exports = (knex) => {
     ])
     .then(function(results) {
       const pro1 = {
-        title: results[rand3][rand1].ItemAttributes[0].Title,
-        type:  results[rand3][rand1].ItemAttributes[0].ProductTypeName
+        title: results[0][rand1].ItemAttributes[0].Title,
+        type:  results[0][rand1].ItemAttributes[0].ProductTypeName
       }
       const pro2 = {
-        title: results[rand4][rand2].ItemAttributes[0].Title,
-        type:  results[rand4][rand2].ItemAttributes[0].ProductTypeName
+        title: results[0][rand2].ItemAttributes[0].Title,
+        type:  results[0][rand2].ItemAttributes[0].ProductTypeName
       }
       console.log('pro1 type: ' + pro1.type);
       console.log('pro2 type: ' + pro2.type);
@@ -60,59 +62,58 @@ module.exports = (knex) => {
         })
         .then(function(result) {
           console.log(result);
-          if(result.length === 0 && pro1.type[0] === pro2.type[0] && pro1.title[0] !== pro2.title[0]) {
+          if(result.length === 0 &&
+             pro1.type[0] === pro2.type[0] &&
+             pro1.title[0] !== pro2.title[0]) {
             return knex
               .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
               .then(function(result) {
                 // console.log(pro1.type);
                 // return result;
                 const productTitles = {
-                    pro1: results[rand3][rand1].ItemAttributes[0].Title,
-                    pro2: results[rand4][rand2].ItemAttributes[0].Title
+                    pro1: results[0][rand1].ItemAttributes[0].Title,
+                    pro2: results[0][rand2].ItemAttributes[0].Title
                   };
                 // console.log(results[0][rand1])
                 let templateVars = {
                   br1: {
-                    image1: results[rand3][rand1].LargeImage[0].URL,
-                    brand1: results[rand3][rand1].ItemAttributes[0].Brand,
-                    ProductType1: results[rand3][rand1].ItemAttributes[0].ProductTypeName,
-                    DetailPageURL1: results[rand3][rand1].DetailPageURL,
-                    pTitle1: results[rand3][rand1].ItemAttributes[0].Title,
-                    description: results[rand3][rand1].ItemAttributes[0].Feature,
+                    image1: results[0][rand1].LargeImage[0].URL,
+                    brand1: results[0][rand1].ItemAttributes[0].Brand,
+                    ProductType1: results[0][rand1].ItemAttributes[0].ProductTypeName,
+                    DetailPageURL1: results[0][rand1].DetailPageURL,
+                    pTitle1: results[0][rand1].ItemAttributes[0].Title,
+                    description: results[0][rand1].ItemAttributes[0].Feature,
                   },
                   br2: {
-                    image2: results[rand4][rand2].LargeImage[0].URL,
-                    brand2: results[rand4][rand2].ItemAttributes[0].Brand,
-                    ProductType2: results[rand4][rand2].ItemAttributes[0].ProductTypeName,
-                    DetailPageURL2: results[rand4][rand2].DetailPageURL,
-                    pTitle2: results[rand4][rand2].ItemAttributes[0].Title,
-                    description: results[rand4][rand2].ItemAttributes[0].Feature
+                    image2: results[0][rand2].LargeImage[0].URL,
+                    brand2: results[0][rand2].ItemAttributes[0].Brand,
+                    ProductType2: results[0][rand2].ItemAttributes[0].ProductTypeName,
+                    DetailPageURL2: results[0][rand2].DetailPageURL,
+                    pTitle2: results[0][rand2].ItemAttributes[0].Title,
+                    description: results[0][rand2].ItemAttributes[0].Feature
                   }
                 }
                 res.render("searchres", templateVars);
               })
-          } else if (pro1.title[0] !== pro2.title){
-              const productTitles = {
-                pro1: results[rand3][rand1].ItemAttributes[0].Title,
-                pro2: results[rand4][rand2].ItemAttributes[0].Title
-              };
-                  // console.log(results[0][rand1])
+          } else if (result.length > 0 &&
+                     pro1.type[0] === pro2.type[0] &&
+                     pro1.title[0] !== pro2.title[0]){
               let templateVars = {
                 br1: {
-                  image1: results[rand3][rand1].LargeImage[0].URL,
-                  brand1: results[rand3][rand1].ItemAttributes[0].Brand,
-                  ProductType1: results[rand3][rand1].ItemAttributes[0].ProductTypeName,
-                  DetailPageURL1: results[rand3][rand1].DetailPageURL,
-                  pTitle1: results[rand3][rand1].ItemAttributes[0].Title,
-                  description: results[rand3][rand1].ItemAttributes[0].Feature,
+                  image1: results[0][rand1].LargeImage[0].URL,
+                  brand1: results[0][rand1].ItemAttributes[0].Brand,
+                  ProductType1: results[0][rand1].ItemAttributes[0].ProductTypeName,
+                  DetailPageURL1: results[0][rand1].DetailPageURL,
+                  pTitle1: results[0][rand1].ItemAttributes[0].Title,
+                  description: results[0][rand1].ItemAttributes[0].Feature,
                 },
                 br2: {
-                  image2: results[rand4][rand2].LargeImage[0].URL,
-                  brand2: results[rand4][rand2].ItemAttributes[0].Brand,
-                  ProductType2: results[rand4][rand2].ItemAttributes[0].ProductTypeName,
-                  DetailPageURL2: results[rand4][rand2].DetailPageURL,
-                  pTitle2: results[rand4][rand2].ItemAttributes[0].Title,
-                  description: results[rand4][rand2].ItemAttributes[0].Feature
+                  image2: results[0][rand2].LargeImage[0].URL,
+                  brand2: results[0][rand2].ItemAttributes[0].Brand,
+                  ProductType2: results[0][rand2].ItemAttributes[0].ProductTypeName,
+                  DetailPageURL2: results[0][rand2].DetailPageURL,
+                  pTitle2: results[0][rand2].ItemAttributes[0].Title,
+                  description: results[0][rand2].ItemAttributes[0].Feature
                 }
              }
             res.render("searchres", templateVars);

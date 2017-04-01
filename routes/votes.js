@@ -23,28 +23,29 @@ module.exports = (knex) => {
           const p2v = result[0].product_two_votes;
           console.log('product one votes: ' + p1v);
           console.log('product two votes: ' + p2v);
+          const pairResult = {};
           if(result.length > 0) {
             if(result[0].product_one === votedPro) {
-              const winner = {
+              pairResult.winner = {
                 title: votedPro,
-                score: p1v
-              };
-              const loser = {
+                score: p1v + 1
+              }
+              pairResult.loser = {
                 title: unvotedPro,
                 score: p2v
-              };
-              return winner, loser;
-            } else if(result[0].product_two === votedPro) {
-              const winner = {
+              }
+
+            } else if (result[0].product_two === votedPro) {
+              pairResult.winner = {
                 title: votedPro,
-                score: p2v
-              };
-              const loser = {
+                score: p2v + 1
+              }
+              pairResult.loser = {
                 title: unvotedPro,
                 score: p1v
               }
-              return winner, loser;
             }
+            res.json(pairResult);
           }
         })
   })
