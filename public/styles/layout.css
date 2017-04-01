@@ -495,3 +495,13 @@ label {
   background-color: #f0a3a3;
   background-image: linear-gradient(to bottom, #f0a3a3, #f42323);
 }
+
+.sliding-menu {
+  height: 64px;
+  width: 100px;
+}
+
+.sliding-menu a, .sliding-menu .button-collapse, .sliding-menu .material-icons {
+  display: inherit;
+  font-style: normal;
+}
