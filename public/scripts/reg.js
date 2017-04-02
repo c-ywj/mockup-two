@@ -24,11 +24,6 @@ $(() => {
         errorMsg.remove();
         $(".regForm").append('<span class="errorMsg">This email already exists</span>');
       }
-      // if( response.email === email ){
-      //   return $(".regForm").append('<span>This email already exists</span>')
-      // } else {
-      //   window.location = "/";
-      // }
     })
   })
 });
