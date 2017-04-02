@@ -6,11 +6,6 @@ const bcrypt   = require('bcrypt');
 
 module.exports = (knex) => {
 
-  // register handlers
-  // router.get("/register", (req, res) => {
-  //   res.render('register');
-  // });
-
   router.post('/register', (req, res) => {
     let iEmail      = req.body.email;
     let iPassword   = req.body.password;
@@ -31,7 +26,6 @@ module.exports = (knex) => {
           .then(result => {
             console.log(`Inserted ${iEmail} into users`);
             req.session.user = iEmail;
-            // res.redirect('/');
             res.send("success");
           })
           .catch(err => {
@@ -48,7 +42,11 @@ module.exports = (knex) => {
 
   // login handlers
   router.get("/login", (req, res) => {
-    res.render('login');
+    if (req.session.user) {
+      res.redirect('/search');
+    } else {
+      res.render('login');
+    }
   });
 
   router.post('/login', (req, res) => {
@@ -62,7 +60,6 @@ module.exports = (knex) => {
         if(match === true) {
           req.session.user = req.body.email;
           res.send("success");
-            // res.redirect('/');
         } else {
           throw "Wrong password";
         }

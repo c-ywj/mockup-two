@@ -61,13 +61,21 @@ app.use('/product', search(knex));
 app.use('/votes', votes(knex));
 // Home page
 app.get("/", (req, res) => {
-
-  res.render("index");
+  if (req.session.user) {
+    res.redirect('/search');
+  } else {
+    let templateVars = {message: ''};
+    res.render("index", templateVars);
+  }
 });
 
 app.get("/search", (req, res) => {
-
-  res.render("search");
+  if (!req.session.user) {
+    res.redirect('/');
+  } else {
+    let templateVars = {message: ''};
+    res.render("search", templateVars);
+  }
 });
 
 

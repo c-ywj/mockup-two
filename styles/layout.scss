@@ -5,13 +5,12 @@ nav {
   // background-color: red;
   // opacity: 0.68;
   font-size: 1.2em;
-}
 
-
-nav a, a.brand-logo {
-  line-height: 54px;
-  height: 54px;
-  padding: 5px 0;
+  a, a.brand-logo {
+    line-height: 54px;
+    height: 54px;
+    padding: 5px 0;
+  }
 }
 
 .row {

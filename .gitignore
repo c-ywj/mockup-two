@@ -4,3 +4,4 @@ animation.css
 .env
 *.log
 *.sqlite3
+*.DS_Store
