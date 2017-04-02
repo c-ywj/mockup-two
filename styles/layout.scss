@@ -525,16 +525,6 @@ label{
 
 }
 
-.orange > span {
-  background-color: #f1a165;
-  background-image: linear-gradient(to bottom, #f1a165, #f36d0a);
-}
-
-.red > span {
-  background-color: #f0a3a3;
-  background-image: linear-gradient(to bottom, #f0a3a3, #f42323);
-}
-
 .sliding-menu {
   height: 64px;
   width: 100px;
@@ -543,4 +533,26 @@ label{
     display: inherit;
     font-style: normal;
   }
+}
+
+#favText{
+  color: black;
+}
+
+
+#heart1{
+
+    width: 20px;
+    height: 20px;
+}
+#heart2{
+
+    width: 20px;
+    height: 20px;
+}
+
+
+
+.heart2{
+  display:none;
 }

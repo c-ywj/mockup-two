@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-</head>
+  <head>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/addFavorites.js"></script>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  </head>
 
-<body class='prod-background'>
-  <% include ./partial/_navbar.ejs %>
+    <body class='prod-background'>
+      <% include ./partial/_navbar.ejs %>
 
-  <h1>may the luck be with you</h1>
-  <div class="row">
-    <div class="col s4 m5">
-      <div class="card">
-        <div class="card-image">
-          <img id="prodImg" src="<%- br1.image1 %>">
+      <h1>may the luck be with you</h1>
+      <div class="row">
+        <div class="col s4 m5">
+          <div class="card">
+            <div class="card-image">
+              <img id="prodImg" src="<%- br1.image1 %>">
+            </div>
+            <div class="card-content">
+              <h6 id='pro1'><%= br1.pTitle1 %></h6>
+               <p><%= br1.ProductType1 %>
+               <!-- <%= br1.description %> -->
+              </p>
+                <div class='heart1'>
+                  <img id='heart1' src='/styles/images/heart.png'/> <p>click to add on your favorite list </p>
+                </div>
+                <div class='heart2'>
+                  <img id='heart2' src='/styles/images/heartFilled.png'/> <p>added to favorite list</p>
+                </div>
+            </div>
+            <div class="card-action">
+              <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
+            </div>
+          </div>
+         <button type="submit" class ='voteBtn' id="votePro1">Vote!</button>
         </div>
-        <div class="card-content">
-          <h6 id='pro1'><%= br1.pTitle1 %></h6>
-           <p><%= br1.ProductType1 %>
-           <!-- <%= br1.description %> -->
 
-          </p>
+        <div class="col s4 m5">
+          <div class="card">
+            <div class="card-image">
+              <img src="<%- br2.image2 %>">
+            </div>
+            <div class="card-content">
+              <h6 id='pro2'><%= br2.pTitle2 %></h6>
+              <p>
+                 <%= br2.ProductType2 %>
+                 <!-- <%= br2.description %> -->
+              </p>
+            </div>
+            <div class="card-action">
+              <a href="<%- br2.DetailPageURL2 %>">Click here to buy the item!</a>
+            </div>
+          </div>
+          <button type="submit" class ='voteBtn' id="votePro2">Vote!</button>
         </div>
-        <div class="card-action">
-          <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
-        </div>
-      </div>
-     <button type="submit" class ='voteBtn' id="votePro1">Vote!</button>
-    </div>
 
-    <div class="col s4 m5">
-      <div class="card">
-        <div class="card-image">
-          <img src="<%- br2.image2 %>">
+        <div class="meter">
+          <span style="height: 1%"></span>
         </div>
-        <div class="card-content">
-          <h6 id='pro2'><%= br2.pTitle2 %></h6>
-          <p>
-             <%= br2.ProductType2 %>
-             <!-- <%= br2.description %> -->
-          </p>
-        </div>
-        <div class="card-action">
-          <a href="<%- br2.DetailPageURL2 %>">Click here to buy the item!</a>
-        </div>
-      </div>
-      <button type="submit" class ='voteBtn' id="votePro2">Vote!</button>
-    </div>
 
-    <div class="meter">
-      <span style="height: 1%"></span>
-    </div>
 
   <section id="winner-container">
   </section>
@@ -62,10 +70,11 @@
 
 
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-   <script type="text/javascript" src="./scripts/vote.js"></script>
-</body>
+
+      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+      <script type="text/javascript" src="/scripts/app.js"></script>
+       <script type="text/javascript" src="./scripts/vote.js"></script>
+    </body>
 
 </html>
