@@ -83,12 +83,19 @@ $(() => {
   //    .fail(console.error)
   // };
 
-  const renderVoteCount = function (scoreObj) {
+  const renderWinnerVoteCount = function (scoreObj) {
     return `
-      <section class="voteResults">
-        <span>score: ${voteResults.winner.score}</span>
-        <span>score: ${voteResults.loser.score}</span>
-      </section>
+      <div class="vote-results">
+        <span style="color:black;">voted product score: ${scoreObj.winner.score} </span>
+      </div>
+    `;
+  }
+
+  const renderLoserVoteCount = function(scoreObj) {
+    return `
+      <div class="vote-results">
+        <span style="color:black;">unvoted product score: ${scoreObj.loser.score} </span>
+      </div>
     `;
   }
 
@@ -119,25 +126,43 @@ $(() => {
     .done(function(voteResults) {
       console.log('second ajax response');
       console.log(voteResults);
-      $('.voteResults').html(renderVoteCount(voteResults));
+      const winnerResult = renderWinnerVoteCount(voteResults);
+      const loserResult = renderLoserVoteCount(voteResults);
+      $('#winner-container').html(winnerResult);
+      $('#loser-container').html(loserResult);
     });
   })
 
   $('#votePro2').click(function(ev) {
+    ev.preventDefault();
     const data = {
       votedPro: pro2Title,
       unvotedPro: pro1Title,
     };
     console.log('clicked');
-    ev.preventDefault();
-      $.ajax({
-        method: "POST",
-        url: "/product",
-        data: data
-      })
-      .done(function(){
-        fetchPair();
-      });
+
+    $.ajax({
+      method: "POST",
+      url: "/product",
+      data: data
+    })
+    .done(() => {
+      console.log('second ajax');
+
+    })
+    $.ajax({
+      method: "POST",
+      url: "/votes",
+      data: data
+    })
+    .done(function(voteResults) {
+      console.log('second ajax response');
+      console.log(voteResults);
+      const winnerResult = renderWinnerVoteCount(voteResults);
+      const loserResult = renderLoserVoteCount(voteResults);
+      $('#winner-container').html(winnerResult);
+      $('#loser-container').html(loserResult);
+    });
   })
 
 })
