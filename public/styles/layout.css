@@ -510,6 +510,20 @@ label {
   height: 20px;
 }
 
-.heart2 {
+#heart3 {
+  width: 20px;
+  height: 20px;
+}
+
+#heart4 {
+  width: 20px;
+  height: 20px;
+}
+
+.fav2 {
+  display: none;
+}
+
+.fav4 {
   display: none;
 }
