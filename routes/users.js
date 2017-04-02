@@ -28,8 +28,8 @@ module.exports = (knex) => {
           if (result.length === 1) {
             let templateVars = {message: 'This user already exists'};
             console.log('This user already exists');
-            res.render('index', templateVars);
-            // res.send('failed');
+            // res.render('index', templateVars);
+            res.send('failed');
           } else {
             knex
             .insert({email: iEmail, password: hashed_pass, role: 'Consumer'})
@@ -39,11 +39,11 @@ module.exports = (knex) => {
               console.log(`Inserted ${iEmail} into users`);
               req.session.user = iEmail;
               res.redirect('/search');
-              // res.send("success");
+              res.send("success");
             })
             .catch(err => {
               console.log(err);
-              // res.send('Failed');
+              res.send('Failed');
             })
 
           }
@@ -77,8 +77,8 @@ module.exports = (knex) => {
           let match   = bcrypt.compareSync(pword, user[0].password);
           if(match === true) {
             req.session.user = req.body.email;
-            // res.send("success");
-              res.redirect('/search');
+            res.send("success");
+              // res.redirect('/search');
           } else {
             throw "Wrong password";
           }
@@ -86,8 +86,8 @@ module.exports = (knex) => {
         .catch((e) => {
           let templateVars = {message: 'This email or password is incorrect!'};
           console.log('Either your email was invalid, or something else went wrong', e);
-          res.render('login', templateVars);
-          // res.send("Failed")
+          // res.render('login', templateVars);
+          res.send("Failed")
         })
     }
   })
