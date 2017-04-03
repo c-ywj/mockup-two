@@ -9,18 +9,18 @@
 @import "animation";
 
 /* VARIABLES */
-$button: rgba(200,54,54,0.68);
-$red: rgba(200,54,54,0.68);
+$theme-background: rgba(200,54,54,0.68);
+$form-background: rgba(200,54,54,0.3);
 
 /* GLOBAL */
 .theme-button {
-  background: $red;
+  background: $theme-background;
 }
 
 /* NAVIGATION BAR */
 nav {
   padding: 0 2em;
-  background: rgba(200,54,54,0.68);
+  background: $theme-background;
   font-size: 1.2em;
   min-height: 64px;
   line-height: 64px;
@@ -153,8 +153,7 @@ a {
   padding: 15px;
   margin: 150px auto 50px;
   margin-bottom: 5px;
-  background: #444;
-  background: rgba(200,54,54,0.3);
+  background: $form-background;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -367,7 +366,7 @@ label{
   margin-top: 200px;
   padding: 2em;
   height:530px;
-  background: rgba(200, 54, 54, 0.3);
+  background: $form-background;
   color:solid white;
 
   .login-page_register {
@@ -458,7 +457,7 @@ label{
 #loginBtn {
   width: 90px;
   height: 30px;
-  background-color: red;
+  background-color: $theme-background;
   border-radius: 8px;
   border: 0;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
