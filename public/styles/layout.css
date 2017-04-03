@@ -552,3 +552,8 @@ label {
   background-color: blue;
   color: white;
 }
+
+.res {
+  display: none;
+  width: 150px;
+}

@@ -22,14 +22,14 @@ $(() => {
   const renderWinnerVoteCount = function (scoreObj) {
     return `
       <div class="vote-results">
-        <span class='res'> The product you voted has : ${scoreObj.winner.score} votes! </span>
+        <span > The product you voted has : ${scoreObj.winner.score} votes! </span>
       </div>
     `;
   }
   const renderLoserVoteCount = function(scoreObj) {
     return `
       <div class="vote-results">
-        <span class='res'> versus : ${scoreObj.loser.score} </span>
+        <span > versus : ${scoreObj.loser.score} </span>
       </div>
     `;
   }
