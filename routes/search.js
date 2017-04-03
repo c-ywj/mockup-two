@@ -67,12 +67,12 @@ module.exports = (knex) => {
           .select('*')
           .from('comparisons')
           .where({
-            product_one: pro1.asin,
-            product_two: pro2.asin
+            product_one: pro1.asin[0],
+            product_two: pro2.asin[0]
           })
           .orWhere({
-            product_one: pro2.asin,
-            product_two: pro1.asin
+            product_one: pro2.asin[0],
+            product_two: pro1.asin[0]
           })
           .then(function(result) {
             console.log(result);
