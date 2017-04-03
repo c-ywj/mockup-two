@@ -84,6 +84,7 @@ body {
   font-family: 'Cinzel', serif;
   color: white;
   text-align: center;
+  -webkit-perspective:1100px;
 }
 
 h1 {
@@ -560,11 +561,40 @@ label{
     height: 20px;
 }
 
-
-
 .fav2{
   display:none;
 }
 .fav4{
   display:none;
 }
+
+#firstProd{
+  -webkit-transform-origin: left center;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+      z-index:50;
+}
+
+#secondProd{
+  -webkit-transform-origin: right center;
+-webkit-transform-style: preserve-3d;
+-webkit-transition: -webkit-transform 0.5s ease-in-out;
+ z-index:50;
+}
+
+.res{
+  height:100px;
+  width:150px;
+  background-color: white;
+}
+
+// #voted{
+//   align-items: center;
+//   z-index: 50;
+//
+// }
+//
+// #nonVoted{
+//   align-items: center;
+//   z-index: 50;
+// }

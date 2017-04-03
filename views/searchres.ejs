@@ -13,11 +13,18 @@
       <% include ./partial/_navbar.ejs %>
 
       <h1>may the luck be with you</h1>
+
+      <section id="winner-container">
+      </section>
+
+      <section id="loser-container">
+      </section>
+
       <div class="row">
         <div class="col s4 m5">
-          <div class="card">
+          <div class="card" id="firstProd">
             <div class="card-image">
-              <img id="prodImg" src="<%- br1.image1 %>">
+              <img id="prodImg1" src="<%- br1.image1 %>">
             </div>
             <div class="card-content">
               <h6 id='pro1'><%= br1.pTitle1 %></h6>
@@ -38,10 +45,10 @@
          <button type="submit" class ='voteBtn' id="votePro1">Vote!</button>
         </div>
 
-        <div class="col s4 m5">
+        <div class="col s4 m5" id='secondProd'>
           <div class="card">
             <div class="card-image">
-              <img src="<%- br2.image2 %>">
+              <img id "prodImg2" src="<%- br2.image2 %>">
             </div>
             <div class="card-content">
               <h6 id='pro2'><%= br2.pTitle2 %></h6>
@@ -62,22 +69,17 @@
           </div>
           <button type="submit" class ='voteBtn' id="votePro2">Vote!</button>
         </div>
+      </div>
 
         <div class="meter">
           <span style="height: 1%"></span>
         </div>
 
-  <section id="winner-container">
-  </section>
-
-  <section id="loser-container">
-  </section>
-
-
       <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
       <script type="text/javascript" src="/scripts/app.js"></script>
        <script type="text/javascript" src="./scripts/vote.js"></script>
+      <script type="text/javascript" src="./scripts/addScores.js"></script>
     </body>
 
 </html>
