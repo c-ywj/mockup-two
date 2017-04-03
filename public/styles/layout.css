@@ -96,12 +96,12 @@ button.nav-menu_btn:hover {
 
 /* MAIN CONTENT */
 .prod-background {
-  background: url("../images/prodBackground.png") no-repeat center center fixed;
+  background: url("../images/prodBackground.png") no-repeat top center fixed;
   background-size: cover;
 }
 
 body.home {
-  background: url("../images/warrior.jpeg") no-repeat center center fixed;
+  background: url("../images/warrior.jpeg") no-repeat top center fixed;
   background-size: cover;
 }
 
@@ -117,7 +117,7 @@ h1 {
 }
 
 body.mainB {
-  background: url("../images/warrior.jpeg") no-repeat center center fixed;
+  background: url("../images/warrior.jpeg") no-repeat top center fixed;
   background-size: cover;
 }
 
