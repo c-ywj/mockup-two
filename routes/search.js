@@ -125,7 +125,7 @@ module.exports = (knex) => {
       // Error handler for when product doesn't exist
       if (err['Error'] === undefined) {
         let templateVars = {
-          message: 'Please fill out the form with the correct parameters'
+          message: 'Oops! We could not find any matches to your search.'
         }
         console.log('ERROR', err, '\n ERROR MESSAGE: ', err['Error']);
         // res.json(err);
