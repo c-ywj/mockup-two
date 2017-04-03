@@ -30,7 +30,7 @@ module.exports = (knex) => {
           console.log('product two votes: ' + p2v);
           const pairResult = {};
           if(result.length > 0) {
-            if(result[0].product_one === votedPro) {
+            if(result[0].product_one === votedAsin) {
               pairResult.winner = {
                 title: votedPro,
                 score: p1v + 1,
@@ -42,7 +42,7 @@ module.exports = (knex) => {
                 // img:img2
               }
 
-            } else if (result[0].product_two === votedPro) {
+            } else if (result[0].product_two === votedAsin) {
               pairResult.winner = {
                 title: votedPro,
                 score: p2v + 1,
