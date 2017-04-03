@@ -81,7 +81,7 @@ body {
   font-family: 'Cinzel', serif;
   color: white;
   text-align: center;
-  -webkit-perspective: 1100px;
+  -webkit-perspective: 1000px;
 }
 
 h1 {
