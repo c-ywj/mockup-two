@@ -1,9 +1,12 @@
-/* EXTERNAL CSS */
-@import 'http://fonts.googleapis.com/icon?family=Material+Icons';
-@import '/vendor/normalize-4.1.1.css';
-@import '/vendor/border-box.css';
-@import 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css';
-@import 'https://fonts.googleapis.com/css?family=Cinzel:400,700';
+/* EXTERNAL AND VENDOR CSS */
+@import url("http://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("/vendor/normalize-4.1.1.css");
+@import url("/vendor/border-box.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css");
+@import url("https://fonts.googleapis.com/css?family=Cinzel:400,700");
+
+/* PARTIALS */
+@import "animation";
 
 /* NAVIGATION BAR */
 nav {

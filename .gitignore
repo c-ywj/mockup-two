@@ -1,6 +1,5 @@
 node_modules/
-layout.css
-animation.css
+public/styles
 .env
 *.log
 *.sqlite3
