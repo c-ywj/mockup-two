@@ -22,14 +22,14 @@ $(() => {
   const renderWinnerVoteCount = function (scoreObj) {
     return `
       <div class="vote-results">
-        <span class='res' style="color:black;"> The product you voted has : ${scoreObj.winner.score} votes! </span>
+        <span class='res'> The product you voted has : ${scoreObj.winner.score} votes! </span>
       </div>
     `;
   }
   const renderLoserVoteCount = function(scoreObj) {
     return `
       <div class="vote-results">
-        <span class='res' style="color:black;"> versus : ${scoreObj.loser.score} </span>
+        <span class='res'> versus : ${scoreObj.loser.score} </span>
       </div>
     `;
   }
@@ -39,6 +39,8 @@ $(() => {
       votedPro: pro1Title,
       unvotedPro: pro2Title,
     };
+    $('.vote-results').css('width','250px');
+    $('.vote-results').css('background-color','white');
     console.log('clicked');
     $.ajax({
       method: "POST",
@@ -68,6 +70,8 @@ $(() => {
       votedPro: pro2Title,
       unvotedPro: pro1Title,
     };
+  $('.vote-results').css('width','250px');
+  $('.vote-results').css('background-color','white');
     console.log('clicked');
     $.ajax({
       method: "POST",

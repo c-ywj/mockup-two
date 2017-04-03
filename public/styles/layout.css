@@ -547,8 +547,8 @@ label {
   z-index: 50;
 }
 
-.res {
-  height: 100px;
-  width: 150px;
-  background-color: white;
+.vote-results {
+  border: 0.5px solid white;
+  background-color: blue;
+  color: white;
 }
