@@ -553,7 +553,12 @@ label {
   color: white;
 }
 
+.card_results {
+  vertical-align: top;
+}
+
 .res {
   display: none;
   width: 150px;
+  margin: 0 auto;
 }
