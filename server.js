@@ -62,9 +62,10 @@ app.use('/votes', votes(knex));
 // Home page
 app.get("/", (req, res) => {
   if (req.session.user) {
-    res.redirect('/search');
+    let templateVars = {message: '', current_user: req.session.user}
+    res.render('/search', templateVars);
   } else {
-    let templateVars = {message: ''};
+    let templateVars = {message: '', current_user: null};
     res.render("index", templateVars);
   }
 });

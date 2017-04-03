@@ -32,7 +32,7 @@ module.exports = (knex) => {
     if (!req.session.user) {
       res.redirect('/');
     } else {
-      let templateVars = {message: ''};
+      let templateVars = {message: '', current_user: req.session.user};
       res.render("search", templateVars);
     }
   });
@@ -84,6 +84,7 @@ module.exports = (knex) => {
                   };
                 // console.log(results[0][rand1])
                 let templateVars = {
+                  current_user: req.session.user,
                   br1: {
                     image1: results[0][rand1].LargeImage[0].URL,
                     brand1: results[0][rand1].ItemAttributes[0].Brand,
@@ -106,6 +107,7 @@ module.exports = (knex) => {
           } else if (result.length > 0 &&
                     pro1.title[0] !== pro2.title[0]){
               let templateVars = {
+                current_user: req.session.user,
                 br1: {
                   image1: results[0][rand1].LargeImage[0].URL,
                   brand1: results[0][rand1].ItemAttributes[0].Brand,
@@ -134,6 +136,7 @@ module.exports = (knex) => {
       // Error handler for when product doesn't exist
       if (err['Error'] === undefined) {
         let templateVars = {
+          current_user: req.session.user,
           message: 'Oops! We could not find any matches to your search.'
         }
         console.log('ERROR', err, '\n ERROR MESSAGE: ', err['Error']);
@@ -145,6 +148,7 @@ module.exports = (knex) => {
       // "You are submitting requests too quickly. Please retry your requests at a slower rate."
       // this else condition lets the user know that something went wrong with the process
         let templateVars = {
+          current_user: req.session.user,
           message: 'Oops! Sorry, something unexpected happened. Please try searching again.'
         }
         console.log('THERE WAS AN UNEXPECTED ERROR', err, '\n ERROR MESSAGE: ', err['Error'][0]['Message']);
