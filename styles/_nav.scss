@@ -1,5 +1,7 @@
 /* NAVIGATION VARIABLES */
 $theme-background: rgba(200,54,54,0.68);
+$opaque-theme-background: rgba(200,54,54,1);
+
 
 /* TOP NAVIGATION BAR */
 nav {
@@ -51,9 +53,12 @@ button.nav-menu_btn:hover {
 }
 
 /* SIDE NAVIGATION BAR */
-
-
+// Styles go here
 .side-nav{
   color:white;
   background-color: rgba(200, 54, 54, 0.68);
 }
+
+// .side-nav {
+//   background-color: $opaque-theme-background;
+// }
