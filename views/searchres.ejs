@@ -16,8 +16,8 @@
 
 
       <div class="row">
-        <div class="col s4 m5">
-          <div class="card" id="firstProd">
+        <div class="card_products col s4 m5" id="firstProd">
+          <div class="card">
             <div class="card-image">
               <img id="prodImg1" src="<%- br1.image1 %>">
             </div>
@@ -40,11 +40,13 @@
          <button type="submit" class ='voteBtn' id="votePro1">Vote!</button>
         </div>
 
-        <section id="winner-container" class = 'res'>
-        </section>
+        <div class="card_results col">
+          <section id="winner-container" class = 'res'>
+          </section>
 
-        <section id="loser-container" class = 'res'>
-        </section>
+          <section id="loser-container" class = 'res'>
+          </section>
+        </div>
 
 
         <div class="col s4 m5" id='secondProd'>
