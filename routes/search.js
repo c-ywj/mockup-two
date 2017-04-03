@@ -28,7 +28,16 @@ const amzSearch = function(brand, category, keywords) {
 
 module.exports = (knex) => {
 
-  searchRouter.get("/", (req, res) => {
+  searchRouter.get('/', (req, res) => {
+    if (!req.session.user) {
+      res.redirect('/');
+    } else {
+      let templateVars = {message: ''};
+      res.render("search", templateVars);
+    }
+  });
+
+  searchRouter.get("/product", (req, res) => {
     const rand1 = Math.floor(Math.random() * 8);
     const rand2 = Math.floor(Math.random() * 8);
     // const rand3 = Math.floor(Math.random() * 2);
@@ -144,7 +153,7 @@ module.exports = (knex) => {
     });
   });
 
-  searchRouter.post('/', (req, res) => {
+  searchRouter.post('/product', (req, res) => {
     console.log('voted pro is: ' +req.body.votedPro, 'unvoted pro is: ' + req.body.unvotedPro);
     const votedPro   = req.body.votedPro;
     const unvotedPro = req.body.unvotedPro;

@@ -44,7 +44,7 @@ $(() => {
     console.log('clicked');
     $.ajax({
       method: "POST",
-      url: "/product",
+      url: "/search/product",
       data: data
     })
     .done(() => {
@@ -75,7 +75,7 @@ $(() => {
     console.log('clicked');
     $.ajax({
       method: "POST",
-      url: "/product",
+      url: "/search/product",
       data: data
     })
     .done(() => {

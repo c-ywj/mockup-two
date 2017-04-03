@@ -56,7 +56,7 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/users", usersRoutes(knex));
 // app.use('/login', login(knex));
-app.use('/product', search(knex));
+app.use('/search', search(knex));
 // path for grabbing votes data
 app.use('/votes', votes(knex));
 // Home page
@@ -66,15 +66,6 @@ app.get("/", (req, res) => {
   } else {
     let templateVars = {message: ''};
     res.render("index", templateVars);
-  }
-});
-
-app.get("/search", (req, res) => {
-  if (!req.session.user) {
-    res.redirect('/');
-  } else {
-    let templateVars = {message: ''};
-    res.render("search", templateVars);
   }
 });
 
