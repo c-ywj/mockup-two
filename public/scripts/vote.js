@@ -38,7 +38,9 @@ $(() => {
 
   const renderNextButton = function() {
     return `
-      <button id="next" type="submit">Next Pair</button>
+      <input type    ="button" id="next"
+             value   ="Next Pair"
+             onClick ="window.location.reload()">
     `;
   }
 
@@ -74,7 +76,7 @@ $(() => {
       const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
-      $('#voteBtn').html(nextButton);
+      $('#nextBtn').html(nextButton);
     });
   });
 
@@ -107,8 +109,25 @@ $(() => {
       console.log(voteResults);
       const winnerResult = renderWinnerVoteCount(voteResults);
       const loserResult = renderLoserVoteCount(voteResults);
+      const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
+      $('#nextBtn').html(nextButton);
     });
-  })
+  });
+
+
+  // $(document).on('click', '#next', function (ev) {
+  // console.log('clicked');
+  //   ev.preventDefault();
+  //   $.ajax({
+  //     method: "GET",
+  //     url: "/search/product"
+  //   })
+  //    .then(function(result) {
+  //     $('body').html(result);
+  //    });
+
+  // });
+
 })
