@@ -29,7 +29,6 @@ nav a, nav a.brand-logo {
 }
 
 .row .col {
-  float: none;
   display: inline-block;
 }
 
@@ -335,6 +334,10 @@ label {
   height: 530px;
   background: rgba(200, 54, 54, 0.3);
   color: solid white;
+}
+
+.form-login .login-page_register {
+  margin: 100px auto;
 }
 
 #passLogin {

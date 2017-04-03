@@ -38,51 +38,77 @@ module.exports = (knex) => {
   });
 
   searchRouter.get("/product", (req, res) => {
-    const rand1 = Math.floor(Math.random() * 8);
-    const rand2 = Math.floor(Math.random() * 8);
-    // const rand3 = Math.floor(Math.random() * 2);
-    // const rand4 = Math.floor(Math.random() * 2);
-    console.log(req.query.brand1, req.query.brand2);
-    Promise.all([
-      amzSearch(req.query.brand1, req.query.category, req.query.keywords),
-      amzSearch(req.query.brand2, req.query.category, req.query.keywords)
-    ])
-    .then(function(results) {
-      const pro1 = {
-        title: results[0][rand1].ItemAttributes[0].Title,
-        type:  results[0][rand1].ItemAttributes[0].ProductTypeName
-      }
-      const pro2 = {
-        title: results[1][rand2].ItemAttributes[0].Title,
-        type:  results[1][rand2].ItemAttributes[0].ProductTypeName
-      }
-      console.log('pro1 type: ' + pro1.type);
-      console.log('pro2 type: ' + pro2.type);
-      return knex
-        .select('*')
-        .from('comparisons')
-        .where({
-          product_one: pro1.title[0],
-          product_two: pro2.title[0]
-        })
-        .orWhere({
-          product_one: pro2.title[0],
-          product_two: pro1.title[0]
-        })
-        .then(function(result) {
-          console.log(result);
-          if(result.length === 0 &&
-            pro1.title[0] !== pro2.title[0]) {
-            return knex
-              .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
-              .then(function(result) {
-                // console.log(pro1.type);
-                // return result;
-                const productTitles = {
-                    pro1: results[0][rand1].ItemAttributes[0].Title,
-                    pro2: results[1][rand2].ItemAttributes[0].Title
-                  };
-                // console.log(results[0][rand1])
+    if (!req.session.user) {
+      res.redirect('/');
+    } else {
+      const rand1 = Math.floor(Math.random() * 8);
+      const rand2 = Math.floor(Math.random() * 8);
+      // const rand3 = Math.floor(Math.random() * 2);
+      // const rand4 = Math.floor(Math.random() * 2);
+      console.log(req.query.brand1, req.query.brand2);
+      Promise.all([
+        amzSearch(req.query.brand1, req.query.category, req.query.keywords),
+        amzSearch(req.query.brand2, req.query.category, req.query.keywords)
+      ])
+      .then(function(results) {
+        const pro1 = {
+          title: results[0][rand1].ItemAttributes[0].Title,
+          type:  results[0][rand1].ItemAttributes[0].ProductTypeName
+        }
+        const pro2 = {
+          title: results[1][rand2].ItemAttributes[0].Title,
+          type:  results[1][rand2].ItemAttributes[0].ProductTypeName
+        }
+        console.log('pro1 type: ' + pro1.type);
+        console.log('pro2 type: ' + pro2.type);
+        return knex
+          .select('*')
+          .from('comparisons')
+          .where({
+            product_one: pro1.title[0],
+            product_two: pro2.title[0]
+          })
+          .orWhere({
+            product_one: pro2.title[0],
+            product_two: pro1.title[0]
+          })
+          .then(function(result) {
+            console.log(result);
+            if(result.length === 0 &&
+              pro1.title[0] !== pro2.title[0]) {
+              return knex
+                .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
+                .then(function(result) {
+                  // console.log(pro1.type);
+                  // return result;
+                  const productTitles = {
+                      pro1: results[0][rand1].ItemAttributes[0].Title,
+                      pro2: results[1][rand2].ItemAttributes[0].Title
+                    };
+                  // console.log(results[0][rand1])
+                  let templateVars = {
+                    current_user: req.session.user,
+                    br1: {
+                      image1: results[0][rand1].LargeImage[0].URL,
+                      brand1: results[0][rand1].ItemAttributes[0].Brand,
+                      ProductType1: results[0][rand1].ItemAttributes[0].ProductTypeName,
+                      DetailPageURL1: results[0][rand1].DetailPageURL,
+                      pTitle1: results[0][rand1].ItemAttributes[0].Title,
+                      description: results[0][rand1].ItemAttributes[0].Feature,
+                    },
+                    br2: {
+                      image2: results[1][rand2].LargeImage[0].URL,
+                      brand2: results[1][rand2].ItemAttributes[0].Brand,
+                      ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
+                      DetailPageURL2: results[1][rand2].DetailPageURL,
+                      pTitle2: results[1][rand2].ItemAttributes[0].Title,
+                      description: results[1][rand2].ItemAttributes[0].Feature
+                    }
+                  }
+                  res.render("searchres", templateVars);
+                })
+            } else if (result.length > 0 &&
+                      pro1.title[0] !== pro2.title[0]){
                 let templateVars = {
                   current_user: req.session.user,
                   br1: {
@@ -101,60 +127,38 @@ module.exports = (knex) => {
                     pTitle2: results[1][rand2].ItemAttributes[0].Title,
                     description: results[1][rand2].ItemAttributes[0].Feature
                   }
-                }
-                res.render("searchres", templateVars);
-              })
-          } else if (result.length > 0 &&
-                    pro1.title[0] !== pro2.title[0]){
-              let templateVars = {
-                current_user: req.session.user,
-                br1: {
-                  image1: results[0][rand1].LargeImage[0].URL,
-                  brand1: results[0][rand1].ItemAttributes[0].Brand,
-                  ProductType1: results[0][rand1].ItemAttributes[0].ProductTypeName,
-                  DetailPageURL1: results[0][rand1].DetailPageURL,
-                  pTitle1: results[0][rand1].ItemAttributes[0].Title,
-                  description: results[0][rand1].ItemAttributes[0].Feature,
-                },
-                br2: {
-                  image2: results[1][rand2].LargeImage[0].URL,
-                  brand2: results[1][rand2].ItemAttributes[0].Brand,
-                  ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
-                  DetailPageURL2: results[1][rand2].DetailPageURL,
-                  pTitle2: results[1][rand2].ItemAttributes[0].Title,
-                  description: results[1][rand2].ItemAttributes[0].Feature
-                }
+              }
+              res.render("searchres", templateVars);
             }
-            res.render("searchres", templateVars);
-          }
 
-          return null;
-        })
-        // return results;
-    })
-    .catch(function(err){
-      // Error handler for when product doesn't exist
-      if (err['Error'] === undefined) {
-        let templateVars = {
-          current_user: req.session.user,
-          message: 'Oops! We could not find any matches to your search.'
+            return null;
+          })
+          // return results;
+      })
+      .catch(function(err){
+        // Error handler for when product doesn't exist
+        if (err['Error'] === undefined) {
+          let templateVars = {
+            current_user: req.session.user,
+            message: 'Oops! We could not find any matches to your search.'
+          }
+          console.log('ERROR', err, '\n ERROR MESSAGE: ', err['Error']);
+          // res.json(err);
+          res.render("search", templateVars);
+        } else {
+        // Sometimes, there is a timing issue with the API call,
+        // and Amazon gives us an error with the following message:
+        // "You are submitting requests too quickly. Please retry your requests at a slower rate."
+        // this else condition lets the user know that something went wrong with the process
+          let templateVars = {
+            current_user: req.session.user,
+            message: 'Oops! Sorry, something unexpected happened. Please try searching again.'
+          }
+          console.log('THERE WAS AN UNEXPECTED ERROR', err, '\n ERROR MESSAGE: ', err['Error'][0]['Message']);
+          res.render('search', templateVars);
         }
-        console.log('ERROR', err, '\n ERROR MESSAGE: ', err['Error']);
-        // res.json(err);
-        res.render("search", templateVars);
-      } else {
-      // Sometimes, there is a timing issue with the API call,
-      // and Amazon gives us an error with the following message:
-      // "You are submitting requests too quickly. Please retry your requests at a slower rate."
-      // this else condition lets the user know that something went wrong with the process
-        let templateVars = {
-          current_user: req.session.user,
-          message: 'Oops! Sorry, something unexpected happened. Please try searching again.'
-        }
-        console.log('THERE WAS AN UNEXPECTED ERROR', err, '\n ERROR MESSAGE: ', err['Error'][0]['Message']);
-        res.render('search', templateVars);
-      }
-    });
+      });
+    }
   });
 
   searchRouter.post('/product', (req, res) => {

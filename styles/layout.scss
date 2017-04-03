@@ -41,7 +41,6 @@ nav {
   .m5 {
     margin: 0 auto;
   }
-  float: none;
   display: inline-block;
 }
 
@@ -352,12 +351,16 @@ label{
     font-size: 15pt;
  }
 
-.form-login{
+.form-login {
   margin-top: 200px;
   padding: 2em;
   height:530px;
   background: rgba(200, 54, 54, 0.3);
   color:solid white;
+
+  .login-page_register {
+    margin: 100px auto;
+  }
 }
 
 #passLogin {
