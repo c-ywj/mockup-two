@@ -232,6 +232,7 @@ module.exports = (knex) => {
               .into('votes')
               .then(function(result) {
                 console.log(result);
+                res.send("OK");
               })
               .catch(function(err) {
                 console.log(err);
