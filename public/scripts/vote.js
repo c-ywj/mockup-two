@@ -90,7 +90,7 @@ $(() => {
       const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
-      $('#voteBtn').html(nextButton);
+      $('#nextBtn').html(nextButton);
         if(voteResults.winner.score >= voteResults.loser.score){
           $('#winner-container').html(winnerResult);
           $('#loser-container').html(loserResult);
@@ -134,6 +134,7 @@ $(() => {
       const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
+      $('#nextBtn').html(nextButton);
         if(voteResults.winner.score >= voteResults.loser.score){
           $('#winner-container').html(winnerResult);
           $('#loser-container').html(loserResult);
