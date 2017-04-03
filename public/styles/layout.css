@@ -5,6 +5,12 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css");
 @import url("https://fonts.googleapis.com/css?family=Cinzel:400,700");
 /* PARTIALS */
+/* VARIABLES */
+/* GLOBAL */
+.theme-button {
+  background: rgba(200, 54, 54, 0.68);
+}
+
 /* NAVIGATION BAR */
 nav {
   padding: 0 2em;

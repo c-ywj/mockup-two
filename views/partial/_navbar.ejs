@@ -4,11 +4,6 @@
       <a href="/" class="brand-logo"><img class="nav-logo" src="/images/logo%20copy.png"/></a>
     </div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li>
-        <form action="/users/logout" method="post">
-          <button class="nav-menu_btn" type="submit">Logout</button>
-        </form>
-      </li>
       <li class="sliding-menu">
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
       </li>
@@ -16,15 +11,23 @@
   </div>
 </nav>
 
-<ul id="slide-out" class="side-nav">
-  <li><div class="userView">
-    <div class="background">
-    </div>
+<aside>
+  <ul id="slide-out" class="side-nav">
+    <li><div class="userView">
+      <div class="background">
+      </div>
 
-  </div></li>
-  <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-  <li><a href="#!">Second Link</a></li>
-  <li><div class="divider"></div></li>
-  <li><a class="subheader">Subheader</a></li>
-  <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-</ul>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+    <li><a href="#!">Second Link</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+
+    <li class="theme-button">
+      <form action="/users/logout" method="post">
+        <button class="nav-menu_btn" type="submit">Logout</button>
+      </form>
+    </li>
+  </ul>
+</aside>

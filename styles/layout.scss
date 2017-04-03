@@ -8,6 +8,15 @@
 /* PARTIALS */
 @import "animation";
 
+/* VARIABLES */
+$button: rgba(200,54,54,0.68);
+$red: rgba(200,54,54,0.68);
+
+/* GLOBAL */
+.theme-button {
+  background: $red;
+}
+
 /* NAVIGATION BAR */
 nav {
   padding: 0 2em;
