@@ -1,0 +1,54 @@
+/* NAVIGATION VARIABLES */
+$theme-background: rgba(200,54,54,0.68);
+
+/* TOP NAVIGATION BAR */
+nav {
+  padding: 0 2em;
+  background: $theme-background;
+  font-size: 1.2em;
+  min-height: 64px;
+  line-height: 64px;
+
+  .brand-logo {
+    left: 0;
+    -webkit-transform:translateX(0);transform:translateX(0);
+  }
+
+  a, a.brand-logo {
+    height: 100%;
+    line-height: 54px;
+    padding: 5px 0;
+  }
+
+  .sliding-menu {
+    height: 100%;
+    width: 100px;
+
+    a, .button-collapse, .material-icons {
+      height: 100%;
+      line-height: 64px;
+      display: inherit;
+      font-style: normal;
+    }
+  }
+}
+
+img.nav-logo {
+  height: 50px;
+  width: auto;
+}
+
+.nav-menu_btn, .nav-menu_btn:focus {
+  border: 0;
+  background-color: transparent;
+  height: 64px;
+  text-shadow: 0;
+  transition: ease all 0.3s;
+}
+
+button.nav-menu_btn:hover {
+  background: rgba(0,0,0,0.25);
+}
+
+/* SIDE NAVIGATION BAR */
+// Styles go here
