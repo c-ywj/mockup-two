@@ -57,6 +57,7 @@ button.nav-menu_btn:hover {
 }
 
 /* SIDE NAVIGATION BAR */
+/* VARIABLES */
 /* CARDS */
 .row {
   margin-top: 50px;
@@ -101,7 +102,7 @@ button.nav-menu_btn:hover {
 }
 
 #favText {
-  color: black;
+  color: #111;
 }
 
 #heart1 {

@@ -1,3 +1,6 @@
+/* VARIABLES */
+$body-font: #111;
+
 /* CARDS */
 .row {
   margin-top: 50px;
@@ -13,7 +16,7 @@
 }
 
 .card {
-  color: #111;
+  color: $body-font;
   float:center;
 
   .card-image {
@@ -41,9 +44,8 @@
 }
 
 #favText{
-  color: black;
+  color: $body-font;
 }
-
 
 #heart1{
     margin-left: 20px;
