@@ -16,16 +16,37 @@ nav {
   padding: 0 2em;
   background: rgba(200, 54, 54, 0.68);
   font-size: 1.2em;
+  min-height: 64px;
+  line-height: 64px;
+}
+
+nav .brand-logo {
+  left: 0;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
 
 nav a, nav a.brand-logo {
+  height: 100%;
   line-height: 54px;
-  height: 54px;
   padding: 5px 0;
+}
+
+nav .sliding-menu {
+  height: 100%;
+  width: 100px;
+}
+
+nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .material-icons {
+  height: 100%;
+  line-height: 64px;
+  display: inherit;
+  font-style: normal;
 }
 
 .row {
   margin-top: 50px;
+  -webkit-perspective: 1000px;
 }
 
 .row .col {
@@ -54,12 +75,6 @@ nav a, nav a.brand-logo {
 
 h6 {
   font-weight: bold;
-}
-
-.brand-logo {
-  left: 0;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
 }
 
 img.nav-logo {
@@ -94,7 +109,6 @@ body {
   font-family: 'Cinzel', serif;
   color: white;
   text-align: center;
-  -webkit-perspective: 1000px;
 }
 
 h1 {
@@ -502,16 +516,6 @@ label {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   overflow: hidden;
-}
-
-.sliding-menu {
-  height: 64px;
-  width: 100px;
-}
-
-.sliding-menu a, .sliding-menu .button-collapse, .sliding-menu .material-icons {
-  display: inherit;
-  font-style: normal;
 }
 
 #favText {
