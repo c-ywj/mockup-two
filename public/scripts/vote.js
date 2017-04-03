@@ -44,6 +44,22 @@ $(() => {
     `;
   }
 
+
+  const userWinner = (e) => {
+    return `
+      <div class="vote-results">
+        <span > Congratulation! You've earned 20 points!!!</span>
+      </div>
+    `;
+  }
+
+  const userLooser = (e) => {
+    return `
+      <div class="vote-results">
+        <span > You lost the battle but not the war!Keep fighting!</span>
+      </div>
+    `;
+  }
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
     const data = {
@@ -52,8 +68,6 @@ $(() => {
       unvotedPro: pro2Title,
       unvotedAsin: pro2asin
     };
-    $('.vote-results').css('width','250px');
-    $('.vote-results').css('background-color','white');
     console.log('clicked');
     $.ajax({
       method: "POST",
@@ -76,7 +90,16 @@ $(() => {
       const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
-      $('#nextBtn').html(nextButton);
+      $('#voteBtn').html(nextButton);
+        if(voteResults.winner.score >= voteResults.loser.score){
+          $('#winner-container').html(winnerResult);
+          $('#loser-container').html(loserResult);
+          $('#message-container').html(userWinner);
+        } else {
+          $('#winner-container').html(winnerResult);
+          $('#loser-container').html(loserResult);
+          $('#message-container').html(userLooser);
+        }
     });
   });
 
@@ -88,8 +111,7 @@ $(() => {
       unvotedPro: pro1Title,
       unvotedAsin: pro1asin
     };
-  $('.vote-results').css('width','250px');
-  $('.vote-results').css('background-color','white');
+
     console.log('clicked');
     $.ajax({
       method: "POST",
@@ -112,7 +134,17 @@ $(() => {
       const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
-      $('#nextBtn').html(nextButton);
+        if(voteResults.winner.score >= voteResults.loser.score){
+          $('#winner-container').html(winnerResult);
+          $('#loser-container').html(loserResult);
+          $('#message-container').html(userWinner);
+
+        } else {
+          $('#winner-container').html(winnerResult);
+          $('#loser-container').html(loserResult);
+          $('#message-container').html(userLooser);
+
+        }
     });
   });
 

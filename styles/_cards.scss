@@ -4,7 +4,6 @@
 }
 .row {
   margin-top: 50px;
-  -webkit-perspective:1000px;
 }
 
 .row .col {
@@ -104,5 +103,6 @@
 .res{
   display:none;
   width: 150px;
-  margin: 0 auto;
+  margin-top: 150px;
+  transition: ease 1s;
 }

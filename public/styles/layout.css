@@ -57,6 +57,11 @@ button.nav-menu_btn:hover {
 }
 
 /* SIDE NAVIGATION BAR */
+.side-nav {
+  color: white;
+  background-color: rgba(200, 54, 54, 0.68);
+}
+
 /* CARDS */
 .body {
   -webkit-perspective: 1000px;
@@ -64,7 +69,6 @@ button.nav-menu_btn:hover {
 
 .row {
   margin-top: 50px;
-  -webkit-perspective: 1000px;
 }
 
 .row .col {
@@ -167,7 +171,8 @@ button.nav-menu_btn:hover {
 .res {
   display: none;
   width: 150px;
-  margin: 0 auto;
+  margin-top: 150px;
+  transition: ease 1s;
 }
 
 /* VARIABLES */
