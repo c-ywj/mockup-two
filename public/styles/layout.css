@@ -166,7 +166,7 @@ a {
   border-radius: 3px;
 }
 
-input:focus, input[type=text]:focus, input[type=password]:focus {
+input:focus, input[type=text]:focus, input[type=password]:focus, input[type=text]:focus:not([readonly]) {
   border: 0 !important;
   -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.8) inset;
