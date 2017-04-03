@@ -37,6 +37,7 @@ body {
   font-family: 'Cinzel', serif;
   color: white;
   text-align: center;
+  -webkit-perspective:1000px;
 }
 
 h1 {
@@ -453,4 +454,3 @@ label{
   border-bottom-left-radius: 20px;
   overflow: hidden;
 }
-

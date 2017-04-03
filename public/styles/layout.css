@@ -58,6 +58,10 @@ button.nav-menu_btn:hover {
 
 /* SIDE NAVIGATION BAR */
 /* CARDS */
+.body {
+  -webkit-perspective: 1000px;
+}
+
 .row {
   margin-top: 50px;
   -webkit-perspective: 1000px;
@@ -191,6 +195,7 @@ body {
   font-family: 'Cinzel', serif;
   color: white;
   text-align: center;
+  -webkit-perspective: 1000px;
 }
 
 h1 {
