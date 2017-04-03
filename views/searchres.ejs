@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Coupon Warrior | <%= br1.brand1 %> <%= br1.ProductType1 %> &amp; <%= br2.brand2 %> <%= br2.ProductType2 %> Comparisons</title>
-    
+
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   </head>
 
@@ -20,7 +20,7 @@
             <div class="card-content">
               <h6 id='pro1'><%= br1.pTitle1 %></h6>
                <p><%= br1.ProductType1 %>
-               <!-- <%= br1.description %> -->
+                  <span id="pro1asin"><%= br1.asin %></span>
               </p>
                 <div class='fav1'>
                    <p><img id='heart1' src='/images/heart.png'/>click to add on your favorite list </p>
@@ -47,7 +47,7 @@
               <h6 id='pro2'><%= br2.pTitle2 %></h6>
               <p>
                  <%= br2.ProductType2 %>
-                 <!-- <%= br2.description %> -->
+                 <span id="pro2asin"><%= br2.asin %></span>
               </p>
               <div class='fav3'>
                  <p><img id='heart3' src='/images/heart.png'/>click to add on your favorite list </p>
@@ -67,6 +67,10 @@
         <div class="meter">
           <span style="height: 1%"></span>
         </div>
+
+        <div class="nextBtn">
+        </div>
+
 
       <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>

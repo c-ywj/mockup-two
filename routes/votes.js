@@ -8,17 +8,20 @@ module.exports = (knex) => {
   voteRouter.post('/', (req, res) => {
     const votedPro = req.body.votedPro;
     const unvotedPro = req.body.unvotedPro;
+    const votedAsin = req.body.votedAsin;
+    const unvotedAsin = req.body.unvotedAsin;
     knex.select("*")
         .from('comparisons')
         .where({
-          product_one: votedPro,
-          product_two: unvotedPro
+          product_one: votedAsin,
+          product_two: unvotedAsin
         })
         .orWhere({
-          product_one: unvotedPro,
-          product_two: votedPro
+          product_one: unvotedAsin,
+          product_two: votedAsin
         })
         .then(function(result) {
+          console.log(result);
           const p1v = result[0].product_one_votes;
           const p2v = result[0].product_two_votes;
           // const img1 = result[1].LargeImage[0].URL;

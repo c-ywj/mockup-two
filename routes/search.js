@@ -52,32 +52,34 @@ module.exports = (knex) => {
       ])
       .then(function(results) {
         const pro1 = {
+          asin: results[0][rand1].ASIN,
           title: results[0][rand1].ItemAttributes[0].Title,
           type:  results[0][rand1].ItemAttributes[0].ProductTypeName
         }
         const pro2 = {
+          asin: results[1][rand2].ASIN,
           title: results[1][rand2].ItemAttributes[0].Title,
           type:  results[1][rand2].ItemAttributes[0].ProductTypeName
         }
-        console.log('pro1 type: ' + pro1.type);
-        console.log('pro2 type: ' + pro2.type);
+        console.log('pro1 asin: ' + pro1.asin);
+        console.log('pro2 asin: ' + pro2.asin);
         return knex
           .select('*')
           .from('comparisons')
           .where({
-            product_one: pro1.title[0],
-            product_two: pro2.title[0]
+            product_one: pro1.asin,
+            product_two: pro2.asin
           })
           .orWhere({
-            product_one: pro2.title[0],
-            product_two: pro1.title[0]
+            product_one: pro2.asin,
+            product_two: pro1.asin
           })
           .then(function(result) {
             console.log(result);
             if(result.length === 0 &&
-              pro1.title[0] !== pro2.title[0]) {
+              pro1.asin[0] !== pro2.asin[0]) {
               return knex
-                .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
+                .insert({product_one: pro1.asin[0], product_two: pro2.asin[0]}).into('comparisons')
                 .then(function(result) {
                   // console.log(pro1.type);
                   // return result;
@@ -95,6 +97,7 @@ module.exports = (knex) => {
                       DetailPageURL1: results[0][rand1].DetailPageURL,
                       pTitle1: results[0][rand1].ItemAttributes[0].Title,
                       description: results[0][rand1].ItemAttributes[0].Feature,
+                      asin: results[0][rand1].ASIN
                     },
                     br2: {
                       image2: results[1][rand2].LargeImage[0].URL,
@@ -102,13 +105,14 @@ module.exports = (knex) => {
                       ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
                       DetailPageURL2: results[1][rand2].DetailPageURL,
                       pTitle2: results[1][rand2].ItemAttributes[0].Title,
-                      description: results[1][rand2].ItemAttributes[0].Feature
+                      description: results[1][rand2].ItemAttributes[0].Feature,
+                      asin: results[1][rand2].ASIN
                     }
                   }
                   res.render("searchres", templateVars);
                 })
             } else if (result.length > 0 &&
-                      pro1.title[0] !== pro2.title[0]){
+                      pro1.asin[0] !== pro2.asin[0]){
                 let templateVars = {
                   current_user: req.session.user,
                   br1: {
@@ -118,6 +122,7 @@ module.exports = (knex) => {
                     DetailPageURL1: results[0][rand1].DetailPageURL,
                     pTitle1: results[0][rand1].ItemAttributes[0].Title,
                     description: results[0][rand1].ItemAttributes[0].Feature,
+                    asin: results[0][rand1].ASIN
                   },
                   br2: {
                     image2: results[1][rand2].LargeImage[0].URL,
@@ -125,7 +130,8 @@ module.exports = (knex) => {
                     ProductType2: results[1][rand2].ItemAttributes[0].ProductTypeName,
                     DetailPageURL2: results[1][rand2].DetailPageURL,
                     pTitle2: results[1][rand2].ItemAttributes[0].Title,
-                    description: results[1][rand2].ItemAttributes[0].Feature
+                    description: results[1][rand2].ItemAttributes[0].Feature,
+                    asin: results[1][rand2].ASIN
                   }
               }
               res.render("searchres", templateVars);
@@ -162,37 +168,38 @@ module.exports = (knex) => {
   });
 
   searchRouter.post('/product', (req, res) => {
-    console.log('voted pro is: ' +req.body.votedPro, 'unvoted pro is: ' + req.body.unvotedPro);
+    console.log('voted pro asin is: ' + req.body.votedAsin, 'unvoted pro asin is: ' + req.body.unvotedAsin);
     const votedPro   = req.body.votedPro;
     const unvotedPro = req.body.unvotedPro;
+    const votedAsin = req.body.votedAsin;
+    const unvotedAsin = req.body.unvotedAsin;
     const user = req.session.user;
-    console.log('user is : ' + user);
     knex.select('*')
         .from('comparisons')
         .where({
-          product_one: votedPro,
-          product_two: unvotedPro
+          product_one: votedAsin,
+          product_two: unvotedAsin
         })
         .orWhere({
-          product_one: unvotedPro,
-          product_two: votedPro
+          product_one: unvotedAsin,
+          product_two: votedAsin
         })
         .then(function(result) {
-          console.log(result);
+          console.log('shutest', result);
           console.log(result[0].id);
           console.log(result[0].product_one);
           if(result.length > 0) {
-            if(result[0].product_one === votedPro) {
+            if(result[0].product_one === votedAsin) {
               const currentVotes = result[0].product_one_votes;
               knex('comparisons')
                 .where('id', '=', result[0].id)
                 .update({
                   product_one_votes: currentVotes + 1
                 })
-              .then(function(voteCount) {
-                console.log(voteCount);
-              })
-            } else if(result[0].product_two === votedPro) {
+                .then(function(voteCount) {
+                  console.log(voteCount);
+                })
+            } else if(result[0].product_two === votedAsin) {
                 const currentVotes = result[0].product_two_votes;
                 knex('comparisons')
                   .where('id', '=', result[0].id)
@@ -205,33 +212,37 @@ module.exports = (knex) => {
               }
           }
           return result;
-        }) .catch(function(err) {
-              console.log(err);
-            })
+        }).catch(function(err) {
+            console.log(err);
+          })
         .then(function(result) {
           console.log('this should be the comparison row: '+ result[0].product_one);
-          return knex.select('*')
-                  .from('users')
-                  .where('email', '=', user)
-                  .then(function(userRow) {
-                    console.log('user id: ' + userRow[0].id);
-                    console.log('comparison row id: ' + result[0].id);
-                    knex.insert({
-                      user_id: userRow[0].id,
-                      comparisons_id: result[0].id
-                    }).into('votes')
-                    .then(function(result) {
-                      console.log(result);
-                    }).catch(function(err) {
-                      console.log(err);
-                    })
-                  })
-                  .catch(function(err) {
-                    console.log(err);
-                  })
-        })
-    .catch(function(err) {
-      console.log(err);
+          return knex
+            .select('*')
+            .from('users')
+            .where('email', '=', user)
+            .then(function(userRow) {
+              console.log('user id: ' + userRow[0].id);
+              console.log('comparison row id: ' + result[0].id);
+              knex
+              .insert({
+                user_id: userRow[0].id,
+                comparisons_id: result[0].id
+              })
+              .into('votes')
+              .then(function(result) {
+                console.log(result);
+              })
+              .catch(function(err) {
+                console.log(err);
+              })
+            })
+            .catch(function(err) {
+              console.log(err);
+            })
+          })
+        .catch(function(err) {
+          console.log(err);
     });
   });
 

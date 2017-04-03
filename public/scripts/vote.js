@@ -1,6 +1,8 @@
 $(() => {
   var pro1Title = $('#pro1').html();
   var pro2Title = $('#pro2').html();
+  var pro1asin  = $('#pro1asin').html();
+  var pro2asin  = $('#pro2asin').html();
   var image1 = $('#prodImg1').html();
   var image2 = $('#prodImg2').html();
   console.log(pro1Title);
@@ -33,11 +35,20 @@ $(() => {
       </div>
     `;
   }
+
+  const renderNextButton = function() {
+    return `
+      <button id="next" type="submit">Next Pair</button>
+    `;
+  }
+
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
     const data = {
       votedPro: pro1Title,
+      votedAsin: pro1asin,
       unvotedPro: pro2Title,
+      unvotedAsin: pro2asin
     };
     $('.vote-results').css('width','250px');
     $('.vote-results').css('background-color','white');
@@ -60,15 +71,20 @@ $(() => {
       console.log(voteResults);
       const winnerResult = renderWinnerVoteCount(voteResults);
       const loserResult = renderLoserVoteCount(voteResults);
+      const nextButton = renderNextButton();
       $('#winner-container').html(winnerResult);
       $('#loser-container').html(loserResult);
+      $('#voteBtn').html(nextButton);
     });
-  })
+  });
+
   $('#votePro2').click(function(ev) {
     ev.preventDefault();
     const data = {
       votedPro: pro2Title,
+      votedAsin: pro2asin,
       unvotedPro: pro1Title,
+      unvotedAsin: pro1asin
     };
   $('.vote-results').css('width','250px');
   $('.vote-results').css('background-color','white');
