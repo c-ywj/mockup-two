@@ -23,7 +23,7 @@ const amzSearch = function(brand, category, keywords) {
     searchIndex: 'Electronics',
     responseGroup: 'ItemAttributes,Images'
   })
-    return results;
+  return results;
 }
 
 module.exports = (knex) => {
@@ -63,7 +63,7 @@ module.exports = (knex) => {
         .then(function(result) {
           console.log(result);
           if(result.length === 0 &&
-             pro1.title[0] !== pro2.title[0]) {
+            pro1.title[0] !== pro2.title[0]) {
             return knex
               .insert({product_one: pro1.title[0], product_two: pro2.title[0]}).into('comparisons')
               .then(function(result) {
@@ -95,7 +95,7 @@ module.exports = (knex) => {
                 res.render("searchres", templateVars);
               })
           } else if (result.length > 0 &&
-                     pro1.title[0] !== pro2.title[0]){
+                    pro1.title[0] !== pro2.title[0]){
               let templateVars = {
                 br1: {
                   image1: results[0][rand1].LargeImage[0].URL,
@@ -113,7 +113,7 @@ module.exports = (knex) => {
                   pTitle2: results[1][rand2].ItemAttributes[0].Title,
                   description: results[1][rand2].ItemAttributes[0].Feature
                 }
-             }
+            }
             res.render("searchres", templateVars);
           }
 
@@ -122,8 +122,25 @@ module.exports = (knex) => {
         // return results;
     })
     .catch(function(err){
-      console.log('ERROR', err);
-      res.render("indexError");
+      // Error handler for when product doesn't exist
+      if (err['Error'] === undefined) {
+        let templateVars = {
+          message: 'Please fill out the form with the correct parameters'
+        }
+        console.log('ERROR', err, '\n ERROR MESSAGE: ', err['Error']);
+        // res.json(err);
+        res.render("search", templateVars);
+      } else {
+      // Sometimes, there is a timing issue with the API call,
+      // and Amazon gives us an error with the following message:
+      // "You are submitting requests too quickly. Please retry your requests at a slower rate."
+      // this else condition lets the user know that something went wrong with the process
+        let templateVars = {
+          message: 'Oops! Sorry, something unexpected happened. Please try searching again.'
+        }
+        console.log('THERE WAS AN UNEXPECTED ERROR', err, '\n ERROR MESSAGE: ', err['Error'][0]['Message']);
+        res.render('search', templateVars);
+      }
     });
   });
 
@@ -200,7 +217,6 @@ module.exports = (knex) => {
       console.log(err);
     });
   });
-
 
   return searchRouter
 };

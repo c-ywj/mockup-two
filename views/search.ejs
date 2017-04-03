@@ -20,7 +20,15 @@
         <input type="text" id='b1' name='brand1' placeholder="Insert a brand" required/>
         <input type="text" id='b2' name='brand2' placeholder="Insert a brand" required/>
         </br>
+
+        <% if (message) { %>
+          <p class="flash-error">
+            <%= message %>
+          </p>
+        <% } %>
+
         <button id ="search-btn" type="submit">Search</button>
+
       </form>
     </div>
 
