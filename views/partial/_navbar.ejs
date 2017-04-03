@@ -23,27 +23,28 @@
     </ul>
   </div>
 </nav>
+<div class='aside'>
+  <aside>
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+        <div class="background">
+        </div>
+        <div class="userView-email">
+         <%= current_user %> favorites
+        </div>
+      </div></li>
+      <li><a href="#!"></i>First Link With Icon</a></li>
+      <li><a href="#!">Second Link</a></li>
+      <li><div class="divider"></div></li>
+      <li><a class="subheader">Subheader</a></li>
+      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 
-<aside>
-  <ul id="slide-out" class="side-nav">
-    <li><div class="userView">
-      <div class="background">
-      </div>
-      <div class="userView-email black">
-        <%= current_user %>
-      </div>
-    </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-
-    <li class="theme-button">
-      <form action="/users/logout" method="post">
-        <button class="nav-menu_btn" type="submit">Logout</button>
-      </form>
-    </li>
-  </ul>
-</aside>
-<% } %>
+      <li class="theme-button">
+        <form action="/users/logout" method="post">
+          <button class="nav-menu_btn" type="submit">Logout</button>
+        </form>
+      </li>
+    </ul>
+  </aside>
+</div>
+  <% } %>
