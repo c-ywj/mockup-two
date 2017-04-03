@@ -29,6 +29,7 @@ nav a, nav a.brand-logo {
 }
 
 .row .col {
+  float: none;
   display: inline-block;
 }
 
