@@ -1,3 +1,9 @@
+/* EXTERNAL CSS */
+@import 'http://fonts.googleapis.com/icon?family=Material+Icons';
+@import url(/vendor/normalize-4.1.1.css);
+@import url(/vendor/border-box.css);
+@import 'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css';
+@import 'https://fonts.googleapis.com/css?family=Cinzel:400,700';
 /* NAVIGATION BAR */
 nav {
   padding: 0 2em;
@@ -68,12 +74,12 @@ button.nav-menu_btn:hover {
 
 /* MAIN CONTENT */
 .prod-background {
-  background: url("./images/prodBackground.png") no-repeat center center fixed;
+  background: url("../images/prodBackground.png") no-repeat center center fixed;
   background-size: cover;
 }
 
 body.home {
-  background: url("./images/warrior.jpeg") no-repeat center center fixed;
+  background: url("../images/warrior.jpeg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -90,7 +96,7 @@ h1 {
 }
 
 body.mainB {
-  background: url("./images/warrior.jpeg") no-repeat center center fixed;
+  background: url("../images/warrior.jpeg") no-repeat center center fixed;
   background-size: cover;
 }
 
