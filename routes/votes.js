@@ -22,10 +22,9 @@ module.exports = (knex) => {
         })
         .then(function(result) {
           console.log(result);
-          const p1v = result[0].product_one_votes;
-          const p2v = result[0].product_two_votes;
-          // const img1 = result[1].LargeImage[0].URL;
-          // const img2 = result[1].LargeImage[0].URL;
+          const total = (result[0].product_one_votes + result[0].product_two_votes )
+          const p1v = Math.floor(100 * result[0].product_one_votes / total);
+          const p2v = Math.floor(100 * result[0].product_two_votes / total);
           console.log('product one votes: ' + p1v);
           console.log('product two votes: ' + p2v);
           const pairResult = {};
@@ -33,7 +32,7 @@ module.exports = (knex) => {
             if(result[0].product_one === votedAsin) {
               pairResult.winner = {
                 title: votedPro,
-                score: p1v + 1,
+                score: p1v,
                 // img:img1
               }
               pairResult.loser = {
@@ -45,7 +44,7 @@ module.exports = (knex) => {
             } else if (result[0].product_two === votedAsin) {
               pairResult.winner = {
                 title: votedPro,
-                score: p2v + 1,
+                score: p2v ,
                 // img:img1
               }
               pairResult.loser = {

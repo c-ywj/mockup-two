@@ -20,22 +20,26 @@ $(() => {
   const category = GetURLParameter('category');
   const brand1   = GetURLParameter('brand1');
   const brand2   = GetURLParameter('brand2');
-
   const renderWinnerVoteCount = function (scoreObj) {
     return `
       <div class="vote-results">
-        <span > The product you voted has : ${scoreObj.winner.score} votes! </span>
+        <span > The product you voted has : ${scoreObj.winner.score} % votes! </span>
+        <div class="percentage">
+          <span id='span' style="width: ${scoreObj.winner.score}%"></span>
+        </div>
       </div>
     `;
   }
   const renderLoserVoteCount = function(scoreObj) {
     return `
       <div class="vote-results">
-        <span > versus : ${scoreObj.loser.score} </span>
+        <span > versus : ${scoreObj.loser.score} % </span>
+        <div class="percentage">
+          <span id='span' style="width:${scoreObj.loser.score}%"></span>
+        </div>
       </div>
     `;
   }
-
   const renderNextButton = function() {
     return `
       <input type    ="button" id="next"
@@ -43,8 +47,6 @@ $(() => {
              onClick ="window.location.reload()">
     `;
   }
-
-
   const userWinner = (e) => {
     return `
       <div class="vote-results">
@@ -52,7 +54,6 @@ $(() => {
       </div>
     `;
   }
-
   const userLooser = (e) => {
     return `
       <div class="vote-results">
@@ -60,6 +61,20 @@ $(() => {
       </div>
     `;
   }
+
+  // POINTS TRACKER LOGIC
+  const calcPoints = () => {
+    if (!localStorage['voterPoints']) {
+      localStorage.setItem('voterPoints', 10);
+    } else {
+      var currentPoints = parseInt(localStorage.getItem('voterPoints'));
+      localStorage.setItem('voterPoints', (currentPoints + 10))
+    }
+
+    console.log(localStorage.getItem('voterPoints'));
+    console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
+  }
+
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
     const data = {
@@ -76,33 +91,33 @@ $(() => {
     })
     .done(() => {
       console.log('second ajax');
+      $.ajax({
+        method: "POST",
+        url: "/votes",
+        data: data
+      })
+      .done(function(voteResults) {
+        console.log('second ajax response');
+        console.log(voteResults);
+        const winnerResult = renderWinnerVoteCount(voteResults);
+        const loserResult = renderLoserVoteCount(voteResults);
+        const nextButton = renderNextButton();
+        $('#winner-container').html(winnerResult);
+        $('#loser-container').html(loserResult);
+        $('#nextBtn').html(nextButton);
+          if(voteResults.winner.score >= voteResults.loser.score){
+            calcPoints();
+            $('#winner-container').html(winnerResult);
+            $('#loser-container').html(loserResult);
+            $('#message-container').html(userWinner);
+          } else {
+            $('#winner-container').html(winnerResult);
+            $('#loser-container').html(loserResult);
+            $('#message-container').html(userLooser);
+          }
+      });
     })
-    $.ajax({
-      method: "POST",
-      url: "/votes",
-      data: data
-    })
-    .done(function(voteResults) {
-      console.log('second ajax response');
-      console.log(voteResults);
-      const winnerResult = renderWinnerVoteCount(voteResults);
-      const loserResult = renderLoserVoteCount(voteResults);
-      const nextButton = renderNextButton();
-      $('#winner-container').html(winnerResult);
-      $('#loser-container').html(loserResult);
-      $('#nextBtn').html(nextButton);
-        if(voteResults.winner.score >= voteResults.loser.score){
-          $('#winner-container').html(winnerResult);
-          $('#loser-container').html(loserResult);
-          $('#message-container').html(userWinner);
-        } else {
-          $('#winner-container').html(winnerResult);
-          $('#loser-container').html(loserResult);
-          $('#message-container').html(userLooser);
-        }
-    });
   });
-
   $('#votePro2').click(function(ev) {
     ev.preventDefault();
     const data = {
@@ -111,7 +126,6 @@ $(() => {
       unvotedPro: pro1Title,
       unvotedAsin: pro1asin
     };
-
     console.log('clicked');
     $.ajax({
       method: "POST",
@@ -120,47 +134,31 @@ $(() => {
     })
     .done(() => {
       console.log('second ajax');
+      $.ajax({
+        method: "POST",
+        url: "/votes",
+        data: data
+      })
+      .done(function(voteResults) {
+        console.log('second ajax response');
+        console.log(voteResults);
+        const winnerResult = renderWinnerVoteCount(voteResults);
+        const loserResult = renderLoserVoteCount(voteResults);
+        const nextButton = renderNextButton();
+        $('#winner-container').html(winnerResult);
+        $('#loser-container').html(loserResult);
+        $('#nextBtn').html(nextButton);
+          if(voteResults.winner.score >= voteResults.loser.score){
+            calcPoints();
+            $('#winner-container').html(winnerResult);
+            $('#loser-container').html(loserResult);
+            $('#message-container').html(userWinner);
+          } else {
+            $('#winner-container').html(winnerResult);
+            $('#loser-container').html(loserResult);
+            $('#message-container').html(userLooser);
+          }
+      });
     })
-    $.ajax({
-      method: "POST",
-      url: "/votes",
-      data: data
-    })
-    .done(function(voteResults) {
-      console.log('second ajax response');
-      console.log(voteResults);
-      const winnerResult = renderWinnerVoteCount(voteResults);
-      const loserResult = renderLoserVoteCount(voteResults);
-      const nextButton = renderNextButton();
-      $('#winner-container').html(winnerResult);
-      $('#loser-container').html(loserResult);
-      $('#nextBtn').html(nextButton);
-        if(voteResults.winner.score >= voteResults.loser.score){
-          $('#winner-container').html(winnerResult);
-          $('#loser-container').html(loserResult);
-          $('#message-container').html(userWinner);
-
-        } else {
-          $('#winner-container').html(winnerResult);
-          $('#loser-container').html(loserResult);
-          $('#message-container').html(userLooser);
-
-        }
-    });
-  });
-
-
-  // $(document).on('click', '#next', function (ev) {
-  // console.log('clicked');
-  //   ev.preventDefault();
-  //   $.ajax({
-  //     method: "GET",
-  //     url: "/search/product"
-  //   })
-  //    .then(function(result) {
-  //     $('body').html(result);
-  //    });
-
-  // });
-
+  })
 })
