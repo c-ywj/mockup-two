@@ -66,6 +66,8 @@ $(() => {
   const calcPoints = () => {
     if (!localStorage['voterPoints']) {
       localStorage.setItem('voterPoints', 10);
+    } else if(currentPoints >= 80) {
+      console.log(randStr());
     } else {
       var currentPoints = parseInt(localStorage.getItem('voterPoints'));
       localStorage.setItem('voterPoints', (currentPoints + 10))
@@ -74,6 +76,18 @@ $(() => {
     console.log(localStorage.getItem('voterPoints'));
     console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
   }
+
+  const randStr = () => {
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let randStr = "";
+  for(let i = 0; i < 8; i++){
+    let randNum = Math.floor(Math.random()* chars.length)
+    randStr += chars[randNum];
+    }
+  }
+  //console.log(randStr);
+  //return randStr;
+
 
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
