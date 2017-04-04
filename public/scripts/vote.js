@@ -26,7 +26,7 @@ $(() => {
       <div class="vote-results">
         <span > The product you voted has : ${scoreObj.winner.score} % votes! </span>
         <div class="percentage">
-          <span id='span' style="width: 25%"></span>
+          <span id='span' style="width: ${scoreObj.winner.score}%"></span>
         </div>
       </div>
     `;
@@ -36,7 +36,7 @@ $(() => {
       <div class="vote-results">
         <span > versus : ${scoreObj.loser.score} % </span>
         <div class="percentage">
-          <span id='span' style="width: 25%"></span>
+          <span id='span' style="width:${scoreObj.loser.score}%"></span>
         </div>
       </div>
     `;

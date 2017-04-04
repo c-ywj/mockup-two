@@ -212,10 +212,10 @@ button.nav-menu_btn:hover {
 }
 
 #cont {
+  height: 300px;
   margin-top: 0px;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: all 0.6s ease-in-out;
-  margin-top: 0px;
   -webkit-transform: translate3d(0px, 600px, 600px);
 }
 
