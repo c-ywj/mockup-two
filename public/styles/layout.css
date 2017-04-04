@@ -165,36 +165,8 @@ button.nav-menu_btn:hover {
   max-height: 150px;
 }
 
-#heart1 {
-  margin-left: 20px;
-  width: 20px;
-  height: 20px;
-}
-
-#heart2 {
-  margin-left: 20px;
-  width: 20px;
-  height: 20px;
-}
-
-#heart3 {
-  margin-left: 20px;
-  width: 20px;
-  height: 20px;
-}
-
-#heart4 {
-  margin-left: 20px;
-  width: 20px;
-  height: 20px;
-}
-
-.fav2 {
-  display: none;
-}
-
-.fav4 {
-  display: none;
+.card .card-content .add-fav .material-icons {
+  color: red;
 }
 
 #firstProd {

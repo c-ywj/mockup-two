@@ -5,24 +5,31 @@ $(() => {
   var addToFave = localStorage['addFav'];
   // this stores all saved favourites into an array
   var currentFavList = localStorage['sessionFav'];
+  var sideBarList = $('.user-current-list');
+
+  if(addToFave) {
+    var separateItems = addToFave.split('; ');
+
+    separateItems.forEach((item) => {
+      console.log('ITEM: ', item);
+    });
+  }
 
   $addFav.on('click', function(e) {
     var $testItem = $(this).data('item');
 
     if (!addToFave) {
       localStorage.setItem('addFav', $testItem);
-      localStorage.setItem('sessionFav', [addToFave]);
     } else {
-      localStorage.setItem('addFav', (addToFave + `, ${$testItem}`));
-      localStorage.setItem('sessionFav', `[${addToFave}]`);
+      localStorage.setItem('addFav', (addToFave + '; ' + $testItem));
     }
+
+
 
     $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
 
     console.log('DATA-ATTR', $testItem);
     console.log('addFav: ', addToFave, '\nsessionFave: ', currentFavList);
-    // console.log((e.currentTarget).attr('data-item'));
-
   });
 
   // $('#heart1').on('click', function(ev) {
