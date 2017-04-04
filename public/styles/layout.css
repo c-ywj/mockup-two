@@ -111,6 +111,13 @@ button.nav-menu_btn:hover {
   overflow: hidden;
 }
 
+#tkr {
+  float: right;
+  font-weight: lighter;
+  margin-top: 25px;
+  margin-right: 15px;
+}
+
 /* CARDS */
 .body {
   -webkit-perspective: 1000px;
