@@ -50,7 +50,7 @@ $(() => {
   const userWinner = (e) => {
     return `
       <div class="vote-results">
-        <span > Congratulation! You've earned 20 points!!!</span>
+        <span > Congratulation! You've earned 10 points!!!</span>
       </div>
     `;
   }
@@ -66,14 +66,30 @@ $(() => {
   const calcPoints = () => {
     if (!localStorage['voterPoints']) {
       localStorage.setItem('voterPoints', 10);
+      return `<div class="meter">
+        <span style="width:1%"></span>
+      </div>`
     } else {
       var currentPoints = parseInt(localStorage.getItem('voterPoints'));
       localStorage.setItem('voterPoints', (currentPoints + 10))
+      return `<div class="meter">
+        <span style="width:${currentPoints}%"></span>
+      </div>`
     }
 
     console.log(localStorage.getItem('voterPoints'));
     console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
+    trackPoints()
   }
+
+  const trackPoints = () => {
+    const userPoint = localStorage.getItem('voterPoints');
+    return `<div class="meter">
+      <span style="width:${userPoint || 1}%"></span>
+    </div>`
+  }
+
+  $('#pointsCnt').html(trackPoints());
 
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
@@ -102,18 +118,23 @@ $(() => {
         const winnerResult = renderWinnerVoteCount(voteResults);
         const loserResult = renderLoserVoteCount(voteResults);
         const nextButton = renderNextButton();
-        $('#winner-container').html(winnerResult);
-        $('#loser-container').html(loserResult);
-        $('#nextBtn').html(nextButton);
+        // $('#winner-container').html(winnerResult);
+        // $('#loser-container').html(loserResult);
+
           if(voteResults.winner.score >= voteResults.loser.score){
-            calcPoints();
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userWinner);
+            $('#message-container').css('font-size', '38px');
+            $('#pointsCnt').html(calcPoints());
+            $('#nextBtn').html(nextButton);
           } else {
+            $('#pointsCnt').html(trackPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userLooser);
+            $('#message-container').css('font-size', '38px');
+            $('#nextBtn').html(nextButton);
           }
       });
     })
@@ -145,20 +166,51 @@ $(() => {
         const winnerResult = renderWinnerVoteCount(voteResults);
         const loserResult = renderLoserVoteCount(voteResults);
         const nextButton = renderNextButton();
-        $('#winner-container').html(winnerResult);
-        $('#loser-container').html(loserResult);
-        $('#nextBtn').html(nextButton);
+        // $('#winner-container').html(winnerResult);
+        // $('#loser-container').html(loserResult);
+
           if(voteResults.winner.score >= voteResults.loser.score){
-            calcPoints();
+            $('#pointsCnt').html(calcPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userWinner);
+            $('#message-container').css('font-size', '38px');
+            $('#nextBtn').html(nextButton);
           } else {
+            $('#pointsCnt').html(trackPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userLooser);
+            $('#message-container').css('font-size', '38px');
+            $('#nextBtn').html(nextButton);
           }
       });
     })
   })
+  //
+  $('#logout').click( (e) => {
+      localStorage.clear();
+      window.location = '/users/logout';
+      return false;
+  });
+
+  // $('#logout').click(function()
+  // {
+  //   $.ajax({
+  //     method:"POST",
+  //     url: "/users/register",
+  //     data:{
+  //       email: email,
+  //       password: password
+  //     }
+  //   }).done((e) =>{
+  //     localStorage.clear();
+  //     location.reload();
+  //     return false;
+  //
+  //   })
+  //
+  //     });
+  // });
+
 })

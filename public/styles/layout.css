@@ -65,9 +65,10 @@ button.nav-menu_btn:hover {
 /* POINT TRACKER */
 .meter {
   width: 480px;
-  height: 40px;
-  margin-top: 12px;
+  height: 30px;
+  margin-top: 18px;
   position: relative;
+  margin-right: 10px;
   float: right;
   background: #101a24;
   -moz-border-radius: 25px;
