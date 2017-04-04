@@ -94,7 +94,7 @@ module.exports = (knex) => {
                       asin: results[1][rand2].ASIN
                     }
                   }
-                  res.render("searchres", templateVars);
+                  res.json(templateVars);
                 })
             } else if (result.length > 0 &&
                       pro1.asin[0] !== pro2.asin[0]){
@@ -119,7 +119,7 @@ module.exports = (knex) => {
                     asin: results[1][rand2].ASIN
                   }
               }
-              res.render("searchres", templateVars);
+              res.json(templateVars);
             }
 
             return null;

@@ -98,6 +98,73 @@ $(() => {
     }
   }
 
+  const renderNextPair = (productInfo) => {
+    const pro1Title = productInfo.br1.pTitle1[0];
+    const pro2Title = productInfo.br2.pTitle2[0];
+    const pro1Img   = productInfo.br1.image1[0];
+    const pro2Img   = productInfo.br2.image2[0];
+    const pro1Asin  = productInfo.br1.asin[0];
+    const pro2Asin  = productInfo.br2.asin[0];
+    const pro1Type  = productInfo.br1.ProductType1[0];
+    const pro2Type  = productInfo.br2.ProductType2[0];
+    return `
+          <h1 id= 'message-container' >may the odds be with you</h1>
+      <div class="row">
+        <div class="card_products col s3 m4 l5" id="firstProd">
+          <div class="card">
+            <div class="card-image">
+              <img id="prodImg1" src="${pro1Img}">
+            </div>
+            <div class="card-content">
+              <h6 id='pro1'>${pro1Title}</h6>
+               <p>${pro1Type}
+                  (<span id="pro1asin">${pro1Asin}</span>)
+               }
+              </p>
+                <div class='fav1'>
+                   <p><img id='heart1' src='/images/heart.png'/>click to add on your favorite list </p>
+                </div>
+                <div class='fav2'>
+                   <p><img id='heart2' src='/images/heartFilled.png'/> added to favorite list</p>
+                </div>
+            </div>
+            <div class="card-action">
+              <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
+            </div>
+          </div>
+         <button type="submit" class ='voteBtn' id="votePro1">Vote!</button>
+        </div>
+
+
+        <div class="card_products col s3 m4 l5" id='secondProd'>
+          <div class="card">
+            <div class="card-image">
+              <img id "prodImg2" src="${pro2Img}">
+            </div>
+            <div class="card-content">
+              <h6 id='pro2'>${pro2Title}</h6>
+              <p>
+                 ${pro2Type}
+                 (<span id="pro2asin">${pro2Asin}</span>)
+              </p>
+              <div class='fav3'>
+                 <p><img id='heart3' src='/images/heart.png'/>click to add on your favorite list </p>
+              </div>
+              <div class='fav4'>
+                 <p><img id='heart4' src='/images/heartFilled.png'/> added to favorite list</p>
+              </div>
+            </div>
+            <div class="card-action">
+              <a href="<%- br2.DetailPageURL2 %>">Click here to buy the item!</a>
+            </div>
+          </div>
+          <button type="submit" class ='voteBtn' id="votePro2">Vote!</button>
+        </div>
+
+      </div>
+      `
+  }
+
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
     const data = {
@@ -213,9 +280,11 @@ $(() => {
           brand1: brand1,
           brand2: brand2
         }
-      }).then(function() {
-          console.log(result);
-        });
+      }).then(function(productInfo) {
+        console.log(productInfo.br2.pTitle2[0]);
+          const newPair = renderNextPair(productInfo);
+          $("body").html(newPair);
+          });
   })
 
 // $(() => {
