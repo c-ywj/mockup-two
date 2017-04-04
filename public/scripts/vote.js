@@ -76,7 +76,6 @@ $(() => {
         <span style="width:${currentPoints}%"></span>
       </div>`
     }
-
     console.log(localStorage.getItem('voterPoints'));
     console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
     trackPoints()
@@ -90,6 +89,15 @@ $(() => {
   }
 
   $('#pointsCnt').html(trackPoints());
+
+  const randStr = () => {
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let randStr = "";
+  for(let i = 0; i < 8; i++){
+    let randNum = Math.floor(Math.random()* chars.length)
+    randStr += chars[randNum];
+    }
+  }
 
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
