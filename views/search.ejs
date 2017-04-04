@@ -5,6 +5,8 @@
 
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
 
   <body class='mainB'>
@@ -41,13 +43,17 @@
           'Laptop', 'Ultrabook', 'Headphones', 'Wearable Technology', 'Monitors', 'Tablets',
           'Printers', 'Speakers'
         ];
+        var availableTags2 = [
+          'curved', 'dslr', '55 inch', '65 inch', '3D', 'wireless', 'bluetooth', 'smart', 'gaming'
+        ];
         $("#prod1").autocomplete({
           source: availableTags
         });
+        $('#prod2').autocomplete({
+          source: availableTags2
+        });
       });
     </script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
