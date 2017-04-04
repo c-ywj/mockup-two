@@ -1,7 +1,7 @@
 "use strict";
 const amazon = require('amazon-product-api');
 const express = require('express');
-const searchRouter  = express.Router();
+const nextPairRouter  = express.Router();
 const client = amazon.createClient({
   awsId: process.env.AWS_ID,
   awsSecret:process.env.AWS_SECRET,
@@ -25,25 +25,15 @@ const amzSearch = function(brand, category, keywords) {
 
 module.exports = (knex) => {
 
-  searchRouter.get('/', (req, res) => {
-    if (!req.session.user) {
-      res.redirect('/');
-    } else {
-      let templateVars = {message: '', current_user: req.session.user};
-      res.render("search", templateVars);
-    }
-  });
-
-  searchRouter.get("/product", (req, res) => {
+  nextPairRouter.post("/", (req, res) => {
     if (!req.session.user) {
       res.redirect('/');
     } else {
       const rand1 = Math.floor(Math.random() * 8);
       const rand2 = Math.floor(Math.random() * 8);
-      console.log(req.query.brand1, req.query.brand2);
       Promise.all([
-        amzSearch(req.query.brand1, req.query.category, req.query.keywords),
-        amzSearch(req.query.brand2, req.query.category, req.query.keywords)
+        amzSearch(req.body.brand1, req.body.category, req.body.keywords),
+        amzSearch(req.body.brand2, req.body.category, req.body.keywords)
       ])
       .then(function(results) {
         const pro1 = {
@@ -161,86 +151,5 @@ module.exports = (knex) => {
       });
     }
   });
-
-  searchRouter.post('/product', (req, res) => {
-    console.log('voted pro asin is: ' + req.body.votedAsin, 'unvoted pro asin is: ' + req.body.unvotedAsin);
-    const votedPro   = req.body.votedPro;
-    const unvotedPro = req.body.unvotedPro;
-    const votedAsin = req.body.votedAsin;
-    const unvotedAsin = req.body.unvotedAsin;
-    const user = req.session.user;
-    knex.select('*')
-        .from('comparisons')
-        .where({
-          product_one: votedAsin,
-          product_two: unvotedAsin
-        })
-        .orWhere({
-          product_one: unvotedAsin,
-          product_two: votedAsin
-        })
-        .then(function(result) {
-          console.log('shutest', result);
-          console.log(result[0].id);
-          console.log(result[0].product_one);
-          if(result.length > 0) {
-            if(result[0].product_one === votedAsin) {
-              const currentVotes = result[0].product_one_votes;
-              knex('comparisons')
-                .where('id', '=', result[0].id)
-                .update({
-                  product_one_votes: currentVotes + 1
-                })
-                .then(function(voteCount) {
-                  console.log(voteCount);
-                })
-            } else if(result[0].product_two === votedAsin) {
-                const currentVotes = result[0].product_two_votes;
-                knex('comparisons')
-                  .where('id', '=', result[0].id)
-                  .update({
-                    product_two_votes: currentVotes + 1
-                  })
-                .then(function(voteCount) {
-                  console.log(voteCount);
-                })
-              }
-          }
-          return result;
-        }).catch(function(err) {
-            console.log(err);
-          })
-        .then(function(result) {
-          console.log('this should be the comparison row: '+ result[0].product_one);
-          return knex
-            .select('*')
-            .from('users')
-            .where('email', '=', user)
-            .then(function(userRow) {
-              console.log('user id: ' + userRow[0].id);
-              console.log('comparison row id: ' + result[0].id);
-              knex
-              .insert({
-                user_id: userRow[0].id,
-                comparisons_id: result[0].id
-              })
-              .into('votes')
-              .then(function(result) {
-                console.log(result);
-                res.send("OK");
-              })
-              .catch(function(err) {
-                console.log(err);
-              })
-            })
-            .catch(function(err) {
-              console.log(err);
-            })
-          })
-        .catch(function(err) {
-          console.log(err);
-    });
-  });
-
-  return searchRouter
+  return nextPairRouter;
 };

@@ -21,6 +21,7 @@ const usersRoutes = require("./routes/users");
 // const login = require("./routes/login");
 const search = require("./routes/search");
 const votes = require("./routes/votes");
+const nextPair = require("./routes/nextpair");
 
 
 
@@ -59,6 +60,8 @@ app.use("/users", usersRoutes(knex));
 app.use('/search', search(knex));
 // path for grabbing votes data
 app.use('/votes', votes(knex));
+// path for querying amz api when user hits vote again
+app.use('/search/product/nextpair', nextPair(knex));
 // Home page
 app.get("/", (req, res) => {
   if (req.session.user) {

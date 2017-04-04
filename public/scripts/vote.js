@@ -18,6 +18,7 @@ $(() => {
     }
   }
   const category = GetURLParameter('category');
+  const keywords = GetURLParameter('keywords')
   const brand1   = GetURLParameter('brand1');
   const brand2   = GetURLParameter('brand2');
   const renderWinnerVoteCount = function (scoreObj) {
@@ -42,9 +43,7 @@ $(() => {
   }
   const renderNextButton = function() {
     return `
-      <input type    ="button" id="next"
-             value   ="Next Pair"
-             onClick ="window.location.reload()">
+      <button type="submit" id="next">Next Pair</button>
     `;
   }
   const userWinner = (e) => {
@@ -201,6 +200,42 @@ $(() => {
       window.location = '/users/logout';
       return false;
   });
+
+  $(document).on('click', '#next', function(ev) {
+    console.log('clicked');
+    ev.preventDefault();
+          $.ajax({
+        method: "POST",
+        url: "/search/product/nextpair",
+        data: {
+          category: category,
+          keywords: keywords,
+          brand1: brand1,
+          brand2: brand2
+        }
+      }).then(function() {
+          console.log(result);
+        });
+  })
+
+// $(() => {
+//     $('#next').click(function(ev) {
+//       console.log('clicked');
+//       $.ajax({
+//         method: "POST",
+//         url: "/search/product/nextpair",
+//         data: {
+//           category: category,
+//           keywords: keywords,
+//           brand1: brand1,
+//           brand2: brand2
+//         }
+//       }).then({function(result) {
+//         console.log(result);
+//         }
+//       })
+//     })
+//   })
 
   // $('#logout').click(function()
   // {
