@@ -7,7 +7,7 @@ const bcrypt   = require('bcrypt');
 module.exports = (knex) => {
 
   router.post('/register', (req, res) => {
-    let iEmail      = req.body.email;
+    let iEmail      = (req.body.email).toLowerCase();;
     let iPassword   = req.body.password;
     let hashed_pass = bcrypt.hashSync(iPassword, 10);
 
@@ -53,7 +53,7 @@ module.exports = (knex) => {
     knex
       .select('*')
       .from('users')
-      .where("email", "=", req.body.email)
+      .where("email", "=", (req.body.email).toLowerCase())
       .then((user) => {
         const pword = req.body.password;
         let match   = bcrypt.compareSync(pword, user[0].password);

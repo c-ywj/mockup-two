@@ -71,6 +71,8 @@ $(() => {
 
     if (!storedPoints) {
       localStorage.setItem('voterPoints', 10);
+    } else if (storedPoints == 70) {    
+      alert('HEY, YOU HIT 70 PTS!');
     } else if (storedPoints >= 100) {
       maxPoints = 100;
       localStorage.setItem('voterPoints', maxPoints);
@@ -190,7 +192,9 @@ $(() => {
 
   $('#logout').click( (e) => {
     // Upon user logout, clear points tracker and favourites list
-    localStorage.clear();
+    // localStorage.clear();
+    delete localStorage['voterPoints'];
+    delete localStorage['addFav'];
     window.location = '/users/logout';
     return false;
   });
