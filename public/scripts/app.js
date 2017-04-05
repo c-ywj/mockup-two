@@ -36,34 +36,46 @@ $(() => {
   var $sideBarList = $('.user-list_content');
   var $scrollList = $('.scroll-list');
 
+  var renderList = (listItem) => `<li class="user-fave" data-saved-item="${listItem.Item}">
+          <a href="${listItem.URL}" target="new">${listItem.Item}</a>
+        </li>`;
+
   var loadFavList = () => {
     $sideBarList.children().remove();
 
-    if (!addToFave) {
-      $scrollList.addClass('hide');
-    } else {
-      $scrollList.removeClass('hide');
+    if (addToFave) {
       var favList = addToFave.split(';');
+      if (favList.length >= 6) {
+        $scrollList.removeClass('hide');
+      }
       console.log(favList);
 
       favList.forEach((item) => {
-        eval('var someItem = ' + item);
-        var alreadyAdded = $('.add-fav-wrapper').attr('data-item');
-        console.log(someItem);
+        eval('var itemData = ' + item);
+        var card1 = $('.add-fav-wrapper#card1').attr('data-item');
+        var card2 = $('.add-fav-wrapper#card2').attr('data-item');
+        console.log(itemData);
 
-        if (someItem.Item === alreadyAdded) {
-          console.log("THIS ITEM IS ALREADY SAVED: ", alreadyAdded);
+        if (itemData.Item === card1 || itemData.Item === card2) {
+          console.log("THIS ITEM IS ALREADY SAVED: ", itemData.Item);
           
-          $(`div[data-item='${alreadyAdded}']`).html('<i class="material-icons saved-fave">favorite</i> Added to list');
+          $(`div[data-item='${itemData.Item}']`).html('<i class="material-icons saved-fave">favorite</i> Added to list');
         } else {
-          console.log("NOT SAVED: ");
+          console.log("NO DUPLICATES");
         }
 
-        $sideBarList.append(`<li class="user-fave" data-saved-item="${someItem.Item}">
-          <a href="${someItem.URL}" target="new">${someItem.Item}</a>
-        </li>`);
+        var $render = renderList(itemData);
+        $sideBarList.prepend($render);
       })
     }
+  }
+
+  // Load list upon page refresh [this is important!]
+  if (addToFave) {
+    $('.user-list_heading').removeClass('hide');
+    loadFavList();
+  } else {
+    $sideBarList.html('<span class="scroll-list"><em>(Oops! Your list is empty!)<br/>Product links you save get added here until the end of each session</em></span>');
   }
 
   $addFav.on('click', function(e) {
@@ -73,39 +85,15 @@ $(() => {
 
     if (!addToFave) {
       localStorage.setItem('addFav', itemObj);
-      loadFavList();
+      $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
     } else {
-      var favList = addToFave.split(';');
-      var notSaved = '';
-
-      favList.forEach((item) => {
-        eval('var itemData = ' + item);
-
-        if (itemData.Item === $testItem) {
-          console.log('THIS IS ALREADY SAVED: ', $testItem);
-        } else {
-          console.log('THIS IS NOT YET SAVED: ', $testItem);
-
-          notSaved = itemObj;
-        }
-
-        // console.log(itemData);
-        console.log(itemData.Item);
-      })
-
       localStorage['addFav'] += `;${itemObj}`;
       $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
 
-      console.log('WHAT HAPPENED: ', localStorage['addFav']);
-      loadFavList();
+      console.log('UPDATED LOCALSTORAGE["ADDFAVE"]: ', localStorage['addFav']);
     }
-  });
 
-
-  // Load list upon page refresh [this is important!]
-  if (addToFave) {
-    $('.user-list_heading').removeClass('hide');
     loadFavList();
-  }
+  });
 
 });
