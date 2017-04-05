@@ -238,4 +238,12 @@ $(() => {
       });
     })
   })
+
+  $('#nextBtn').on('click', () => {
+    $('#firstProd').css('-webkit-transform','rotateY(0deg) translateX( 0px )  translateY(0px) translateZ(0px)');
+    $('#secondProd').css('-webkit-transform','rotateY(0deg) translateX(0px) translateY(0px) translateZ(0px)' );
+    $('#cont').css('opacity','0');
+
+
+  })
 })
