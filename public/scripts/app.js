@@ -33,24 +33,20 @@ $(() => {
   // Favourites List
   var $addFav = $('.add-fav');
   var addToFave = localStorage['addFav'];
-  var $sideBarList = $('.user-current-list');
-  var $userFave = $('.user-fave');
+  var $sideBarList = $('.user-list_content');
 
   var loadFavList = () => {
-    if (addToFave.indexOf('; ') > -1) {
+    if (!addToFave) {
+      $sideBarList.html('');
+    } else if (addToFave.indexOf('; ') > -1) {
       var separateItems = addToFave.split('; ');
-
       separateItems.forEach((item) => {
         var splitURL = item.split(' - URL: ');
-        
         $sideBarList.append(`<li class="user-fave" data-saved-item="${splitURL[0]}"><a class="waves-effect" href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
       });
-    } else if (!addToFave) {
-      $userFave.remove();
     } else {
       var splitURL = addToFave.split(' - URL: ');
-
-      $sideBarList.append(`<li class="user-fave" data-saved-item="${splitURL[0]}"><a class="btn" href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
+      $sideBarList.append(`<li class="user-fave" data-saved-item="${splitURL[0]}"><a class="waves-effect" href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
     }
   }
 
@@ -60,19 +56,18 @@ $(() => {
 
     if (!addToFave) {
       localStorage.setItem('addFav', ($testItem + ' - URL: ' + $itemLink));
-      $userFave.remove();
-      loadFavList();
     } else {
       localStorage.setItem('addFav', (addToFave + '; ' + $testItem + ' - URL: ' + $itemLink));
-      $userFave.remove();
       loadFavList();
     }
 
     $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
   });
 
-  // Load faves list upon page refresh [important!]
+
+  // Load list upon page refresh [this is important!]
   if (addToFave) {
+    $('.user-list_heading').removeClass('hide');
     loadFavList();
   }
 

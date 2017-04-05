@@ -15,10 +15,19 @@ nav {
   line-height: 64px;
 }
 
+nav button:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
 nav .brand-logo {
   left: 0;
   -webkit-transform: translateX(0);
   transform: translateX(0);
+}
+
+nav .brand-logo img {
+  height: 50px;
+  width: auto;
 }
 
 nav a, nav a.brand-logo {
@@ -39,11 +48,6 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   font-style: normal;
 }
 
-img.nav-logo {
-  height: 50px;
-  width: auto;
-}
-
 .nav-menu_btn, .nav-menu_btn:focus {
   border: 0;
   background-color: transparent;
@@ -52,24 +56,52 @@ img.nav-logo {
   transition: ease all 0.3s;
 }
 
-button.nav-menu_btn:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
 /* SIDE NAVIGATION BAR */
 .side-nav {
-  color: white;
-  background-color: rgba(200, 54, 54, 0.9);
+  color: #fff;
+  background-color: #c83636;
+  height: 100vh;
 }
 
-.side-nav .user-current-list {
-  vertical-align: middle;
+.side-nav .userView {
+  padding: 0;
 }
 
-.side-nav .user-current-list a, .side-nav .user-current-list a:before, .side-nav .user-current-list a:after, .side-nav .user-current-list a:visited, .side-nav .user-current-list a:hover, .side-nav .user-current-list a:active {
+.side-nav .userView .background {
+  height: auto;
+  position: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav .userView .background img {
+  width: 100%;
+  height: auto;
+}
+
+.side-nav .userView .user-email {
+  font-size: 1.2em;
+}
+
+.side-nav .user-list_heading {
+  background: #101a24;
+}
+
+.side-nav .user-list_content a, .side-nav .user-list_content a:before, .side-nav .user-list_content a:after, .side-nav .user-list_content a:visited, .side-nav .user-list_content a:hover, .side-nav .user-list_content a:active {
+  letter-spacing: 1px;
+  text-transform: uppercase;
   min-height: 48px;
   height: auto;
   max-height: auto;
+}
+
+.side-nav .logout-btn {
+  margin-top: 48px;
+}
+
+.side-nav .logout-btn:hover {
+  background: rgba(0, 0, 0, 0.25);
+  transition: ease-in-out 0.5s;
 }
 
 /* POINT TRACKER */
@@ -130,12 +162,9 @@ button.nav-menu_btn:hover {
 }
 
 /* CARDS */
-.body {
-  -webkit-perspective: 1000px;
-}
-
 .row {
   margin-top: 50px;
+  -webkit-perspective: 1000px;
 }
 
 .row .col {
@@ -252,6 +281,10 @@ button.nav-menu_btn:hover {
 /* GLOBAL */
 .theme-button {
   background: rgba(200, 54, 54, 0.68);
+}
+
+i.material-icons {
+  vertical-align: middle;
 }
 
 h6 {

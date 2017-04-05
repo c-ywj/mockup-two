@@ -1,6 +1,9 @@
 /* NAVIGATION VARIABLES */
 $theme-background: rgba(200,54,54,0.68);
-$opaque-theme-background: rgba(200,54,54,1);
+$primary: rgb(200,54,54);
+$secondary: #101a24;
+$text-font: #fff;
+$hover-background: rgba(0,0,0,0.25);
 
 
 /* TOP NAVIGATION BAR */
@@ -11,9 +14,18 @@ nav {
   min-height: 64px;
   line-height: 64px;
 
+  button:hover {
+    background: $hover-background;
+  }
+
   .brand-logo {
     left: 0;
     -webkit-transform:translateX(0);transform:translateX(0);
+
+    img {
+      height: 50px;
+      width: auto;
+    }
   }
 
   a, a.brand-logo {
@@ -35,11 +47,6 @@ nav {
   }
 }
 
-img.nav-logo {
-  height: 50px;
-  width: auto;
-}
-
 .nav-menu_btn, .nav-menu_btn:focus {
   border: 0;
   background-color: transparent;
@@ -48,24 +55,63 @@ img.nav-logo {
   transition: ease all 0.3s;
 }
 
-button.nav-menu_btn:hover {
-  background: rgba(0,0,0,0.25);
-}
+// button.nav-menu_btn:hover {
+//   background: rgba(0,0,0,0.25);
+// }
 
 /* SIDE NAVIGATION BAR */
 // Styles go here
-.side-nav{
-  color:white;
-  background-color: rgba(200, 54, 54, 0.9);
+.side-nav {
+  color: $text-font;
+  background-color: $primary;
+  height: 100vh;
 
-  .user-current-list {
-    vertical-align: middle;
+  .userView {
+    padding: 0;
 
+    .background {
+      height: auto;
+      position: inherit;
+      padding: 0;
+      margin: 0;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .user-email {
+      font-size: 1.2em;
+    }
+  }
+
+
+  .user-list_heading {
+    background: $secondary;
+    // color: $primary;
+  }
+
+  .user-list_content {
     a, a:before, a:after, a:visited, a:hover, a:active {
+      // font-family: Verdana, sans-serif;
+      // color: #111;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       min-height: 48px;
       height: auto;
       max-height: auto;
     }
+  }
+
+  .logout-btn {
+    margin-top: 48px;
+    
+  }
+  
+  .logout-btn:hover {
+    background: $hover-background;
+    transition: ease-in-out 0.5s;
   }
 }
 
@@ -79,15 +125,12 @@ button.nav-menu_btn:hover {
   position:relative;
   margin-right: 10px;
   float:right;
-	background: #101a24;
+	background: $secondary;
 	-moz-border-radius: 25px;
 	-webkit-border-radius: 25px;
 	border-radius: 25px;
 	padding: 10px;
 	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-
-
-
 }
 
 .meter > span {
@@ -98,10 +141,10 @@ button.nav-menu_btn:hover {
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-color: rgb(200,54,54);
+  background-color: $primary;
   background-image: linear-gradient(
     center bottom,
-    rgb(200,54,54) 37%,
+    $primary 37%,
     rgb(255, 0, 0) 69%
   );
   transform: rotate(180deg);

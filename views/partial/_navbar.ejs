@@ -1,7 +1,7 @@
 <nav>
   <div class="nav-wrapper">
     <div class="brand-logo">
-      <a href="/" class="brand-logo"><img class="nav-logo" src="/images/logo%20copy.png"/></a>
+      <a href="/" class="brand-logo"><img src="/images/logo%20copy.png"/></a>
     </div>
     <ul id="nav-mobile" class="right">
 
@@ -34,24 +34,22 @@
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
         <div class="background">
+          <img src=""/>
         </div>
-        <div class="userView-email">
+        <div class="user-email">
          <%= current_user %>
         </div>
       </div></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-      <li class="theme-button logout-btn">
-        <button class="nav-menu_btn" id='logout' >Logout</button>
-        <!-- <form action="/users/logout" method="get">
-
-        </form> -->
-      </li>
-
       <li>
-        <div class="user-current-list">
+        <div class="user-list_heading hide"><i class="material-icons">link</i> Items You Saved</div>
+        <div class="user-list_content">
         </div>
       </li>
-
+      <li class="theme-button logout-btn">
+        <form action="/users/logout" method="get">
+          <button class="nav-menu_btn" id="logout">Logout <i class="material-icons">exit_to_app</i></button>
+        </form>
+      </li>
     </ul>
   </aside>
 </div>

@@ -1,10 +1,11 @@
 /* CARDS */
 $theme-background: rgba(200,54,54,0.68);
-.body{
-  -webkit-perspective:1000px;
-}
+// .body{
+//   -webkit-perspective:1000px;
+// }
 .row {
   margin-top: 50px;
+  -webkit-perspective:1000px;
 }
 
 .row .col {
