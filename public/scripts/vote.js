@@ -98,19 +98,14 @@ $(() => {
     }
   }
 
-  const renderNextPair = (productInfo) => {
+  const renderFirst = (productInfo) => {
     const pro1Title = productInfo.br1.pTitle1[0];
-    const pro2Title = productInfo.br2.pTitle2[0];
     const pro1Img   = productInfo.br1.image1[0];
-    const pro2Img   = productInfo.br2.image2[0];
     const pro1Asin  = productInfo.br1.asin[0];
-    const pro2Asin  = productInfo.br2.asin[0];
     const pro1Type  = productInfo.br1.ProductType1[0];
-    const pro2Type  = productInfo.br2.ProductType2[0];
     return `
-          <h1 id= 'message-container' >may the odds be with you</h1>
-      <div class="row">
-        <div class="card_products col s3 m4 l5" id="firstProd">
+
+
           <div class="card">
             <div class="card-image">
               <img id="prodImg1" src="${pro1Img}">
@@ -131,12 +126,16 @@ $(() => {
             <div class="card-action">
               <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
             </div>
-          </div>
          <button type="submit" class ='voteBtn' id="votePro1">Vote!</button>
-        </div>
+         `
+       };
 
-
-        <div class="card_products col s3 m4 l5" id='secondProd'>
+       const renderSecond = (productInfo) => {
+          const pro2Title = productInfo.br2.pTitle2[0];
+          const pro2Img   = productInfo.br2.image2[0];
+          const pro2Asin  = productInfo.br2.asin[0];
+          const pro2Type  = productInfo.br2.ProductType2[0];
+        return `
           <div class="card">
             <div class="card-image">
               <img id "prodImg2" src="${pro2Img}">
@@ -161,7 +160,6 @@ $(() => {
           <button type="submit" class ='voteBtn' id="votePro2">Vote!</button>
         </div>
 
-      </div>
       `
   }
 
@@ -270,7 +268,7 @@ $(() => {
 
   $(document).on('click', '#next', function(ev) {
     console.log('clicked');
-    ev.preventDefault();
+    // ev.preventDefault();
           $.ajax({
         method: "POST",
         url: "/search/product/nextpair",
@@ -282,8 +280,10 @@ $(() => {
         }
       }).then(function(productInfo) {
         console.log(productInfo.br2.pTitle2[0]);
-          const newPair = renderNextPair(productInfo);
-          $("body").html(newPair);
+          const newFirst = renderFirst(productInfo);
+          const newSecond = renderSecond(productInfo);
+          $(".first").html(newFirst);
+          $(".second").html(newSecond);
           });
   })
 
