@@ -192,9 +192,7 @@ $(() => {
 
   $('#logout').click( (e) => {
     // Upon user logout, clear points tracker and favourites list
-    // localStorage.clear();
-    delete localStorage['voterPoints'];
-    delete localStorage['addFav'];
+    localStorage.clear();
     window.location = '/users/logout';
     return false;
   });
