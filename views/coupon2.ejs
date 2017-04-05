@@ -12,16 +12,24 @@
 
       <h1 id= 'message-container' >Congratulations! you won the war</h1>
 
-      <div class="row">
-        <div class="card_products col s3 m4 l5" id="firstProd">
-          <div class="card">
-            <div class="card-image">
-
+      <div class="row" >
+        <div class="card_products col s3 m4 l5" >
+          <div class="card" id="couponCard">
+            <div class="card-image" id="discountCard">
+              <img id="prodImg1" src="/images/amazon.png">
             </div>
-            <div class="card-content">
-              <h6 id='pro1'><%= random %></h6>
+            <div class="card-image" id="discountCard">
+              <img id="discountIMG" src="/images/qr.png">
+              <h5>coupon code</h5>
+              <h5 id='randomCode'> <%= random %></h5>
+            </div>
 
-          <li class="theme-button logout-btn">
+            <div class="card-image" id="discountCard">
+              <img id="discountIMG" src="/images/20_percent_off.png">
+              <h5 id='anyPr'>any product</h5>
+            </div>
+
+          <li style='list-style:none;' class="theme-button logout-btn" >
             <form action="/users/logout" method="get">
               <button class="nav-menu_btn" id='logout' >Logout <i class="material-icons">&#xE879;</i></button>
             </form>

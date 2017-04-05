@@ -199,7 +199,19 @@ $(() => {
         if (!clickCounter) {
           localStorage.setItem('clickCount', 1);
         } else if (clickCounter >= 9) {
-          alert("Thank you for playing! You've reached your daily vote limits!");
+          swal({
+          title: "Thank you for playing!" ,
+          text: "You have reached your vote limit for today!",
+          type: "warning",
+          showCancelButton: false,
+          closeOnConfirm: false,
+          confirmButtonText: "see you tomorrow!",
+          confirmButtonColor: "#ec6c62"
+        }, function() {
+          window.localStorage.clear();
+          window.location.href = '/users/logout';
+
+        });
         } else {
           localStorage.setItem('clickCount', (parseInt(clickCounter) + 1));
         }
