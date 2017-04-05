@@ -138,6 +138,14 @@ $(() => {
         data: data
       })
       .done(function(voteResults) {
+                var clickCounter = localStorage['clickCount'];
+        if (!clickCounter) {
+          localStorage.setItem('clickCount', 1);
+        } else if (clickCounter >= 9) {
+          alert("Thank you for playing! You've reached your daily vote limits!");
+        } else {
+          localStorage.setItem('clickCount', (parseInt(clickCounter) + 1));
+        }
         console.log('second ajax response');
         console.log(voteResults);
         const winnerResult = renderWinnerVoteCount(voteResults);
@@ -183,6 +191,14 @@ $(() => {
         data: data
       })
       .done(function(voteResults) {
+                var clickCounter = localStorage['clickCount'];
+        if (!clickCounter) {
+          localStorage.setItem('clickCount', 1);
+        } else if (clickCounter >= 9) {
+          alert("Thank you for playing! You've reached your daily vote limits!");
+        } else {
+          localStorage.setItem('clickCount', (parseInt(clickCounter) + 1));
+        }
         console.log('second ajax response');
         console.log(voteResults);
         const winnerResult = renderWinnerVoteCount(voteResults);
