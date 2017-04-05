@@ -176,9 +176,11 @@ $(() => {
       });
     })
   })
-  $('#logout').on('click' (e) => {
+  $('#logout').click( (e) => {
+    // Upon user logout, clear points tracker and favourites list
     localStorage.clear();
     window.location = '/users/logout';
     return false;
   });
 })
+1 Comment Collapse
