@@ -134,7 +134,6 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 .meter > span {
   display: block;
   height: 100%;
-  max-width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -150,7 +149,6 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 .meter > span:after {
   content: "";
-  max-width: 100%;
   position: absolute;
   top: 0;
   left: 0;

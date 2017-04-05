@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Coupons</title>
+      <script src = '/vendor/sweetalert.min.js'></script>
+      <link rel='stylesheet' href = '/vendor/sweetalert.css'/>
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  </head>
+
+    <body class='prod-background'>
+
+
+      <h1 id= 'message-container' >Congratulations! you won the war</h1>
+
+      <div class="row">
+        <div class="card_products col s3 m4 l5" id="firstProd">
+          <div class="card">
+            <div class="card-image">
+
+            </div>
+            <div class="card-content">
+              <h6 id='pro1'><%= random %></h6>
+
+          <li class="theme-button logout-btn">
+            <form action="/users/logout" method="get">
+              <button class="nav-menu_btn" id='logout' >Logout <i class="material-icons">&#xE879;</i></button>
+            </form>
+
+
+      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+      <script type="text/javascript" src="/scripts/app.js"></script>
+      <script type="text/javascript" src="/scripts/vote.js"></script>
+      <script type="text/javascript" src="/scripts/addFavorites.js"></script>
+      <script type="text/javascript" src="/scripts/addScores.js"></script>
+    </body>
+
+</html>

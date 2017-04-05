@@ -67,15 +67,45 @@ $(() => {
     storedPoints = localStorage['voterPoints'];
     if (!storedPoints) {
       localStorage.setItem('voterPoints', 10);
-    } else if (storedPoints >= 100) {
+    } else if(storedPoints == 70){
+      swal({
+      title: "You have reached 70 points!",
+      text: "Do you want to keep playing or redeem your coupon now?",
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      cancelButtonText:"Keep playing",
+      confirmButtonText: "Yes, redeem now!",
+      confirmButtonColor: "#ec6c62"
+    }, function() {
+
+      window.location.href = '/users/coupons';
+    });;
+    var currentPoints = parseInt(storedPoints);
+    localStorage.setItem('voterPoints', (currentPoints + 10));
+
+      } else if (storedPoints >= 100) {
+        swal({
+        title: "Wow you won the war!",
+        text: "You deserved the highest discount!",
+        type: "warning",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        confirmButtonText: "redeem now!",
+        confirmButtonColor: "#ec6c62"
+      }, function() {
+
+        window.location.href = '/users/secondcoupon';
+      });;
+
       maxPoints = 100;
       localStorage.setItem('voterPoints', maxPoints);
-    } else {
-      var currentPoints = parseInt(storedPoints);
-      localStorage.setItem('voterPoints', (currentPoints + 10));
-    }
-    return $pointsTracker.animate({width:`${localStorage.getItem('voterPoints')}%`}, 3000, 'swing');
-  }
+        } else {
+            var currentPoints = parseInt(storedPoints);
+            localStorage.setItem('voterPoints', (currentPoints + 10));
+          }
+          return $pointsTracker.animate({width:`${localStorage.getItem('voterPoints')}%`}, 3000, 'swing');
+        }
   // Random string generator
   const randStr = () => {
   const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -183,4 +213,3 @@ $(() => {
     return false;
   });
 })
-1 Comment Collapse

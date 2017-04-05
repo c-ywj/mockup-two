@@ -6,6 +6,16 @@ const bcrypt   = require('bcrypt');
 
 module.exports = (knex) => {
 
+  const randStr = () => {
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let randStr = "";
+  for(let i = 0; i < 8; i++){
+    let randNum = Math.floor(Math.random()* chars.length)
+    randStr += chars[randNum];
+  }return randStr;
+  }
+
+
   router.post('/register', (req, res) => {
     let iEmail      = req.body.email;
     let iPassword   = req.body.password;
@@ -68,6 +78,13 @@ module.exports = (knex) => {
         console.log('Either your email was invalid, or something else went wrong', e);
         res.send("Failed")
       })
+  })
+  router.get('/coupons', (req,res) =>{
+    res.render( 'coupon', {random : randStr()})
+  })
+
+  router.get('/secondcoupon', (req,res) =>{
+    res.render( 'coupon2', {random : randStr()})
   })
 
   // logout handler

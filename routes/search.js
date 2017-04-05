@@ -1,9 +1,8 @@
 "use strict";
 const amazon = require('amazon-product-api');
 const express = require('express');
-// const rand1 = require('random-seed').create(seed),
-// const rand = require('random-seed').create(seed);
 
+// creates amazon client
 const searchRouter  = express.Router();
 const client = amazon.createClient({
   awsId: process.env.AWS_ID,
@@ -11,6 +10,7 @@ const client = amazon.createClient({
   awsTag:process.env.AWS_TAG
 });
 
+// function to initiate item search api through amazon client
 const amzSearch = function(brand, category, keywords) {
   const results = client.itemSearch({
     brand: brand,
@@ -27,7 +27,7 @@ const amzSearch = function(brand, category, keywords) {
 }
 
 module.exports = (knex) => {
-
+// get handler for /search path
   searchRouter.get('/', (req, res) => {
     if (!req.session.user) {
       res.redirect('/');
@@ -36,7 +36,7 @@ module.exports = (knex) => {
       res.render("search", templateVars);
     }
   });
-
+// handler for search button
   searchRouter.get("/product", (req, res) => {
     if (!req.session.user) {
       res.redirect('/');
@@ -51,6 +51,7 @@ module.exports = (knex) => {
         amzSearch(req.query.brand2, req.query.category, req.query.keywords)
       ])
       .then(function(results) {
+        // results is multidimensional array, contains two arrays, each with 10 items
         const pro1 = {
           asin: results[0][rand1].ASIN,
           title: results[0][rand1].ItemAttributes[0].Title,
@@ -63,6 +64,7 @@ module.exports = (knex) => {
         }
         console.log('pro1 asin: ' + pro1.asin);
         console.log('pro2 asin: ' + pro2.asin);
+        //queries DB to check if rendered pair exists
         return knex
           .select('*')
           .from('comparisons')
@@ -75,6 +77,7 @@ module.exports = (knex) => {
             product_two: pro1.asin[0]
           })
           .then(function(result) {
+            // result will be 1 if rendered pair exists in DB
             console.log(result);
             if(result.length === 0 &&
               pro1.asin[0] !== pro2.asin[0]) {
@@ -167,6 +170,7 @@ module.exports = (knex) => {
     }
   });
 
+  //post handler for vote button, inserts votes to corresponding products
   searchRouter.post('/product', (req, res) => {
     console.log('voted pro asin is: ' + req.body.votedAsin, 'unvoted pro asin is: ' + req.body.unvotedAsin);
     const votedPro   = req.body.votedPro;
@@ -174,6 +178,8 @@ module.exports = (knex) => {
     const votedAsin = req.body.votedAsin;
     const unvotedAsin = req.body.unvotedAsin;
     const user = req.session.user;
+    //pulls out the row within 'comparisons' table containing
+    //the same items in the rendered pair.
     knex.select('*')
         .from('comparisons')
         .where({
@@ -216,6 +222,7 @@ module.exports = (knex) => {
             console.log(err);
           })
         .then(function(result) {
+          //records which users have voted on which pairs
           console.log('this should be the comparison row: '+ result[0].product_one);
           return knex
             .select('*')
