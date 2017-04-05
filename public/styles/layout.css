@@ -107,6 +107,7 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 .side-nav .logout-btn {
   margin-top: 20px;
+  text-transform: uppercase;
 }
 
 .side-nav .logout-btn:hover {
@@ -214,7 +215,11 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   max-height: 150px;
 }
 
-.card .card-content .add-fav .material-icons {
+.card .card-content .add-fav-wrapper .add-fav {
+  cursor: pointer;
+}
+
+.card .card-content .add-fav-wrapper .material-icons {
   color: red;
 }
 

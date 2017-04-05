@@ -42,8 +42,15 @@ $theme-background: rgba(200,54,54,0.68);
     height: 150px;
     max-height: 150px;
 
-    .add-fav .material-icons {
-      color: red;
+    .add-fav-wrapper {
+
+      .add-fav {
+        cursor: pointer;
+      }
+
+      .material-icons {
+        color: red;
+      }
     }
   }
 }

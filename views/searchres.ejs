@@ -23,9 +23,12 @@
                   (<span id="pro1asin"><%= br1.asin %></span>)
               </p>              
 
-              <div class="add-fav" data-item="<%= br1.brand1 %> (<%= br1.asin %>)" data-item-link="<%= br1.DetailPageURL1 %>">
-                <i class="material-icons unsaved-fave">favorite_border</i> Save to potential buys list
+              <div class="add-fav-wrapper" data-item="<%= br1.brand1 %> (<%= br1.asin %>)" data-item-link="<%= br1.DetailPageURL1 %>">
+                <div class="add-fav">
+                  <i class="material-icons unsaved-fave">favorite_border</i> Save to current interests
+                </div>
               </div>
+
             </div>
             <div class="card-action">
               <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
@@ -48,8 +51,10 @@
                  (<span id="pro2asin"><%= br2.asin %></span>)
               </p>
 
-              <div class="add-fav" data-item="<%= br2.brand2 %> (<%= br2.asin %>)" data-item-link="<%= br2.DetailPageURL2 %>">
-                <i class="material-icons unsaved-fave">favorite_border</i> Save to potential buys list
+              <div class="add-fav-wrapper" data-item="<%= br2.brand2 %> (<%= br2.asin %>)" data-item-link="<%= br2.DetailPageURL2 %>">
+                <div class="add-fav">
+                  <i class="material-icons unsaved-fave">favorite_border</i> Save to current interests
+                </div>
               </div>
 
             </div>

@@ -187,7 +187,7 @@ $(() => {
       });
     })
   })
-  //
+
   $('#logout').click( (e) => {
       localStorage.clear();
       window.location = '/users/logout';
