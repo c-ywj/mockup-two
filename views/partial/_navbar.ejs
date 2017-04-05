@@ -1,7 +1,7 @@
 <nav>
   <div class="nav-wrapper">
     <div class="brand-logo">
-      <a href="/" class="brand-logo"><img class="nav-logo" src="/images/logo%20copy.png"/></a>
+      <a href="/" class="brand-logo"><img src="/images/logo%20copy.png"/></a>
     </div>
     <ul id="nav-mobile" class="right">
 
@@ -26,6 +26,9 @@
 
     <h6 id='tkr'><%= current_user %> points</h6>
     <div id='pointsCnt'>
+      <div class="meter">
+        <span class="user-points"></span>
+      </div>
 
     </div>
   </div>
@@ -35,22 +38,26 @@
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
         <div class="background">
+          <img src="https://www.tourismpei.com/sites/all/themes/askislander/assets/img/profile-img.png"/>
         </div>
-        <div class="userView-email">
-         <%= current_user %> favorites
+        <div class="user-email">
+         <%= current_user %>
         </div>
       </div></li>
-      <li><a href="#!"></i>First Link With Icon</a></li>
-      <li><a href="#!">Second Link</a></li>
-      <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-
-      <li class="theme-button">
-        <button class="nav-menu_btn" id='logout' >Logout</button>
-        <!-- <form action="/users/logout" method="get">
-
-        </form> -->
+      <li>
+        <div class="user-list_heading hide">
+          <i class="material-icons">&#xE157;</i> Items You Saved
+        </div>
+      </li>
+      <li class="user-list">
+        <span class="scroll-list hide"><em>(Scroll for more)</em></span>
+        <div class="user-list_content">
+        </div>
+      </li>
+      <li class="theme-button logout-btn">
+        <form action="/users/logout" method="get">
+          <button class="nav-menu_btn" id='logout' >Logout <i class="material-icons">&#xE879;</i></button>
+        </form>
       </li>
     </ul>
   </aside>

@@ -23,12 +23,13 @@
                <p><%= br1.ProductType1 %>
                   (<span id="pro1asin"><%= br1.asin %></span>)
               </p>
-                <div class='fav1'>
-                   <p><img id='heart1' src='/images/heart.png'/>click to add on your favorite list </p>
+
+              <div class="add-fav-wrapper" id="card1" data-item="<%= br1.brand1 %> (<%= br1.asin %>)" data-item-link="<%= br1.DetailPageURL1 %>">
+                <div class="add-fav white">
+                  <i class="material-icons unsaved-fave">favorite_border</i> Save to interests
                 </div>
-                <div class='fav2'>
-                   <p><img id='heart2' src='/images/heartFilled.png'/> added to favorite list</p>
-                </div>
+              </div>
+
             </div>
             <div class="card-action">
               <a href="<%- br1.DetailPageURL1 %>">Click here to buy the item!</a>
@@ -50,24 +51,22 @@
                  <%= br2.ProductType2 %>
                  (<span id="pro2asin"><%= br2.asin %></span>)
               </p>
-              <div class='fav3'>
-                 <p><img id='heart3' src='/images/heart.png'/>click to add on your favorite list </p>
+
+              <div class="add-fav-wrapper" id="card2" data-item="<%= br2.brand2 %> (<%= br2.asin %>)" data-item-link="<%= br2.DetailPageURL2 %>">
+                <div class="add-fav white">
+                  <i class="material-icons unsaved-fave">favorite_border</i> Save to interests
+                </div>
               </div>
-              <div class='fav4'>
-                 <p><img id='heart4' src='/images/heartFilled.png'/> added to favorite list</p>
-              </div>
+
             </div>
             <div class="card-action">
               <a href="<%- br2.DetailPageURL2 %>">Click here to buy the item!</a>
             </div>
           </div>
-          <button type="submit" class ='voteBtn' id="votePro2">Vote!</button>
+          <button class ='voteBtn' id="votePro2">Vote!</button>
         </div>
 
       </div>
-
-
-
 
 
       <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>

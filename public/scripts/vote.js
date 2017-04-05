@@ -50,18 +50,33 @@ $(() => {
   const userWinner = (e) => {
     return `
       <div class="vote-results">
-        <span > Congratulations! You've earned 10 points!</span>
+        <span > Congratulation! You've earned 10 points!!!</span>
       </div>
     `;
   }
   const userLooser = (e) => {
     return `
       <div class="vote-results">
-        <span > You lost the battle but not the war! Keep fighting!</span>
+        <span > You lost the battle but not the war!Keep fighting!</span>
       </div>
     `;
   }
-
+  // POINTS TRACKER LOGIC
+  $pointsTracker = $('.user-points');
+  const calcPoints = () => {
+    storedPoints = localStorage['voterPoints'];
+    if (!storedPoints) {
+      localStorage.setItem('voterPoints', 10);
+    } else if (storedPoints >= 100) {
+      maxPoints = 100;
+      localStorage.setItem('voterPoints', maxPoints);
+    } else {
+      var currentPoints = parseInt(storedPoints);
+      localStorage.setItem('voterPoints', (currentPoints + 10));
+    }
+    return $pointsTracker.animate({width:`${localStorage.getItem('voterPoints')}%`}, 3000, 'swing');
+  }
+  // Random string generator
   const randStr = () => {
   const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let randStr = "";
@@ -70,56 +85,7 @@ $(() => {
     randStr += chars[randNum];
     }
   }
-
-  // POINTS TRACKER LOGIC
-  const calcPoints = () => {
-    if (!localStorage['voterPoints']) {
-      localStorage.setItem('voterPoints', 10);
-      return `<div class="meter">
-        <span style="width:1%"></span>
-      </div>`
-    } else {
-      var addPoints = parseInt(localStorage.getItem('voterPoints'));
-      localStorage.setItem('voterPoints', (addPoints + 10))
-      return `<div class="meter">
-        <span style="width:${addPoints}%"></span>
-      </div>`
-    }
-
-    // console.log(localStorage.getItem('voterPoints'));
-    // console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
-    // trackPoints()
-  }
-
-  const trackPoints = () => {
-
-    const userPoint = localStorage.getItem('voterPoints');
-    if (userPoint == 70 ){
-      return `<div class="meter">
-        <span style="width:${userPoint}%"></span>
-      </div>
-      <div class='couponBtn'>
-        <button id='getCoupon' >Click here to redeem your coupons now or keep playing to get your chance for higher discounts! </button>
-      </div>`
-    } else if (userPoint == 100 ){
-        return `<div class="meter">
-          <span style="width:${userPoint}%"></span>
-        </div>
-        <div class='couponBtn'>
-          <button id='getCoupon2'>Congratulations! you won the war, click here to redeem your reward!</button>
-        <div>`
-      } else {
-          return `<div class="meter">
-            <span style="width:${userPoint || 1}%"></span>
-          </div>`
-        }
-  }
-
-
-  $('#pointsCnt').html(trackPoints());
-
-
-
+  // VOTE RESULTS
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
     const data = {
@@ -147,18 +113,15 @@ $(() => {
         const winnerResult = renderWinnerVoteCount(voteResults);
         const loserResult = renderLoserVoteCount(voteResults);
         const nextButton = renderNextButton();
-        // $('#winner-container').html(winnerResult);
-        // $('#loser-container').html(loserResult);
-
           if(voteResults.winner.score >= voteResults.loser.score){
+            // If voter landed on vote majority, alculate new points
+            calcPoints();
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userWinner);
             $('#message-container').css('font-size', '38px');
-            $('#pointsCnt').html(calcPoints());
             $('#nextBtn').html(nextButton);
           } else {
-            $('#pointsCnt').html(trackPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userLooser);
@@ -195,18 +158,15 @@ $(() => {
         const winnerResult = renderWinnerVoteCount(voteResults);
         const loserResult = renderLoserVoteCount(voteResults);
         const nextButton = renderNextButton();
-        // $('#winner-container').html(winnerResult);
-        // $('#loser-container').html(loserResult);
-
           if(voteResults.winner.score >= voteResults.loser.score){
-            $('#pointsCnt').html(calcPoints());
+            // If voter landed on vote majority, alculate new points
+            calcPoints();
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userWinner);
             $('#message-container').css('font-size', '38px');
             $('#nextBtn').html(nextButton);
           } else {
-            $('#pointsCnt').html(trackPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userLooser);
@@ -216,31 +176,9 @@ $(() => {
       });
     })
   })
-  //
-  $('#logout').on('click', (e) => {
-      localStorage.clear();
-      window.location = '/users/logout';
-      console.log('hey');
-      return false;
+  $('#logout').on('click' (e) => {
+    localStorage.clear();
+    window.location = '/users/logout';
+    return false;
   });
-
-  // $('#logout').click(function()
-  // {
-  //   $.ajax({
-  //     method:"POST",
-  //     url: "/users/register",
-  //     data:{
-  //       email: email,
-  //       password: password
-  //     }
-  //   }).done((e) =>{
-  //     localStorage.clear();
-  //     location.reload();
-  //     return false;
-  //
-  //   })
-  //
-  //     });
-  // });
-
 })
