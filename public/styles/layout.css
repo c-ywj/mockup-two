@@ -87,7 +87,17 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   background: #101a24;
 }
 
-.side-nav .user-list_content a, .side-nav .user-list_content a:before, .side-nav .user-list_content a:after, .side-nav .user-list_content a:visited, .side-nav .user-list_content a:hover, .side-nav .user-list_content a:active {
+.side-nav .user-list {
+  max-height: 40%;
+  overflow-y: scroll;
+}
+
+.side-nav .user-list span {
+  line-height: 25px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.side-nav .user-list .user-list_content a, .side-nav .user-list .user-list_content a:before, .side-nav .user-list .user-list_content a:after, .side-nav .user-list .user-list_content a:visited, .side-nav .user-list .user-list_content a:hover, .side-nav .user-list .user-list_content a:active {
   letter-spacing: 1px;
   text-transform: uppercase;
   min-height: 48px;
@@ -96,7 +106,7 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 }
 
 .side-nav .logout-btn {
-  margin-top: 48px;
+  margin-top: 20px;
 }
 
 .side-nav .logout-btn:hover {

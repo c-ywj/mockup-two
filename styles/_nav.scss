@@ -86,29 +86,36 @@ nav {
     }
   }
 
-
   .user-list_heading {
     background: $secondary;
-    // color: $primary;
   }
 
-  .user-list_content {
-    a, a:before, a:after, a:visited, a:hover, a:active {
-      // font-family: Verdana, sans-serif;
-      // color: #111;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      min-height: 48px;
-      height: auto;
-      max-height: auto;
+  .user-list {
+    max-height: 40%;
+    overflow-y: scroll;
+
+    span {
+      line-height: 25px;
+      color: rgba(0,0,0,0.4);
     }
-  }
+
+    .user-list_content {
+      a, a:before, a:after, a:visited, a:hover, a:active {
+        // font-family: Verdana, sans-serif;
+        // color: #111;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        min-height: 48px;
+        height: auto;
+        max-height: auto;
+      }
+    }
+  }  
 
   .logout-btn {
-    margin-top: 48px;
-    
+    margin-top: 20px;
   }
-  
+
   .logout-btn:hover {
     background: $hover-background;
     transition: ease-in-out 0.5s;
