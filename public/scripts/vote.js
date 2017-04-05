@@ -50,16 +50,25 @@ $(() => {
   const userWinner = (e) => {
     return `
       <div class="vote-results">
-        <span > Congratulation! You've earned 10 points!!!</span>
+        <span > Congratulations! You've earned 10 points!</span>
       </div>
     `;
   }
   const userLooser = (e) => {
     return `
       <div class="vote-results">
-        <span > You lost the battle but not the war!Keep fighting!</span>
+        <span > You lost the battle but not the war! Keep fighting!</span>
       </div>
     `;
+  }
+
+  const randStr = () => {
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let randStr = "";
+  for(let i = 0; i < 8; i++){
+    let randNum = Math.floor(Math.random()* chars.length)
+    randStr += chars[randNum];
+    }
   }
 
   // POINTS TRACKER LOGIC
@@ -70,34 +79,46 @@ $(() => {
         <span style="width:1%"></span>
       </div>`
     } else {
-      var currentPoints = parseInt(localStorage.getItem('voterPoints'));
-      localStorage.setItem('voterPoints', (currentPoints + 10))
+      var addPoints = parseInt(localStorage.getItem('voterPoints'));
+      localStorage.setItem('voterPoints', (addPoints + 10))
       return `<div class="meter">
-        <span style="width:${currentPoints}%"></span>
+        <span style="width:${addPoints}%"></span>
       </div>`
     }
-    console.log(localStorage.getItem('voterPoints'));
-    console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
-    trackPoints()
+
+    // console.log(localStorage.getItem('voterPoints'));
+    // console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
+    // trackPoints()
   }
 
   const trackPoints = () => {
+
     const userPoint = localStorage.getItem('voterPoints');
-    return `<div class="meter">
-      <span style="width:${userPoint || 1}%"></span>
-    </div>`
+    if (userPoint == 70 ){
+      return `<div class="meter">
+        <span style="width:${userPoint}%"></span>
+      </div>
+      <div class='couponBtn'>
+        <button id='getCoupon' >Click here to redeem your coupons now or keep playing to get your chance for higher discounts! </button>
+      </div>`
+    } else if (userPoint == 100 ){
+        return `<div class="meter">
+          <span style="width:${userPoint}%"></span>
+        </div>
+        <div class='couponBtn'>
+          <button id='getCoupon2'>Congratulations! you won the war, click here to redeem your reward!</button>
+        <div>`
+      } else {
+          return `<div class="meter">
+            <span style="width:${userPoint || 1}%"></span>
+          </div>`
+        }
   }
+
 
   $('#pointsCnt').html(trackPoints());
 
-  const randStr = () => {
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let randStr = "";
-  for(let i = 0; i < 8; i++){
-    let randNum = Math.floor(Math.random()* chars.length)
-    randStr += chars[randNum];
-    }
-  }
+
 
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
