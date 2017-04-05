@@ -130,7 +130,7 @@ $(() => {
         data: data
       })
       .done(function(voteResults) {
-                var clickCounter = localStorage['clickCount'];
+        var clickCounter = localStorage['clickCount'];
         if (!clickCounter) {
           localStorage.setItem('clickCount', 1);
         } else if (clickCounter >= 9) {
@@ -195,7 +195,7 @@ $(() => {
         data: data
       })
       .done(function(voteResults) {
-                var clickCounter = localStorage['clickCount'];
+        var clickCounter = localStorage['clickCount'];
         if (!clickCounter) {
           localStorage.setItem('clickCount', 1);
         } else if (clickCounter >= 9) {
