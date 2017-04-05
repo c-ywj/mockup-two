@@ -196,6 +196,7 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 .user-points {
   width: 1%;
+  transition: ease-in-out 1.3s;
 }
 
 /* CARDS */
