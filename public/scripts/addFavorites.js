@@ -1,36 +1,40 @@
 'use strict';
 
 $(() => {
-  var $addFav = $('.add-fav');
-  var addToFave = localStorage['addFav'];
-  // this stores all saved favourites into an array
-  var currentFavList = localStorage['sessionFav'];
-  var sideBarList = $('.user-current-list');
+  // var $addFav = $('.add-fav');
+  // var addToFave = localStorage['addFav'];
+  // // this stores all saved favourites into an array
+  // var currentFavList = localStorage['sessionFav'];
+  // var $sideBarList = $('.user-current-list');
 
-  if(addToFave) {
-    var separateItems = addToFave.split('; ');
+  // if(addToFave) {
+  //   var separateItems = addToFave.split('; ');
 
-    separateItems.forEach((item) => {
-      console.log('ITEM: ', item);
-    });
-  }
+  //   separateItems.forEach((item) => {
+  //     var splitURL = item.split(' - URL: ');
 
-  $addFav.on('click', function(e) {
-    var $testItem = $(this).data('item');
+  //     $sideBarList.append(`<li data-saved-item="${splitURL[0]}"><a href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
+      
+  //     console.log('ITEM: ', item);
+  //   });
+  // }
 
-    if (!addToFave) {
-      localStorage.setItem('addFav', $testItem);
-    } else {
-      localStorage.setItem('addFav', (addToFave + '; ' + $testItem));
-    }
+  // $addFav.on('click', function(e) {
+  //   var $testItem = $(this).data('item');
+  //   var $itemLink = $(this).data('item-link');
+
+  //   if (!addToFave) {
+  //     localStorage.setItem('addFav', ($testItem + ' - URL: ' + $itemLink));
+  //   } else {
+  //     localStorage.setItem('addFav', (addToFave + '; ' + $testItem + ' - URL: ' + $itemLink));
+  //   }
 
 
+  //   $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
 
-    $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
-
-    console.log('DATA-ATTR', $testItem);
-    console.log('addFav: ', addToFave, '\nsessionFave: ', currentFavList);
-  });
+  //   console.log('DATA-ATTR', $testItem);
+  //   console.log('addFav: ', addToFave, '\nsessionFave: ', currentFavList);
+  // });
 
   // $('#heart1').on('click', function(ev) {
   //   $('.fav1').hide();

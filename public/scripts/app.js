@@ -30,6 +30,37 @@ $(() => {
   // Initialize collapse button
   $(".button-collapse").sideNav();
 
-  
+  // Favourites List
+  var $addFav = $('.add-fav');
+  var addToFave = localStorage['addFav'];
+  var $sideBarList = $('.user-current-list');
+
+  if(addToFave) {
+    var separateItems = addToFave.split('; ');
+
+    separateItems.forEach((item) => {
+      var splitURL = item.split(' - URL: ');
+
+      $sideBarList.append(`<li data-saved-item="${splitURL[0]}"><a href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
+      
+      console.log('ITEM: ', item);
+    });
+  }
+
+  $addFav.on('click', function(e) {
+    var $testItem = $(this).data('item');
+    var $itemLink = $(this).data('item-link');
+
+    if (!addToFave) {
+      localStorage.setItem('addFav', ($testItem + ' - URL: ' + $itemLink));
+    } else {
+      localStorage.setItem('addFav', (addToFave + '; ' + $testItem + ' - URL: ' + $itemLink));
+    }
+
+    $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
+
+    console.log('DATA-ATTR', $testItem);
+    console.log('addFav: ', addToFave, '\nsessionFave: ', currentFavList);
+  });
 
 });
