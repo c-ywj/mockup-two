@@ -32,7 +32,7 @@ $(() => {
 
   // Favourites List
   var $addFav = $('.add-fav');
-  var addToFave = localStorage['addFav'];
+  // var addToFave = localStorage['addFav'];
   var $sideBarList = $('.user-list_content');
   var $scrollList = $('.scroll-list');
 
@@ -41,11 +41,12 @@ $(() => {
         </li>`;
 
   var loadFavList = () => {
+    var addToFave = localStorage['addFav'];
     $sideBarList.children().remove();
 
     if (addToFave) {
       var favList = addToFave.split(';');
-      if (favList.length >= 6) {
+      if (favList.length > 6) {
         $scrollList.removeClass('hide');
       }
       console.log(favList);
@@ -71,7 +72,7 @@ $(() => {
   }
 
   // Load list upon page refresh [this is important!]
-  if (addToFave) {
+  if (localStorage['addFav']) {
     $('.user-list_heading').removeClass('hide');
     loadFavList();
   } else {
@@ -79,21 +80,24 @@ $(() => {
   }
 
   $addFav.on('click', function(e) {
+    var addToFave = localStorage['addFav'];
     var $testItem = $(this).parent().attr('data-item');
     var $itemLink = $(this).parent().attr('data-item-link');
     var itemObj = `{Item: '${$testItem}', URL: '${$itemLink}'}`;
 
     if (!addToFave) {
       localStorage.setItem('addFav', itemObj);
-      $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
+      $(this).parent().html('<i class="material-icons saved-fave">favorite</i> Added to list');
+      
+      $('.user-list_heading').removeClass('hide');
+      loadFavList();
     } else {
       localStorage['addFav'] += `;${itemObj}`;
-      $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
+      $(this).parent().html('<i class="material-icons saved-fave">favorite</i> Added to list');
 
       console.log('UPDATED LOCALSTORAGE["ADDFAVE"]: ', localStorage['addFav']);
+      loadFavList();
     }
-
-    loadFavList();
   });
 
   // POINTS INITIALIZER
