@@ -34,17 +34,24 @@ $(() => {
   var $addFav = $('.add-fav');
   var addToFave = localStorage['addFav'];
   var $sideBarList = $('.user-current-list');
+  var $userFave = $('.user-fave');
 
-  if(addToFave) {
-    var separateItems = addToFave.split('; ');
+  var loadFavList = () => {
+    if (addToFave.indexOf('; ') > -1) {
+      var separateItems = addToFave.split('; ');
 
-    separateItems.forEach((item) => {
-      var splitURL = item.split(' - URL: ');
+      separateItems.forEach((item) => {
+        var splitURL = item.split(' - URL: ');
+        
+        $sideBarList.append(`<li class="user-fave" data-saved-item="${splitURL[0]}"><a class="waves-effect" href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
+      });
+    } else if (!addToFave) {
+      $userFave.remove();
+    } else {
+      var splitURL = addToFave.split(' - URL: ');
 
-      $sideBarList.append(`<li data-saved-item="${splitURL[0]}"><a href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
-      
-      console.log('ITEM: ', item);
-    });
+      $sideBarList.append(`<li class="user-fave" data-saved-item="${splitURL[0]}"><a class="btn" href="${splitURL[1]}" target="new">${splitURL[0]}</a></li>`);
+    }
   }
 
   $addFav.on('click', function(e) {
@@ -53,14 +60,20 @@ $(() => {
 
     if (!addToFave) {
       localStorage.setItem('addFav', ($testItem + ' - URL: ' + $itemLink));
+      $userFave.remove();
+      loadFavList();
     } else {
       localStorage.setItem('addFav', (addToFave + '; ' + $testItem + ' - URL: ' + $itemLink));
+      $userFave.remove();
+      loadFavList();
     }
 
     $(this).html('<i class="material-icons saved-fave">favorite</i> Added to list');
-
-    console.log('DATA-ATTR', $testItem);
-    console.log('addFav: ', addToFave, '\nsessionFave: ', currentFavList);
   });
+
+  // Load faves list upon page refresh [important!]
+  if (addToFave) {
+    loadFavList();
+  }
 
 });

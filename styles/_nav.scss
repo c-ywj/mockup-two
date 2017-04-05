@@ -56,7 +56,17 @@ button.nav-menu_btn:hover {
 // Styles go here
 .side-nav{
   color:white;
-  background-color: rgba(200, 54, 54, 0.68);
+  background-color: rgba(200, 54, 54, 0.9);
+
+  .user-current-list {
+    vertical-align: middle;
+
+    a, a:before, a:after, a:visited, a:hover, a:active {
+      min-height: 48px;
+      height: auto;
+      max-height: auto;
+    }
+  }
 }
 
 

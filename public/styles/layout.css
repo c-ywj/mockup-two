@@ -59,7 +59,17 @@ button.nav-menu_btn:hover {
 /* SIDE NAVIGATION BAR */
 .side-nav {
   color: white;
-  background-color: rgba(200, 54, 54, 0.68);
+  background-color: rgba(200, 54, 54, 0.9);
+}
+
+.side-nav .user-current-list {
+  vertical-align: middle;
+}
+
+.side-nav .user-current-list a, .side-nav .user-current-list a:before, .side-nav .user-current-list a:after, .side-nav .user-current-list a:visited, .side-nav .user-current-list a:hover, .side-nav .user-current-list a:active {
+  min-height: 48px;
+  height: auto;
+  max-height: auto;
 }
 
 /* POINT TRACKER */
