@@ -138,7 +138,7 @@ $(() => {
           title: "Thank you for playing!" ,
           text: "You have reached your vote limit for today!",
           type: "warning",
-          showCancelButton: true,
+          showCancelButton: false,
           closeOnConfirm: false,
           confirmButtonText: "see you tomorrow!",
           confirmButtonColor: "#ec6c62"
