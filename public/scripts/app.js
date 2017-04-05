@@ -59,7 +59,7 @@ $(() => {
 
         if (itemData.Item === card1 || itemData.Item === card2) {
           console.log("THIS ITEM IS ALREADY SAVED: ", itemData.Item);
-          
+
           $(`div[data-item='${itemData.Item}']`).html('<i class="material-icons saved-fave">favorite</i> Added to list');
         } else {
           console.log("NO DUPLICATES");
@@ -88,7 +88,7 @@ $(() => {
     if (!addToFave) {
       localStorage.setItem('addFav', itemObj);
       $(this).parent().html('<i class="material-icons saved-fave">favorite</i> Added to list');
-      
+
       $('.user-list_heading').removeClass('hide');
       loadFavList();
     } else {
@@ -112,4 +112,14 @@ $(() => {
     $pointsTracker.css('width', `${localStorage.getItem('voterPoints')}%`);
   };
 
+  $('body').on('click', '#logout', (e) => {
+    // Upon user logout, clear points tracker and favourites list
+    console.log("log out clicked");
+    window.localStorage.clear();
+    setTimeout(() => {
+      console.log("redirecting to logout");
+      window.location = '/users/logout';
+    }, 1000);
+    // return false;
+  });
 });

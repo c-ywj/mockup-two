@@ -96,7 +96,7 @@ $(() => {
       }, function() {
 
         window.location.href = '/users/secondcoupon';
-      });;
+      });
 
       maxPoints = 100;
       localStorage.setItem('voterPoints', maxPoints);
@@ -106,15 +106,7 @@ $(() => {
           }
           return $pointsTracker.animate({width:`${localStorage.getItem('voterPoints')}%`}, 3000, 'swing');
         }
-  // Random string generator
-  const randStr = () => {
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let randStr = "";
-  for(let i = 0; i < 8; i++){
-    let randNum = Math.floor(Math.random()* chars.length)
-    randStr += chars[randNum];
-    }
-  }
+
   // VOTE RESULTS
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
@@ -142,7 +134,19 @@ $(() => {
         if (!clickCounter) {
           localStorage.setItem('clickCount', 1);
         } else if (clickCounter >= 9) {
-          alert("Thank you for playing! You've reached your daily vote limits!");
+          swal({
+          title: "Thank you for playing!" ,
+          text: "You have reached your vote limit for today!",
+          type: "warning",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          confirmButtonText: "see you tomorrow!",
+          confirmButtonColor: "#ec6c62"
+        }, function() {
+          window.localStorage.clear();
+          window.location.href = '/users/logout';
+
+        });
         } else {
           localStorage.setItem('clickCount', (parseInt(clickCounter) + 1));
         }
@@ -222,10 +226,4 @@ $(() => {
       });
     })
   })
-  $('#logout').click( (e) => {
-    // Upon user logout, clear points tracker and favourites list
-    localStorage.clear();
-    window.location = '/users/logout';
-    return false;
-  });
 })
