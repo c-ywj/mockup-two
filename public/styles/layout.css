@@ -172,6 +172,10 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   margin-right: 15px;
 }
 
+.user-points {
+  width: 1%;
+}
+
 /* CARDS */
 .row {
   margin-top: 50px;

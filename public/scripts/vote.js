@@ -7,6 +7,7 @@ $(() => {
   var image2 = $('#prodImg2').html();
   console.log(pro1Title);
   console.log(pro2Title);
+
   function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
@@ -63,33 +64,25 @@ $(() => {
   }
 
   // POINTS TRACKER LOGIC
+  $pointsTracker = $('.user-points');
+
   const calcPoints = () => {
-    if (!localStorage['voterPoints']) {
+    storedPoints = localStorage['voterPoints'];
+
+    if (!storedPoints) {
       localStorage.setItem('voterPoints', 10);
-      return `<div class="meter">
-        <span style="width:1%"></span>
-      </div>`
+    } else if (storedPoints >= 100) {
+      maxPoints = 100;
+      localStorage.setItem('voterPoints', maxPoints);
     } else {
-      var currentPoints = parseInt(localStorage.getItem('voterPoints'));
-      localStorage.setItem('voterPoints', (currentPoints + 10))
-      return `<div class="meter">
-        <span style="width:${currentPoints}%"></span>
-      </div>`
+      var currentPoints = parseInt(storedPoints);
+      localStorage.setItem('voterPoints', (currentPoints + 10));
     }
-    console.log(localStorage.getItem('voterPoints'));
-    console.log(`CURRENT POINTS: ${localStorage.getItem('voterPoints')}`);
-    trackPoints()
+
+    return $pointsTracker.animate({width:`${localStorage.getItem('voterPoints')}%`}, 3000, 'swing');
   }
 
-  const trackPoints = () => {
-    const userPoint = localStorage.getItem('voterPoints');
-    return `<div class="meter">
-      <span style="width:${userPoint || 1}%"></span>
-    </div>`
-  }
-
-  $('#pointsCnt').html(trackPoints());
-
+  // Random string generator
   const randStr = () => {
   const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let randStr = "";
@@ -99,6 +92,7 @@ $(() => {
     }
   }
 
+  // VOTE RESULTS
   $('#votePro1').click(function(ev) {
     ev.preventDefault();
     const data = {
@@ -126,18 +120,17 @@ $(() => {
         const winnerResult = renderWinnerVoteCount(voteResults);
         const loserResult = renderLoserVoteCount(voteResults);
         const nextButton = renderNextButton();
-        // $('#winner-container').html(winnerResult);
-        // $('#loser-container').html(loserResult);
 
           if(voteResults.winner.score >= voteResults.loser.score){
+            // If voter landed on vote majority, alculate new points
+            calcPoints();
+
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userWinner);
             $('#message-container').css('font-size', '38px');
-            $('#pointsCnt').html(calcPoints());
             $('#nextBtn').html(nextButton);
           } else {
-            $('#pointsCnt').html(trackPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userLooser);
@@ -174,18 +167,17 @@ $(() => {
         const winnerResult = renderWinnerVoteCount(voteResults);
         const loserResult = renderLoserVoteCount(voteResults);
         const nextButton = renderNextButton();
-        // $('#winner-container').html(winnerResult);
-        // $('#loser-container').html(loserResult);
 
           if(voteResults.winner.score >= voteResults.loser.score){
-            $('#pointsCnt').html(calcPoints());
+            // If voter landed on vote majority, alculate new points
+            calcPoints();
+
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userWinner);
             $('#message-container').css('font-size', '38px');
             $('#nextBtn').html(nextButton);
           } else {
-            $('#pointsCnt').html(trackPoints());
             $('#winner-container').html(winnerResult);
             $('#loser-container').html(loserResult);
             $('#message-container').html(userLooser);
@@ -197,28 +189,10 @@ $(() => {
   })
 
   $('#logout').click( (e) => {
-      localStorage.clear();
-      window.location = '/users/logout';
-      return false;
+    // Upon user logout, clear points tracker and favourites list
+    localStorage.clear();
+    window.location = '/users/logout';
+    return false;
   });
-
-  // $('#logout').click(function()
-  // {
-  //   $.ajax({
-  //     method:"POST",
-  //     url: "/users/register",
-  //     data:{
-  //       email: email,
-  //       password: password
-  //     }
-  //   }).done((e) =>{
-  //     localStorage.clear();
-  //     location.reload();
-  //     return false;
-  //
-  //   })
-  //
-  //     });
-  // });
 
 })

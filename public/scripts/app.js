@@ -96,4 +96,16 @@ $(() => {
     loadFavList();
   });
 
+  // POINTS INITIALIZER
+  $pointsTracker = $('.user-points');
+  $storedPoints = localStorage['voterPoints'];
+
+  if (!$storedPoints) {
+    $pointsTracker.css('width', '1%');
+  } else if (parseInt($storedPoints) >= 100) {
+    $pointsTracker.css('width', '100%');
+  } else {
+    $pointsTracker.css('width', `${localStorage.getItem('voterPoints')}%`);
+  };
+
 });
