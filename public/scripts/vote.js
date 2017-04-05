@@ -217,9 +217,10 @@ $(() => {
     })
   })
   //
-  $('#logout').click( (e) => {
+  $('#logout').on('click', (e) => {
       localStorage.clear();
       window.location = '/users/logout';
+      console.log('hey');
       return false;
   });
 
