@@ -28,7 +28,9 @@ $(() => {
 
 
   // Initialize collapse button for side nav
-  $(".button-collapse").sideNav();
+  $(".button-collapse").sideNav({
+    edge: 'right' // Choose the horizontal origin
+  });
 
   // Favourites List
   var $addFav = $('.add-fav');
