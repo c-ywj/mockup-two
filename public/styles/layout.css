@@ -250,6 +250,18 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   color: red;
 }
 
+pro1 {
+  font-weight: bold;
+}
+
+pro2 {
+  font-weight: bold;
+}
+
+p {
+  font-size: 15px;
+}
+
 #firstProd {
   -webkit-transform-origin: left center;
   -webkit-transform-style: preserve-3d;
@@ -330,6 +342,7 @@ i.material-icons {
 }
 
 h6 {
+  font-size: 19px;
   font-weight: bold;
 }
 
@@ -497,6 +510,7 @@ input:focus, input[type=text]:focus, input[type=password]:focus, input[type=text
 #prod1 {
   width: 340px;
   height: 30px;
+  font-weight: bold;
   margin-left: 40px;
   margin-right: 40px;
 }
@@ -504,6 +518,7 @@ input:focus, input[type=text]:focus, input[type=password]:focus, input[type=text
 #prod2 {
   width: 340px;
   height: 30px;
+  font-weight: bold;
   margin-left: 40px;
   margin-right: 40px;
 }
@@ -512,12 +527,14 @@ input:focus, input[type=text]:focus, input[type=password]:focus, input[type=text
   width: 163px;
   height: 30px;
   margin-top: 2px;
+  font-weight: bold;
   margin-left: 40px;
 }
 
 #b2 {
   width: 163px;
   height: 30px;
+  font-weight: bold;
   margin-top: 2px;
   margin-left: 3px;
 }

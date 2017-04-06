@@ -404,8 +404,9 @@ textarea {
  */
 
 ::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.54;
+  color: black;
+  font-weight: bold;
+  opacity: 0.84;
 }
 
 /**
