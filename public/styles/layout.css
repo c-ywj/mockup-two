@@ -244,7 +244,6 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 .card .card-content {
   height: 150px;
-  max-height: 150px;
 }
 
 .card .card-content .add-fav-wrapper .add-fav {
@@ -253,6 +252,11 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 .card .card-content .add-fav-wrapper .material-icons {
   color: red;
+}
+
+.card-content {
+  max-height: 100%;
+  overflow: scroll;
 }
 
 #firstProd {
