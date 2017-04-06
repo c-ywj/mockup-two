@@ -10,13 +10,12 @@
 nav {
   padding: 0 2em;
   background: rgba(200, 54, 54, 0.68);
-  font-size: 1.2em;
   min-height: 64px;
   line-height: 64px;
 }
 
 nav button:hover {
-  background: rgba(0, 0, 0, 0.25);
+  background: #222;
 }
 
 nav .brand-logo {
@@ -58,8 +57,8 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 /* SIDE NAVIGATION BAR */
 .side-nav {
-  color: #fff;
-  background-color: #c83636;
+  color: #111;
+  background-color: #fff;
   height: 100vh;
 }
 
@@ -80,11 +79,13 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 }
 
 .side-nav .userView .user-email {
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 
 .side-nav .user-list_heading {
   background: #101a24;
+  color: #fff;
+  font-size: 1.5em;
 }
 
 .side-nav .user-list {
@@ -94,7 +95,7 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
 
 .side-nav .user-list span {
   line-height: 25px;
-  color: rgba(0, 0, 0, 0.4);
+  color: #333;
 }
 
 .side-nav .user-list .user-list_content a, .side-nav .user-list .user-list_content a:before, .side-nav .user-list .user-list_content a:after, .side-nav .user-list .user-list_content a:visited, .side-nav .user-list .user-list_content a:hover, .side-nav .user-list .user-list_content a:active {
@@ -103,15 +104,19 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   min-height: 48px;
   height: auto;
   max-height: auto;
+  color: #333;
+  font-size: 1.3em;
 }
 
 .side-nav .logout-btn {
   margin-top: 20px;
   text-transform: uppercase;
+  background: #222;
+  color: #fff;
 }
 
 .side-nav .logout-btn:hover {
-  background: rgba(0, 0, 0, 0.25);
+  background: #101a24;
   transition: ease-in-out 0.5s;
 }
 
@@ -139,8 +144,8 @@ nav .sliding-menu a, nav .sliding-menu .button-collapse, nav .sliding-menu .mate
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-color: #c83636;
-  background-image: linear-gradient(center bottom, #c83636 37%, red 69%);
+  background-color: #fff;
+  background-image: linear-gradient(center bottom, #fff 37%, red 69%);
   transform: rotate(180deg);
   box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4);
   position: relative;
@@ -331,6 +336,7 @@ i.material-icons {
 
 h6 {
   font-weight: bold;
+  font-size: 1.3em;
 }
 
 /* MAIN CONTENT */
