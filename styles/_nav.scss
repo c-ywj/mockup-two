@@ -1,16 +1,16 @@
 /* NAVIGATION VARIABLES */
 $theme-background: rgba(200,54,54,0.68);
-$primary: rgb(200,54,54);
+// $primary: rgb(200,54,54);
+$primary: #fff;
 $secondary: #101a24;
-$text-font: #fff;
-$hover-background: rgba(0,0,0,0.25);
-
+$text-font: #111;
+$secondary-text: #333;
+$hover-background: #222;
 
 /* TOP NAVIGATION BAR */
 nav {
   padding: 0 2em;
   background: $theme-background;
-  font-size: 1.2em;
   min-height: 64px;
   line-height: 64px;
 
@@ -82,12 +82,14 @@ nav {
     }
 
     .user-email {
-      font-size: 1.2em;
+      font-size: 1.5em;
     }
   }
 
   .user-list_heading {
     background: $secondary;
+    color: #fff;
+    font-size: 1.5em;
   }
 
   .user-list {
@@ -96,7 +98,7 @@ nav {
 
     span {
       line-height: 25px;
-      color: rgba(0,0,0,0.4);
+      color: $secondary-text;
     }
 
     .user-list_content {
@@ -108,6 +110,8 @@ nav {
         min-height: 48px;
         height: auto;
         max-height: auto;
+        color: $secondary-text;
+        font-size: 1.3em;
       }
     }
 
@@ -117,10 +121,12 @@ nav {
   .logout-btn {
     margin-top: 20px;
     text-transform: uppercase;
+    background: $hover-background;
+    color: #fff;
   }
 
   .logout-btn:hover {
-    background: $hover-background;
+    background: $secondary;
     transition: ease-in-out 0.5s;
   }
 }

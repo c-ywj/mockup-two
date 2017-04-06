@@ -6,7 +6,7 @@ $(() => {
     const errorMsg = $('.errorMsg');
     if(!email || !password){
       errorMsg.remove();
-      return $(".formdata").append('<span class= "errorMsg">Please fill out the form</span>')
+      return $(".text-box-form").append('<span class= "errorMsg">Please fill out the form</span>')
     }
     $.ajax({
     method:"POST",
@@ -21,7 +21,7 @@ $(() => {
         window.location = "/search";
       } else {
         errorMsg.remove();
-        $(".formdata").append('<span class= "errorMsg">This email or password is incorrect!</span>');
+        $(".text-box-form").append('<span class= "errorMsg">This email or password is incorrect!</span>');
       }
     })
   })
