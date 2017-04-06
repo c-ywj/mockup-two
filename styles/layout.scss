@@ -306,13 +306,17 @@ label{
   background: $form-background;
   color:solid white;
 
+  input {
+    width: 20%;
+  }
+
   .login-page_register {
     margin: 100px auto;
   }
 }
 
 #passLogin {
-  width: 163px;
+  width: 230px;
   height: 20px;
   border: 1px solid grey;
   background-color: white;
@@ -320,10 +324,10 @@ label{
   border-radius: 5px;
   padding: 1em;
 
-  color: #555;
+  color: #333;
 }
 #emailLogin {
-  width: 163px;
+  width: 230px;
   height: 20px;
   border: 1px solid grey;
   background-color: white;
@@ -331,12 +335,12 @@ label{
   margin-right:60px;
   border-radius: 5px;
   padding: 1em;
-  color: #555;
+  color: #333;
 }
 
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #454444;
+  color: #333;
 }
 
 .text-box-form{
